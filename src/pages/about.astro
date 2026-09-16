@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NfaBanner from '../components/NfaBanner.astro';
+import { SITE, withBase } from '../lib/site';
+---
+
+<BaseLayout
+  title="Sobre"
+  description="Euro Desk FX é um projeto faceless de sinais e educação FX focado em EURUSD e GBPUSD. Sem fotos de cara, sem VIP."
+  canonicalPath="/about/"
+>
+  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <p class="text-sm font-medium text-navy-light">Faceless by design</p>
+    <h1 class="mt-2 text-3xl font-bold text-navy sm:text-4xl">Sobre a Euro Desk FX</h1>
+    <div class="mt-6 space-y-4 text-navy/80">
+      <p>
+        A <strong>{SITE.name}</strong> é um projeto de sinais e educação de forex sem rosto. Não
+        mostramos fotografias pessoais, não vendemos “guru lifestyle” e não temos planos VIP.
+      </p>
+      <p>
+        O foco é deliberadamente estreito: <strong>EURUSD</strong> e <strong>GBPUSD</strong>. Menos
+        ruído, mais contexto. O canal principal é o Telegram gratuito —
+        <a class="underline decoration-coral" href={SITE.telegram} target="_blank" rel="noopener noreferrer"
+          >t.me/EuroDeskFX</a
+        >
+        — e atualizações pontuais em
+        <a class="underline decoration-coral" href={SITE.x} target="_blank" rel="noopener noreferrer"
+          >X @techonni</a
+        >.
+      </p>
+      <p>
+        Este site existe para explicar o projeto, publicar artigos educativos em português e deixar
+        clear o disclaimer NFA. Nada aqui é aconselhamento financeiro.
+      </p>
+    </div>
+    <div class="mt-8">
+      <NfaBanner />
+    </div>
+    <p class="mt-8">
+      <a href={withBase('/')} class="text-sm font-medium text-navy-light underline decoration-mint"
+        >← Voltar ao início</a
+      >
+    </p>
+  </article>
+</BaseLayout>

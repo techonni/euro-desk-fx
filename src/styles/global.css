@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0b1f3a;
+  --color-navy-light: #123a5c;
+  --color-navy-muted: #1a3a5c;
+  --color-coral: #f4a89a;
+  --color-coral-soft: #f8c4ba;
+  --color-mint: #9fd9c2;
+  --color-mint-soft: #c5ebd9;
+  --color-cream: #f7f4ef;
+  --color-ink: #0b1f3a;
+  --font-sans: "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  antialiased: true;
+}
+
+::selection {
+  background-color: var(--color-mint-soft);
+  color: var(--color-navy);
+}
+
+.prose-blog h2 {
+  @apply mt-8 mb-3 text-xl font-semibold text-navy;
+}
+
+.prose-blog h3 {
+  @apply mt-6 mb-2 text-lg font-semibold text-navy;
+}
+
+.prose-blog p {
+  @apply mb-4 leading-relaxed text-navy/80;
+}
+
+.prose-blog ul {
+  @apply mb-4 list-disc space-y-2 pl-5 text-navy/80;
+}
+
+.prose-blog ol {
+  @apply mb-4 list-decimal space-y-2 pl-5 text-navy/80;
+}
+
+.prose-blog a {
+  @apply text-navy-light underline decoration-coral underline-offset-2 hover:text-navy;
+}
+
+.prose-blog strong {
+  @apply font-semibold text-navy;
+}
+
+.prose-blog blockquote {
+  @apply my-6 border-l-4 border-coral bg-coral/10 px-4 py-3 text-navy/80;
+}

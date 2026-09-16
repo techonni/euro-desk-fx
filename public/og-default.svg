@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0B1F3A"/>
+  <circle cx="180" cy="120" r="220" fill="#9FD9C2" fill-opacity="0.2"/>
+  <circle cx="1050" cy="520" r="280" fill="#F4A89A" fill-opacity="0.25"/>
+  <rect x="80" y="120" width="1040" height="390" rx="32" fill="#123A5C"/>
+  <text x="120" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="700" fill="#F7F4EF">Euro Desk FX</text>
+  <text x="120" y="330" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#9FD9C2">Faceless FX signals · EURUSD &amp; GBPUSD</text>
+  <text x="120" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#F4A89A">Free Telegram · NFA / risk disclaimer</text>
+  <text x="120" y="460" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#F7F4EF" fill-opacity="0.7">techonni.github.io/euro-desk-fx</text>
+</svg>

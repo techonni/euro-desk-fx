@@ -1,0 +1,44 @@
+---
+import { SITE, withBase } from '../lib/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-16 border-t border-navy/10 bg-navy text-cream">
+  <div class="mx-auto grid max-w-5xl gap-8 px-4 py-10 sm:grid-cols-3 sm:px-6">
+    <div>
+      <p class="font-semibold">{SITE.name}</p>
+      <p class="mt-2 text-sm text-cream/70">
+        Sinais e educação FX sem rosto. Foco em {SITE.pairs.join(' e ')}. Sem fotos. Sem VIP.
+      </p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-mint">Links</p>
+      <ul class="mt-2 space-y-1 text-sm text-cream/80">
+        <li><a class="hover:text-mint" href={withBase('/blog/')}>Blog educativo</a></li>
+        <li><a class="hover:text-mint" href={withBase('/about/')}>Sobre (faceless)</a></li>
+        <li><a class="hover:text-mint" href={withBase('/privacy/')}>Privacidade</a></li>
+        <li><a class="hover:text-mint" href={withBase('/disclaimer/')}>Disclaimer / NFA</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-mint">Canais</p>
+      <ul class="mt-2 space-y-1 text-sm text-cream/80">
+        <li>
+          <a class="hover:text-coral" href={SITE.telegram} target="_blank" rel="noopener noreferrer"
+            >Telegram gratuito</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-coral" href={SITE.x} target="_blank" rel="noopener noreferrer">X @techonni</a>
+        </li>
+      </ul>
+      <p class="mt-4 rounded-lg border border-coral/40 bg-navy-light/40 p-3 text-xs leading-relaxed text-cream/75">
+        <strong class="text-coral">NFA:</strong> Conteúdo educacional e opinativo. Não é aconselhamento
+        financeiro, investimento ou trading. Risco de perda de capital.
+      </p>
+    </div>
+  </div>
+  <div class="border-t border-white/10 px-4 py-4 text-center text-xs text-cream/50 sm:px-6">
+    © {year} {SITE.name}. Todos os direitos reservados.
+  </div>
+</footer>

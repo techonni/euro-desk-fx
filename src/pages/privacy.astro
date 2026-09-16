@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, withBase } from '../lib/site';
+---
+
+<BaseLayout
+  title="Privacidade"
+  description="Política de privacidade da Euro Desk FX: site estático, sem tracking invasivo, links para Telegram e X."
+  canonicalPath="/privacy/"
+>
+  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <h1 class="text-3xl font-bold text-navy sm:text-4xl">Privacidade</h1>
+    <p class="mt-2 text-sm text-navy/55">Última atualização: setembro 2026</p>
+
+    <div class="prose-blog mt-8">
+      <p>
+        A <strong>{SITE.name}</strong> opera um site estático alojado no GitHub Pages. Não vendemos
+        dados pessoais e não pedimos registo nesta página.
+      </p>
+      <h2>Que dados tratamos?</h2>
+      <ul>
+        <li>
+          <strong>Neste website:</strong> tipicamente nenhum dado pessoal nosso. O alojamento
+          (GitHub Pages) pode registar logs técnicos padrão (IP, user-agent) sob as políticas da
+          GitHub.
+        </li>
+        <li>
+          <strong>Telegram / X:</strong> ao usar esses serviços, aplicam-se as políticas de
+          privacidade respetivas (Telegram, X/Twitter). Não controlamos esses processadores.
+        </li>
+      </ul>
+      <h2>Cookies e analytics</h2>
+      <p>
+        Este site estático não inclui, por omissão, cookies de marketing nem pixels de tracking de
+        terceiros. Se no futuro forem adicionadas métricas agregadas, atualizaremos esta página.
+      </p>
+      <h2>Links externos</h2>
+      <p>
+        Ligamos ao canal Telegram ({SITE.telegram}) e ao perfil X ({SITE.x}). Ao sair deste domínio,
+        as regras desses serviços passam a aplicar-se.
+      </p>
+      <h2>Contacto</h2>
+      <p>
+        Para questões relacionadas com este site, use os canais públicos oficiais acima. Não
+        solicitamos passwords, seeds, KYC nem depósitos em nosso nome — desconfie de qualquer
+        mensagem nesse sentido.
+      </p>
+    </div>
+
+    <p class="mt-10">
+      <a href={withBase('/')} class="text-sm font-medium text-navy-light underline decoration-mint"
+        >← Voltar ao início</a
+      >
+    </p>
+  </article>
+</BaseLayout>

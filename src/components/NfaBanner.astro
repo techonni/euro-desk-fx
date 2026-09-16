@@ -1,0 +1,24 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<aside
+  class:list={[
+    'rounded-xl border border-coral/50 bg-coral/15 text-navy',
+    compact ? 'px-3 py-2 text-xs' : 'px-4 py-3 text-sm',
+  ]}
+  role="note"
+  aria-label="Aviso de risco"
+>
+  <p>
+    <strong class="text-navy">NFA / Aviso de risco:</strong>
+    {
+      compact
+        ? ' Educação e opinião apenas. Não é aconselhamento financeiro. Trading envolve risco de perda.'
+        : ' Todo o conteúdo da Euro Desk FX é estritamente educacional e opinativo. Não constitui aconselhamento financeiro, de investimento ou de trading. Pode perder o capital investido. Opere apenas com dinheiro que possa perder e informe-se junto de profissionais regulados se necessário.'
+    }
+  </p>
+</aside>

@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, withBase } from '../lib/site';
+---
+
+<BaseLayout
+  title="Disclaimer / NFA"
+  description="Disclaimer NFA da Euro Desk FX: conteúdo educacional e opinativo. Não é aconselhamento financeiro. Trading envolve risco de perda."
+  canonicalPath="/disclaimer/"
+>
+  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
+    <h1 class="text-3xl font-bold text-navy sm:text-4xl">Disclaimer / NFA</h1>
+    <p class="mt-2 text-sm text-navy/55">Not Financial Advice · Aviso de risco</p>
+
+    <div class="prose-blog mt-8">
+      <p>
+        Todo o conteúdo publicado pela <strong>{SITE.name}</strong> — incluindo este website, o canal
+        Telegram, publicações em X e quaisquer materiais associados — é fornecido
+        <strong>apenas para fins educacionais e informativos</strong>.
+      </p>
+      <h2>Não é aconselhamento financeiro</h2>
+      <p>
+        Nada do que publicamos constitui aconselhamento financeiro, de investimento, fiscal ou de
+        trading. Não somos consultores regulados. Não conhecemos a sua situação pessoal, objetivos,
+        tolerância ao risco ou capacidade financeira.
+      </p>
+      <h2>Risco de perda</h2>
+      <p>
+        O trading de divisas (forex) e produtos relacionados envolve um risco elevado de perda de
+        capital, incluindo a possibilidade de perder mais do que o depósito inicial em alguns
+        produtos com alavancagem. Desempenho passado não é indicador de resultados futuros.
+      </p>
+      <h2>Sinais e ideias</h2>
+      <ul>
+        <li>Sinais e análises são opiniões e material de estudo — não ordens de execução.</li>
+        <li>Não garantimos lucros, win rates ou resultados.</li>
+        <li>Não oferecemos serviço VIP, copy-trading gerido nem gestão de carteiras.</li>
+        <li>É da sua responsabilidade verificar spreads, custos, horário e regras do seu broker.</li>
+      </ul>
+      <h2>Responsabilidade</h2>
+      <p>
+        Ao utilizar os nossos canais, aceita que quaisquer decisões de trading são exclusivamente
+        suas. A {SITE.name} e os seus operadores não se responsabilizam por perdas, danos ou
+        consequências decorrentes do uso da informação partilhada.
+      </p>
+      <h2>Contactos oficiais</h2>
+      <ul>
+        <li>
+          Telegram: <a href={SITE.telegram} target="_blank" rel="noopener noreferrer">{SITE.telegram}</a>
+        </li>
+        <li>
+          X: <a href={SITE.x} target="_blank" rel="noopener noreferrer">{SITE.x}</a>
+        </li>
+      </ul>
+      <blockquote>
+        Opere apenas com capital que possa perder. Se tiver dúvidas, procure aconselhamento
+        independente de profissionais devidamente autorizados na sua jurisdição.
+      </blockquote>
+    </div>
+
+    <p class="mt-10">
+      <a href={withBase('/')} class="text-sm font-medium text-navy-light underline decoration-mint"
+        >← Voltar ao início</a
+      >
+    </p>
+  </article>
+</BaseLayout>
