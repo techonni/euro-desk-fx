@@ -4,53 +4,51 @@ import { SITE, withBase } from '../lib/site';
 ---
 
 <BaseLayout
-  title="Privacidade"
-  description="Política de privacidade da Euro Desk FX: site estático, sem tracking invasivo, links para Telegram e X."
+  title="Privacy"
+  description="Euro Desk FX privacy note: static site on GitHub Pages, no invasive tracking, links to Telegram and X."
   canonicalPath="/privacy/"
 >
-  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-    <h1 class="text-3xl font-bold text-navy sm:text-4xl">Privacidade</h1>
-    <p class="mt-2 text-sm text-navy/55">Última atualização: setembro 2026</p>
+  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+    <p class="label-micro">Legal</p>
+    <h1 class="mt-3 text-3xl font-bold tracking-tight text-fg sm:text-5xl">Privacy</h1>
+    <p class="mt-3 text-sm text-muted">Last updated: September 2026</p>
 
-    <div class="prose-blog mt-8">
+    <div class="prose-blog mt-10">
       <p>
-        A <strong>{SITE.name}</strong> opera um site estático alojado no GitHub Pages. Não vendemos
-        dados pessoais e não pedimos registo nesta página.
+        <strong>{SITE.name}</strong> runs a static site on GitHub Pages. Personal data is not sold, and
+        this page does not ask you to register.
       </p>
-      <h2>Que dados tratamos?</h2>
+      <h2>What data is handled?</h2>
       <ul>
         <li>
-          <strong>Neste website:</strong> tipicamente nenhum dado pessoal nosso. O alojamento
-          (GitHub Pages) pode registar logs técnicos padrão (IP, user-agent) sob as políticas da
-          GitHub.
+          <strong>On this website:</strong> typically no personal data is collected by Euro Desk FX.
+          The host (GitHub Pages) may keep standard technical logs (IP, user-agent) under GitHub’s
+          policies.
         </li>
         <li>
-          <strong>Telegram / X:</strong> ao usar esses serviços, aplicam-se as políticas de
-          privacidade respetivas (Telegram, X/Twitter). Não controlamos esses processadores.
+          <strong>Telegram / X:</strong> when you use those apps, their own privacy policies apply.
+          Those platforms are separate processors.
         </li>
       </ul>
-      <h2>Cookies e analytics</h2>
+      <h2>Cookies and analytics</h2>
       <p>
-        Este site estático não inclui, por omissão, cookies de marketing nem pixels de tracking de
-        terceiros. Se no futuro forem adicionadas métricas agregadas, atualizaremos esta página.
+        By default this static site does not add marketing cookies or third-party tracking pixels. If
+        simple aggregate stats are added later, this page will be updated.
       </p>
-      <h2>Links externos</h2>
+      <h2>External links</h2>
       <p>
-        Ligamos ao canal Telegram ({SITE.telegram}) e ao perfil X ({SITE.x}). Ao sair deste domínio,
-        as regras desses serviços passam a aplicar-se.
+        Links go to Telegram ({SITE.telegram}) and X ({SITE.x}). After you leave this domain, those
+        services’ rules apply.
       </p>
-      <h2>Contacto</h2>
+      <h2>Contact</h2>
       <p>
-        Para questões relacionadas com este site, use os canais públicos oficiais acima. Não
-        solicitamos passwords, seeds, KYC nem depósitos em nosso nome — desconfie de qualquer
-        mensagem nesse sentido.
+        For questions about this site, use the public channels above. Never send passwords, seed
+        phrases, KYC files, or deposits in the name of Euro Desk FX — treat any such request as a scam.
       </p>
     </div>
 
-    <p class="mt-10">
-      <a href={withBase('/')} class="text-sm font-medium text-navy-light underline decoration-mint"
-        >← Voltar ao início</a
-      >
+    <p class="mt-12">
+      <a href={withBase('/')} class="link-arrow">← Back home</a>
     </p>
   </article>
 </BaseLayout>

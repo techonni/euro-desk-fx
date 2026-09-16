@@ -7,18 +7,19 @@ const { compact = false } = Astro.props;
 
 <aside
   class:list={[
-    'rounded-xl border border-coral/50 bg-coral/15 text-navy',
+    'border border-border bg-bg-elevated text-muted',
     compact ? 'px-3 py-2 text-xs' : 'px-4 py-3 text-sm',
   ]}
   role="note"
-  aria-label="Aviso de risco"
+  aria-label="Risk note"
 >
   <p>
-    <strong class="text-navy">NFA / Aviso de risco:</strong>
+    <span class="label-micro text-cream">NFA</span>
+    <span class="mx-2 text-border">·</span>
     {
       compact
-        ? ' Educação e opinião apenas. Não é aconselhamento financeiro. Trading envolve risco de perda.'
-        : ' Todo o conteúdo da Euro Desk FX é estritamente educacional e opinativo. Não constitui aconselhamento financeiro, de investimento ou de trading. Pode perder o capital investido. Opere apenas com dinheiro que possa perder e informe-se junto de profissionais regulados se necessário.'
+        ? 'Educational content only. This is not financial advice. Trading involves risk of loss.'
+        : 'Everything on Euro Desk FX is for learning and discussion. This is not financial advice. Trading can lead to loss of capital. Only use money you can afford to lose.'
     }
   </p>
 </aside>

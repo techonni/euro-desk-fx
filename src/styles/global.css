@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0b1f3a;
-  --color-navy-light: #123a5c;
-  --color-navy-muted: #1a3a5c;
-  --color-coral: #f4a89a;
-  --color-coral-soft: #f8c4ba;
-  --color-mint: #9fd9c2;
-  --color-mint-soft: #c5ebd9;
-  --color-cream: #f7f4ef;
-  --color-ink: #0b1f3a;
-  --font-sans: "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #111111;
+  --color-border: #222222;
+  --color-border-soft: #1a1a1a;
+  --color-fg: #f5f5f0;
+  --color-muted: #8a8a8a;
+  --color-muted-soft: #6b6b6b;
+  --color-cyan: #22d3ee;
+  --color-indigo: #6366f1;
+  --color-electric: #3b82f6;
+  --color-orange: #f97316;
+  --color-cream: #f5f0e6;
+  --font-sans: "Inter", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
@@ -19,44 +22,110 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-cream);
-  color: var(--color-ink);
-  antialiased: true;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: var(--color-mint-soft);
-  color: var(--color-navy);
+  background-color: color-mix(in srgb, var(--color-cyan) 35%, transparent);
+  color: var(--color-fg);
+}
+
+.label-micro {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.badge-rect {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #2a2a2a;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.badge-rect:hover {
+  background-color: #141414;
+  border-color: #3a3a3a;
+}
+
+.badge-rect-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-fg);
+  color: var(--color-bg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.1rem;
+  border-radius: 0;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.badge-rect-solid:hover {
+  opacity: 0.88;
+}
+
+.link-arrow {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.link-arrow:hover {
+  color: var(--color-fg);
 }
 
 .prose-blog h2 {
-  @apply mt-8 mb-3 text-xl font-semibold text-navy;
+  @apply mt-10 mb-3 text-xl font-semibold text-fg;
 }
 
 .prose-blog h3 {
-  @apply mt-6 mb-2 text-lg font-semibold text-navy;
+  @apply mt-7 mb-2 text-lg font-semibold text-fg;
 }
 
 .prose-blog p {
-  @apply mb-4 leading-relaxed text-navy/80;
+  @apply mb-4 leading-relaxed text-muted;
 }
 
 .prose-blog ul {
-  @apply mb-4 list-disc space-y-2 pl-5 text-navy/80;
+  @apply mb-4 list-disc space-y-2 pl-5 text-muted;
 }
 
 .prose-blog ol {
-  @apply mb-4 list-decimal space-y-2 pl-5 text-navy/80;
+  @apply mb-4 list-decimal space-y-2 pl-5 text-muted;
 }
 
 .prose-blog a {
-  @apply text-navy-light underline decoration-coral underline-offset-2 hover:text-navy;
+  @apply text-fg underline decoration-border underline-offset-4 hover:decoration-cyan;
 }
 
 .prose-blog strong {
-  @apply font-semibold text-navy;
+  @apply font-semibold text-fg;
 }
 
 .prose-blog blockquote {
-  @apply my-6 border-l-4 border-coral bg-coral/10 px-4 py-3 text-navy/80;
+  @apply my-6 border-l-2 border-border bg-bg-elevated px-4 py-3 text-muted;
+}
+
+.prose-blog code {
+  @apply rounded-none border border-border bg-bg-elevated px-1.5 py-0.5 text-sm text-cream;
 }

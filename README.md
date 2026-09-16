@@ -1,17 +1,17 @@
 # Euro Desk FX
 
-Static Astro site for **Euro Desk FX** — faceless FX signals focused on EURUSD and GBPUSD.
+Static Astro site for **Euro Desk FX** — free FX education focused on EURUSD and GBPUSD.
 
 - Site (GitHub Pages): https://techonni.github.io/euro-desk-fx/
 - Telegram (free): https://t.me/EuroDeskFX
-- X: https://x.com/techonni
+- X: https://x.com/eurodeskfx
 
 ## Stack
 
 - Astro (static) + TypeScript + Tailwind CSS v4
-- Content collections (Markdown blog, PT)
+- Content collections (Markdown blog, English)
 - `@astrojs/sitemap` + `robots.txt` + OG/canonicals
-- Deploy: GitHub Actions → GitHub Pages (no Vercel)
+- Deploy: GitHub Actions → GitHub Pages
 
 ## Local
 
@@ -26,4 +26,4 @@ Requires Node.js **≥ 22.12**.
 
 ## NFA
 
-Educational / opinion content only. Not financial advice. Trading involves risk of loss.
+Educational / opinion content only. This is not financial advice. Trading involves risk of loss.

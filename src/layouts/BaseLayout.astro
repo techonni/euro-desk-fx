@@ -26,14 +26,14 @@ const ogImage = absoluteUrl('og-default.png');
 ---
 
 <!doctype html>
-<html lang="pt">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0B1F3A" />
+    <meta name="theme-color" content="#0A0A0A" />
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (
@@ -43,28 +43,26 @@ const ogImage = absoluteUrl('og-default.png');
     <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
     <link rel="alternate icon" href={withBase('favicon.ico')} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="pt_PT" />
+    <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@techonni" />
+    <meta name="twitter:site" content={SITE.xHandle} />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
   </head>
-  <body class="flex min-h-screen flex-col bg-cream text-navy">
+  <body class="flex min-h-screen flex-col bg-bg text-fg">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-mint focus:px-3 focus:py-2 focus:text-navy"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-border focus:bg-bg-elevated focus:px-3 focus:py-2 focus:text-fg"
     >
-      Saltar para o conteúdo
+      Skip to content
     </a>
     <Header />
     <main id="main" class="flex-1">

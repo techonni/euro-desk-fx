@@ -5,45 +5,44 @@ import { SITE, withBase } from '../lib/site';
 
 <BaseLayout
   title="Disclaimer / NFA"
-  description="Disclaimer NFA da Euro Desk FX: conteúdo educacional e opinativo. Não é aconselhamento financeiro. Trading envolve risco de perda."
+  description="Euro Desk FX disclaimer: educational content only. This is not financial advice. Trading involves risk of loss."
   canonicalPath="/disclaimer/"
 >
-  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-    <h1 class="text-3xl font-bold text-navy sm:text-4xl">Disclaimer / NFA</h1>
-    <p class="mt-2 text-sm text-navy/55">Not Financial Advice · Aviso de risco</p>
+  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+    <p class="label-micro">Legal</p>
+    <h1 class="mt-3 text-3xl font-bold tracking-tight text-fg sm:text-5xl">Disclaimer / NFA</h1>
+    <p class="mt-3 text-sm text-muted">Not financial advice · Risk note</p>
 
-    <div class="prose-blog mt-8">
+    <div class="prose-blog mt-10">
       <p>
-        Todo o conteúdo publicado pela <strong>{SITE.name}</strong> — incluindo este website, o canal
-        Telegram, publicações em X e quaisquer materiais associados — é fornecido
-        <strong>apenas para fins educacionais e informativos</strong>.
+        All content from <strong>{SITE.name}</strong> — including this website, the Telegram channel,
+        posts on X, and related materials — is shared
+        <strong>for education and information only</strong>.
       </p>
-      <h2>Não é aconselhamento financeiro</h2>
+      <h2>This is not financial advice</h2>
       <p>
-        Nada do que publicamos constitui aconselhamento financeiro, de investimento, fiscal ou de
-        trading. Não somos consultores regulados. Não conhecemos a sua situação pessoal, objetivos,
-        tolerância ao risco ou capacidade financeira.
+        Nothing published here is financial, investment, tax, or trading advice. Euro Desk FX is not a
+        regulated advisor. Personal goals, risk limits, and account size are unknown — so no signal or
+        article can replace your own judgment.
       </p>
-      <h2>Risco de perda</h2>
+      <h2>Risk of loss</h2>
       <p>
-        O trading de divisas (forex) e produtos relacionados envolve um risco elevado de perda de
-        capital, incluindo a possibilidade de perder mais do que o depósito inicial em alguns
-        produtos com alavancagem. Desempenho passado não é indicador de resultados futuros.
+        Forex and related products carry a high risk of losing capital. Leveraged products can magnify
+        losses. Past results do not predict future results.
       </p>
-      <h2>Sinais e ideias</h2>
+      <h2>Signals and ideas</h2>
       <ul>
-        <li>Sinais e análises são opiniões e material de estudo — não ordens de execução.</li>
-        <li>Não garantimos lucros, win rates ou resultados.</li>
-        <li>Não oferecemos serviço VIP, copy-trading gerido nem gestão de carteiras.</li>
-        <li>É da sua responsabilidade verificar spreads, custos, horário e regras do seu broker.</li>
+        <li>Signals and charts are opinions and study material — not orders to execute.</li>
+        <li>There is no guarantee of profit, win rate, or outcome.</li>
+        <li>There is no VIP service, managed copy-trading, or portfolio management.</li>
+        <li>You check spreads, costs, hours, and broker rules yourself.</li>
       </ul>
-      <h2>Responsabilidade</h2>
+      <h2>Your responsibility</h2>
       <p>
-        Ao utilizar os nossos canais, aceita que quaisquer decisões de trading são exclusivamente
-        suas. A {SITE.name} e os seus operadores não se responsabilizam por perdas, danos ou
-        consequências decorrentes do uso da informação partilhada.
+        By using these channels, you accept that trading decisions are yours alone. {SITE.name} and its
+        operators are not liable for losses or damages from use of the shared information.
       </p>
-      <h2>Contactos oficiais</h2>
+      <h2>Official links</h2>
       <ul>
         <li>
           Telegram: <a href={SITE.telegram} target="_blank" rel="noopener noreferrer">{SITE.telegram}</a>
@@ -53,15 +52,13 @@ import { SITE, withBase } from '../lib/site';
         </li>
       </ul>
       <blockquote>
-        Opere apenas com capital que possa perder. Se tiver dúvidas, procure aconselhamento
-        independente de profissionais devidamente autorizados na sua jurisdição.
+        Only trade with capital you can afford to lose. If you need personal advice, speak with a
+        licensed professional in your jurisdiction.
       </blockquote>
     </div>
 
-    <p class="mt-10">
-      <a href={withBase('/')} class="text-sm font-medium text-navy-light underline decoration-mint"
-        >← Voltar ao início</a
-      >
+    <p class="mt-12">
+      <a href={withBase('/')} class="link-arrow">← Back home</a>
     </p>
   </article>
 </BaseLayout>

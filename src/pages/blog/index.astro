@@ -11,42 +11,42 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 
 <BaseLayout
   title="Blog"
-  description="Artigos educativos em português sobre EURUSD, GBPUSD, risco e disciplina. Sempre NFA — Euro Desk FX."
+  description="Beginner FX guides in plain English — EURUSD, GBPUSD, London session, and risk. Euro Desk FX. This is not financial advice."
   canonicalPath="/blog/"
 >
-  <section class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-    <h1 class="text-3xl font-bold text-navy sm:text-4xl">Blog educativo</h1>
-    <p class="mt-3 text-navy/70">
-      Conteúdo em português sobre pares, risco e processo. Sem hype, sem VIP.
+  <section class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+    <p class="label-micro">Blog</p>
+    <h1 class="mt-3 text-3xl font-bold tracking-tight text-fg sm:text-5xl">Guides for beginners</h1>
+    <p class="mt-4 max-w-xl text-muted">
+      Plain English articles on pairs, sessions, and risk. No hype. No VIP wall.
     </p>
-    <div class="mt-6">
+    <div class="mt-8">
       <NfaBanner compact />
     </div>
 
-    <ul class="mt-10 space-y-4">
+    <ul class="mt-12 space-y-0">
       {
         posts.map((post) => (
-          <li>
+          <li class="border-t border-border">
             <a
               href={withBase(`/blog/${post.id}/`)}
-              class="block rounded-2xl border border-navy/10 bg-white p-5 shadow-sm transition hover:border-coral hover:shadow-md"
+              class="group block py-6 transition"
             >
-              <div class="flex flex-wrap items-center gap-2 text-xs text-navy/50">
-                <time datetime={post.data.pubDate.toISOString()}>
-                  {post.data.pubDate.toLocaleDateString('pt-PT', {
+              <div class="flex flex-wrap items-center gap-2">
+                <time class="label-micro" datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-GB', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
                   })}
                 </time>
-                <span aria-hidden="true">·</span>
-                <span class="uppercase tracking-wide">PT</span>
                 {post.data.tags.slice(0, 3).map((tag) => (
-                  <span class="rounded-full bg-mint/25 px-2 py-0.5 text-navy/70">{tag}</span>
+                  <span class="label-micro border border-border px-2 py-0.5 text-muted-soft">{tag}</span>
                 ))}
               </div>
-              <h2 class="mt-2 text-xl font-semibold text-navy">{post.data.title}</h2>
-              <p class="mt-2 text-sm text-navy/65">{post.data.description}</p>
+              <h2 class="mt-3 text-xl font-semibold text-fg group-hover:text-cream">{post.data.title}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
+              <p class="link-arrow mt-3 group-hover:text-fg">Read →</p>
             </a>
           </li>
         ))

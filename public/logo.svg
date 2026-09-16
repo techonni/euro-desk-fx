@@ -1,26 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Euro Desk FX">
+  <rect width="512" height="512" fill="#0A0A0A"/>
+  <rect x="24" y="24" width="464" height="464" fill="none" stroke="#222222" stroke-width="2"/>
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0B1F3A"/>
-      <stop offset="100%" stop-color="#123A5C"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#3DDC97"/>
-      <stop offset="55%" stop-color="#5B8CFF"/>
-      <stop offset="100%" stop-color="#E8F1FF"/>
+    <linearGradient id="edfx" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22D3EE"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#6366F1"/>
     </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
-  <!-- soft ring -->
-  <circle cx="256" cy="256" r="168" fill="none" stroke="#1E4A73" stroke-width="10"/>
-  <circle cx="256" cy="256" r="168" fill="none" stroke="url(#accent)" stroke-width="6" stroke-dasharray="28 18" stroke-linecap="round" opacity="0.95"/>
-  <!-- euro mark stylized -->
-  <g fill="none" stroke="url(#accent)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M312 168c-58-28-128-8-148 56-18 58 18 120 82 138 42 12 88 2 116-28"/>
-    <path d="M168 236h128"/>
-    <path d="M176 276h112"/>
+  <!-- geometric euro-inspired mark -->
+  <g fill="none" stroke="url(#edfx)" stroke-width="28" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M340 150c-70-40-160-20-190 60-28 74 16 156 98 178 52 14 108 0 142-36"/>
+    <path d="M160 230h148"/>
+    <path d="M168 282h132"/>
   </g>
-  <!-- desk tick -->
-  <path d="M196 340h120" stroke="#3DDC97" stroke-width="14" stroke-linecap="round"/>
-  <circle cx="360" cy="160" r="10" fill="#3DDC97"/>
+  <rect x="168" y="360" width="176" height="14" fill="#F97316"/>
+  <rect x="360" y="140" width="18" height="18" fill="#22D3EE"/>
 </svg>

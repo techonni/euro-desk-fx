@@ -1,14 +1,15 @@
 export const SITE = {
   name: 'Euro Desk FX',
-  tagline: 'Sinais FX sem rosto — foco EURUSD e GBPUSD',
+  tagline: 'Free FX ideas focused on EURUSD and GBPUSD',
   description:
-    'Euro Desk FX partilha sinais e educação FX de forma faceless. Foco em EURUSD e GBPUSD. Conteúdo gratuito no Telegram. NFA — não é aconselhamento financeiro.',
+    'Euro Desk FX shares free FX education and market ideas focused on EURUSD and GBPUSD. Join the free Telegram channel. This is not financial advice.',
   site: 'https://techonni.github.io',
   base: '/euro-desk-fx/',
   telegram: 'https://t.me/EuroDeskFX',
-  x: 'https://x.com/techonni',
+  x: 'https://x.com/eurodeskfx',
+  xHandle: '@eurodeskfx',
   pairs: ['EURUSD', 'GBPUSD'] as const,
-  locale: 'pt-PT',
+  locale: 'en',
 } as const;
 
 export function withBase(path = ''): string {

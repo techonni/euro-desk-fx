@@ -5,41 +5,40 @@ import { SITE, withBase } from '../lib/site';
 ---
 
 <BaseLayout
-  title="Sobre"
-  description="Euro Desk FX é um projeto faceless de sinais e educação FX focado em EURUSD e GBPUSD. Sem fotos de cara, sem VIP."
+  title="About"
+  description="Euro Desk FX is a free FX education desk focused on EURUSD and GBPUSD. Plain English. Soft risk notes. This is not financial advice."
   canonicalPath="/about/"
 >
-  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-    <p class="text-sm font-medium text-navy-light">Faceless by design</p>
-    <h1 class="mt-2 text-3xl font-bold text-navy sm:text-4xl">Sobre a Euro Desk FX</h1>
-    <div class="mt-6 space-y-4 text-navy/80">
+  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+    <p class="label-micro">About</p>
+    <h1 class="mt-3 text-3xl font-bold tracking-tight text-fg sm:text-5xl">Euro Desk FX</h1>
+    <div class="mt-8 space-y-4 text-base leading-relaxed text-muted">
       <p>
-        A <strong>{SITE.name}</strong> é um projeto de sinais e educação de forex sem rosto. Não
-        mostramos fotografias pessoais, não vendemos “guru lifestyle” e não temos planos VIP.
+        <strong class="text-fg">{SITE.name}</strong> is a free desk for FX education and market ideas.
+        The focus stays narrow on purpose: <strong class="text-fg">EURUSD</strong> and
+        <strong class="text-fg">GBPUSD</strong>.
       </p>
       <p>
-        O foco é deliberadamente estreito: <strong>EURUSD</strong> e <strong>GBPUSD</strong>. Menos
-        ruído, mais contexto. O canal principal é o Telegram gratuito —
-        <a class="underline decoration-coral" href={SITE.telegram} target="_blank" rel="noopener noreferrer"
+        You get simple English, session context, and soft risk reminders. There is no VIP pricing and no
+        promise of profit. The main channel is free Telegram —
+        <a class="text-fg underline decoration-border underline-offset-4 hover:decoration-cyan" href={SITE.telegram} target="_blank" rel="noopener noreferrer"
           >t.me/EuroDeskFX</a
         >
-        — e atualizações pontuais em
-        <a class="underline decoration-coral" href={SITE.x} target="_blank" rel="noopener noreferrer"
-          >X @techonni</a
+        — with short updates on
+        <a class="text-fg underline decoration-border underline-offset-4 hover:decoration-cyan" href={SITE.x} target="_blank" rel="noopener noreferrer"
+          >X {SITE.xHandle}</a
         >.
       </p>
       <p>
-        Este site existe para explicar o projeto, publicar artigos educativos em português e deixar
-        clear o disclaimer NFA. Nada aqui é aconselhamento financeiro.
+        This site explains the project, hosts beginner articles, and keeps the disclaimer easy to find.
+        This is not financial advice. Use the material to study process — then decide for yourself.
       </p>
     </div>
-    <div class="mt-8">
+    <div class="mt-10">
       <NfaBanner />
     </div>
-    <p class="mt-8">
-      <a href={withBase('/')} class="text-sm font-medium text-navy-light underline decoration-mint"
-        >← Voltar ao início</a
-      >
+    <p class="mt-10">
+      <a href={withBase('/')} class="link-arrow">← Back home</a>
     </p>
   </article>
 </BaseLayout>
