@@ -4,7 +4,7 @@ export const SITE = {
   description:
     'Euro Desk FX shares free FX education and market ideas focused on EURUSD and GBPUSD. Join the free Telegram channel. This is not financial advice.',
   site: 'https://techonni.github.io',
-  base: '/euro-desk-fx/',
+  base: '/',
   telegram: 'https://t.me/EuroDeskFX',
   x: 'https://x.com/eurodeskfx',
   xHandle: '@eurodeskfx',
