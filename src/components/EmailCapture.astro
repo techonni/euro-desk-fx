@@ -3,22 +3,31 @@ import { SITE, withBase } from '../lib/site';
 
 const action = SITE.newsletterFormAction;
 const ready = Boolean(action);
+
+interface Props {
+  variant?: 'section' | 'widget';
+  heading?: string;
+}
+
+const {
+  variant = 'section',
+  heading = 'Get tips in your inbox',
+} = Astro.props;
+
+const isWidget = variant === 'widget';
 ---
 
-<section class="mx-auto max-w-5xl px-4 pb-16 sm:px-6" aria-labelledby="email-capture-heading">
-  <div>
-    <h2 id="email-capture-heading" class="text-2xl font-bold tracking-tight text-fg sm:text-3xl">
-      Get tips in your inbox
-    </h2>
-    <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-      Leave your email and you can receive beginner FX tips from
-      <span class="text-fg">{SITE.name}</span>
-      ({SITE.byline}). No spam. Stop any time. This is not financial advice.
-    </p>
-
-    {
-      ready ? (
-        <form id="nl-form" class="nl-form mt-6" action={action} method="POST" novalidate>
+{
+  isWidget ? (
+    <div class="nl-widget" aria-labelledby="email-capture-heading">
+      <h2 id="email-capture-heading" class="text-xl font-semibold text-fg sm:text-2xl">
+        {heading}
+      </h2>
+      <p class="mt-2 text-sm leading-relaxed text-muted">
+        Beginner FX tips from <span class="font-semibold text-fg">{SITE.name}</span>. No spam. Stop any time. Not financial advice.
+      </p>
+      {ready ? (
+        <form id="nl-form" class="nl-form mt-5" action={action} method="POST" novalidate>
           <input type="hidden" name={SITE.newsletterSourceEntry} value="techonni.com · Euro Desk FX" />
           <input
             type="hidden"
@@ -43,11 +52,11 @@ const ready = Boolean(action);
           </div>
           <p class="mt-3 text-xs text-muted-soft">
             By sending, you ask for tips by email.
-            <a class="underline decoration-border underline-offset-2 hover:text-fg" href={withBase('/privacy/')}>Privacy</a>.
+            <a class="text-link underline underline-offset-2 hover:text-forest" href={withBase('/privacy/')}>Privacy</a>.
           </p>
         </form>
       ) : (
-        <div class="mt-6 border border-border bg-bg p-4 text-sm text-muted">
+        <div class="mt-5 rounded-[30px] bg-bg-muted p-4 text-sm text-muted">
           <p class="text-fg">Email signup connects next.</p>
           <p class="mt-2">
             Until then, join the free channel:
@@ -56,10 +65,64 @@ const ready = Boolean(action);
             </a>
           </p>
         </div>
-      )
-    }
-  </div>
-</section>
+      )}
+    </div>
+  ) : (
+    <section class="mx-auto max-w-[1440px] px-4 py-14 sm:px-6 lg:px-10" aria-labelledby="email-capture-heading">
+      <div class="max-w-2xl">
+        <h2 id="email-capture-heading" class="headline-md text-fg" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">
+          {heading}
+        </h2>
+        <p class="mt-3 max-w-2xl text-base leading-relaxed text-muted">
+          Leave your email and you can receive beginner FX tips from
+          <span class="font-semibold text-fg">{SITE.name}</span>
+          ({SITE.byline}). No spam. Stop any time. This is not financial advice.
+        </p>
+
+        {ready ? (
+          <form id="nl-form" class="nl-form mt-6" action={action} method="POST" novalidate>
+            <input type="hidden" name={SITE.newsletterSourceEntry} value="techonni.com · Euro Desk FX" />
+            <input
+              type="hidden"
+              name={SITE.newsletterConsentEntry}
+              value="Yes — I agree to receive emails from Euro Desk FX by Techonni"
+            />
+            <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
+            <div class="nl-row">
+              <label class="sr-only" for="nl-email">Your email</label>
+              <input
+                id="nl-email"
+                class="nl-email"
+                name={SITE.newsletterEmailEntry}
+                type="email"
+                required
+                autocomplete="email"
+                placeholder="Enter your email address"
+              />
+              <button id="nl-submit" class="nl-submit" type="submit">
+                Send me tips
+              </button>
+            </div>
+            <p class="mt-3 text-xs text-muted-soft">
+              By sending, you ask for tips by email.
+              <a class="text-link underline underline-offset-2 hover:text-forest" href={withBase('/privacy/')}>Privacy</a>.
+            </p>
+          </form>
+        ) : (
+          <div class="mt-6 rounded-[30px] bg-bg-muted p-4 text-sm text-muted shadow-[rgba(14,15,12,0.12)_0_0_0_1px]">
+            <p class="text-fg">Email signup connects next.</p>
+            <p class="mt-2">
+              Until then, join the free channel:
+              <a class="link-arrow ml-1" href={SITE.telegram} target="_blank" rel="noopener noreferrer">
+                Telegram →
+              </a>
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
 
 {
   ready && (
@@ -111,9 +174,26 @@ const ready = Boolean(action);
 }
 
 <style is:global>
+  .nl-widget {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: rgba(14, 15, 12, 0.12) 0 0 0 1px;
+  }
+
+  @media (min-width: 640px) {
+    .nl-widget {
+      padding: 2rem 1.75rem;
+    }
+  }
+
   .nl-form {
     width: 100%;
     max-width: 28rem;
+  }
+
+  .nl-widget .nl-form {
+    max-width: none;
   }
 
   .nl-row {
@@ -131,7 +211,6 @@ const ready = Boolean(action);
     max-height: 3.5rem;
     width: 100%;
     margin: 0;
-    border: 1px solid #1f1f1f;
     font-size: 16px;
     line-height: 1.25;
   }
@@ -139,46 +218,61 @@ const ready = Boolean(action);
   .nl-email {
     -webkit-appearance: none;
     appearance: none;
-    background: #141414;
-    color: #f5f5f5;
-    padding: 0 1rem;
+    background: #ffffff;
+    color: #0e0f0c;
+    padding: 0 1.25rem;
     outline: none;
+    border-radius: 9999px;
+    border: none;
+    box-shadow: rgb(134, 134, 133) 0 0 0 1px inset;
   }
 
   .nl-email::placeholder {
-    color: #737373;
+    color: #6a6c6a;
   }
 
   .nl-email:focus {
-    border-color: #333;
+    box-shadow: #163300 0 0 0 2px inset;
   }
 
   .nl-submit {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #f5f5f5;
-    color: #0a0a0a;
-    border-color: #f5f5f5;
+    background: #163300;
+    color: #9fe870;
+    border: 1px solid rgb(22, 51, 0);
+    border-radius: 9999px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition:
+      background-color 0.35s cubic-bezier(0.8, 0.05, 0.2, 0.95),
+      color 0.35s cubic-bezier(0.8, 0.05, 0.2, 0.95),
+      border-color 0.35s cubic-bezier(0.8, 0.05, 0.2, 0.95);
   }
 
   .nl-submit:hover {
-    background: #e8e4d9;
+    background: #0d1f00;
   }
 
   .nl-submit.is-flash {
-    background: #0a0a0a !important;
-    color: #f5f5f5 !important;
-    border-color: #2a2a2a !important;
+    background: #9fe870 !important;
+    color: #163300 !important;
+    border-color: #9fe870 !important;
   }
 
-  /* Laptop / MacBook / desktop — side by side (tablets portrait stay stacked) */
+  .text-link {
+    color: #0097c7;
+  }
+
+  /* Laptop / desktop — side by side from 1024px */
   @media (min-width: 1024px) {
     .nl-form {
       max-width: 36rem;
+    }
+
+    .nl-widget .nl-form {
+      max-width: none;
     }
 
     .nl-row {

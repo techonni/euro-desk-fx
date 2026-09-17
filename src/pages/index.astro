@@ -16,17 +16,17 @@ const cards = [
     body: 'Join the free channel for EURUSD and GBPUSD ideas, session notes, and simple risk reminders.',
     href: SITE.telegram,
     external: true,
-    cta: 'Open Telegram →',
-    accent: 'cyan',
+    cta: 'Open Telegram',
+    check: 'Free channel — no VIP wall',
   },
   {
     badge: 'Learn',
     title: 'Blog',
-    body: 'Short beginner guides in plain English. Read at your pace. No hype, no VIP paywall.',
+    body: 'Short beginner guides in plain English. Read at your pace. No hype, no paywall.',
     href: withBase('/blog/'),
     external: false,
-    cta: 'Read the blog →',
-    accent: 'indigo',
+    cta: 'Read the blog',
+    check: 'Guides you can study offline',
   },
   {
     badge: 'Focus',
@@ -34,181 +34,294 @@ const cards = [
     body: 'EURUSD and GBPUSD only. Less noise. Clear sessions. Room to study structure and risk.',
     href: withBase('/about/'),
     external: false,
-    cta: 'How it works →',
-    accent: 'orange',
+    cta: 'How it works',
+    check: 'Narrow focus, clearer process',
   },
 ];
 
-const accentBar: Record<string, string> = {
-  cyan: 'bg-cyan',
-  indigo: 'bg-indigo',
-  orange: 'bg-orange',
-};
+const limeStats = [
+  {
+    label: 'EURUSD',
+    body: 'The most liquid major. Clear London and New York sessions for beginners.',
+  },
+  {
+    label: 'GBPUSD',
+    body: 'Cable moves with UK news and London hours. One pair, less noise.',
+  },
+  {
+    label: 'Free Telegram',
+    body: 'Ideas and context in plain English. Soft risk notes — not orders to copy.',
+  },
+];
 ---
 
 <BaseLayout title={SITE.name} description={SITE.description} canonicalPath="/">
-  <!-- Hero: text only -->
-  <section class="mx-auto max-w-5xl px-4 pb-12 pt-14 sm:px-6 sm:pb-16 sm:pt-20">
-    <p class="label-micro">FX desk</p>
-    <h1 class="mt-3 text-4xl font-bold tracking-tight text-fg sm:text-5xl md:text-6xl">
-      Euro Desk FX
-    </h1>
-    <p class="mt-3 text-sm text-muted-soft">{SITE.byline}</p>
-    <p class="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-      Free FX education and market ideas focused on <span class="text-fg">EURUSD</span> and
-      <span class="text-fg">GBPUSD</span>. Simple English. Clear process. Soft risk notes — this is not financial advice.
-    </p>
-    <div class="mt-8 flex flex-wrap items-center gap-4">
-      <a
-        href={SITE.telegram}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="badge-rect-solid"
-      >
-        Join free Telegram
-      </a>
-      <a href={withBase('/blog/')} class="link-arrow">
-        Read beginner guides →
-      </a>
-    </div>
-
-    <hr class="mt-14 border-border" />
-  </section>
-
-  <EmailCapture />
-
-  <!-- Product-style 3-column cards -->
-  <section class="mx-auto max-w-5xl px-4 pb-16 sm:px-6" aria-labelledby="table-heading">
-    <div class="mb-8 flex items-baseline justify-between gap-4">
-      <h2 id="table-heading" class="label-micro">On the desk</h2>
-      <p class="label-micro">{cards.length} paths</p>
-    </div>
-    <ul class="grid gap-4 sm:grid-cols-3">
-      {
-        cards.map((card) => (
-          <li>
-            <a
-              href={card.href}
-              target={card.external ? '_blank' : undefined}
-              rel={card.external ? 'noopener noreferrer' : undefined}
-              class="group flex h-full flex-col border border-border bg-bg-elevated transition hover:border-[#333]"
-            >
-              <div class="relative aspect-[4/3] overflow-hidden border-b border-border bg-bg">
-                <div class:list={['absolute inset-x-0 top-0 h-1', accentBar[card.accent]]} />
-                <div class="absolute left-3 top-3">
-                  <span class="badge-rect">{card.badge}</span>
-                </div>
-                <div class="flex h-full items-end p-5">
-                  <p class="text-3xl font-bold tracking-tight text-fg">{card.title}</p>
-                </div>
-              </div>
-              <div class="flex flex-1 flex-col p-5">
-                <p class="flex-1 text-sm leading-relaxed text-muted">{card.body}</p>
-                <p class="link-arrow mt-4 group-hover:text-fg">{card.cta}</p>
-              </div>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <!-- How it works -->
-  <section class="mx-auto max-w-5xl px-4 pb-16 sm:px-6" aria-labelledby="how-heading">
-    <h2 id="how-heading" class="label-micro">How it works</h2>
-    <ol class="mt-8 grid gap-6 sm:grid-cols-2">
-      <li class="border-t border-border pt-4">
-        <p class="label-micro text-cyan">01</p>
-        <h3 class="mt-2 text-lg font-semibold text-fg">Open Telegram</h3>
-        <p class="mt-2 text-sm leading-relaxed text-muted">
-          Join the free channel. No VIP pricing. Ideas and context for study — not orders to copy blindly.
+  <!-- 1. Lime hero -->
+  <section class="hero-lime">
+    <div class="mx-auto grid max-w-[1440px] gap-10 px-4 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-14 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10 lg:pb-20 lg:pt-16">
+      <div>
+        <p class="text-sm font-semibold text-forest/80">FX education desk</p>
+        <h1 class="display-lg mt-4 text-fg">
+          Learn FX<br />with a clear desk
+        </h1>
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-fg/80 sm:text-xl">
+          Free FX education and market ideas focused on <strong class="font-semibold text-fg">EURUSD</strong> and
+          <strong class="font-semibold text-fg">GBPUSD</strong>. Simple English. Clear process. This is not financial advice.
         </p>
-      </li>
-      <li class="border-t border-border pt-4">
-        <p class="label-micro text-electric">02</p>
-        <h3 class="mt-2 text-lg font-semibold text-fg">Stay on two pairs</h3>
-        <p class="mt-2 text-sm leading-relaxed text-muted">
-          EURUSD and GBPUSD. High liquidity. Clear London and New York sessions. Easier to track.
-        </p>
-      </li>
-      <li class="border-t border-border pt-4">
-        <p class="label-micro text-indigo">03</p>
-        <h3 class="mt-2 text-lg font-semibold text-fg">Read the context</h3>
-        <p class="mt-2 text-sm leading-relaxed text-muted">
-          Each idea comes with structure and a risk note. Use it to learn process, not to chase wins.
-        </p>
-      </li>
-      <li class="border-t border-border pt-4">
-        <p class="label-micro text-orange">04</p>
-        <h3 class="mt-2 text-lg font-semibold text-fg">Respect risk</h3>
-        <p class="mt-2 text-sm leading-relaxed text-muted">
-          Size positions small. Accept losses. This is not financial advice — protect your capital first.
-        </p>
-      </li>
-    </ol>
-  </section>
-
-  <!-- Latest blog -->
-  <section class="mx-auto max-w-5xl px-4 pb-16 sm:px-6" aria-labelledby="blog-heading">
-    <div class="mb-8 flex items-baseline justify-between gap-4">
-      <h2 id="blog-heading" class="label-micro">From the blog</h2>
-      <a href={withBase('/blog/')} class="link-arrow">All posts →</a>
-    </div>
-    <ul class="grid gap-4 sm:grid-cols-3">
-      {
-        posts.map((post) => (
-          <li>
-            <a
-              href={withBase(`/blog/${post.id}/`)}
-              class="group block h-full border border-border bg-bg-elevated p-5 transition hover:border-[#333]"
-            >
-              <time class="label-micro" datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-GB', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </time>
-              <h3 class="mt-3 text-base font-semibold text-fg group-hover:text-cream">{post.data.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <!-- CTA band -->
-  <section class="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
-    <div class="border border-border bg-bg-elevated px-6 py-10 sm:px-10">
-      <p class="label-micro">Next step</p>
-      <h2 class="mt-3 text-2xl font-bold tracking-tight text-fg sm:text-3xl">
-        Start with the free Telegram
-      </h2>
-      <p class="mt-3 max-w-lg text-sm leading-relaxed text-muted sm:text-base">
-        Follow EURUSD and GBPUSD ideas in plain English. Read the blog for basics. Keep risk small.
-      </p>
-      <div class="mt-6 flex flex-wrap items-center gap-4">
-        <a
-          href={SITE.telegram}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="badge-rect-solid"
-        >
-          Open Telegram
-        </a>
-        <a
-          href={SITE.x}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="link-arrow"
-        >
-          Follow on X {SITE.xHandle} →
-        </a>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            href={SITE.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-forest"
+          >
+            Join free Telegram
+          </a>
+          <a href={withBase('/blog/')} class="btn-glass">
+            Read beginner guides
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-fg/70">{SITE.byline}</p>
       </div>
-      <div class="mt-8 max-w-2xl">
-        <NfaBanner compact />
+
+      <div class="lg:justify-self-end lg:w-full lg:max-w-md">
+        <EmailCapture variant="widget" heading="Get tips in your inbox" />
+      </div>
+    </div>
+
+    <!-- Lime 3-up -->
+    <div class="mx-auto max-w-[1440px] px-4 pb-14 sm:px-6 lg:px-10 lg:pb-16">
+      <ul class="grid gap-6 sm:grid-cols-3 sm:gap-10">
+        {
+          limeStats.map((item) => (
+            <li class="border-t border-fg/15 pt-5">
+              <p class="text-lg font-semibold text-fg">{item.label}</p>
+              <p class="mt-2 text-sm leading-relaxed text-fg/75">{item.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. White mid: 3 feature cards -->
+  <section class="bg-bg-muted section-pad" aria-labelledby="table-heading">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+      <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="label-micro">On the desk</p>
+          <h2 id="table-heading" class="headline-md mt-2" style="font-size: clamp(1.75rem, 4vw, 2.75rem);">
+            Three ways to start
+          </h2>
+        </div>
+        <p class="text-sm text-muted-soft">{cards.length} paths · free to use</p>
+      </div>
+      <ul class="grid gap-6 sm:grid-cols-3 sm:gap-8">
+        {
+          cards.map((card) => (
+            <li>
+              <a
+                href={card.href}
+                target={card.external ? '_blank' : undefined}
+                rel={card.external ? 'noopener noreferrer' : undefined}
+                class="card-feature group flex h-full flex-col no-underline"
+              >
+                <div class="mb-6 flex aspect-[4/3] items-end rounded-[20px] bg-hero/40 p-5">
+                  <div>
+                    <span class="inline-flex rounded-full bg-forest px-3 py-1 text-xs font-semibold text-hero">
+                      {card.badge}
+                    </span>
+                    <p class="mt-3 text-3xl font-display text-fg">{card.title}</p>
+                  </div>
+                </div>
+                <p class="flex-1 text-base leading-relaxed text-muted">{card.body}</p>
+                <p class="mt-4 flex items-start gap-2 text-sm text-fg">
+                  <span class="check-positive mt-0.5 shrink-0" aria-hidden="true">✓</span>
+                  <span class="underline decoration-border underline-offset-2">{card.check}</span>
+                </p>
+                <p class="link-arrow mt-5">{card.cta} →</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. How it works (white) -->
+  <section class="bg-bg section-pad" aria-labelledby="how-heading">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+      <p class="label-micro">Process</p>
+      <h2 id="how-heading" class="headline-md mt-2" style="font-size: clamp(1.75rem, 4vw, 2.75rem);">
+        How it works
+      </h2>
+      <ol class="mt-10 grid gap-8 sm:grid-cols-2 lg:gap-x-12">
+        <li class="border-t border-border pt-5">
+          <p class="text-sm font-semibold text-positive">01</p>
+          <h3 class="mt-2 text-xl font-semibold text-fg">Open Telegram</h3>
+          <p class="mt-2 text-base leading-relaxed text-muted">
+            Join the free channel. No VIP pricing. Ideas and context for study — not orders to copy blindly.
+          </p>
+        </li>
+        <li class="border-t border-border pt-5">
+          <p class="text-sm font-semibold text-positive">02</p>
+          <h3 class="mt-2 text-xl font-semibold text-fg">Stay on two pairs</h3>
+          <p class="mt-2 text-base leading-relaxed text-muted">
+            EURUSD and GBPUSD. High liquidity. Clear London and New York sessions. Easier to track.
+          </p>
+        </li>
+        <li class="border-t border-border pt-5">
+          <p class="text-sm font-semibold text-positive">03</p>
+          <h3 class="mt-2 text-xl font-semibold text-fg">Read the context</h3>
+          <p class="mt-2 text-base leading-relaxed text-muted">
+            Each idea comes with structure and a risk note. Use it to learn process, not to chase wins.
+          </p>
+        </li>
+        <li class="border-t border-border pt-5">
+          <p class="text-sm font-semibold text-positive">04</p>
+          <h3 class="mt-2 text-xl font-semibold text-fg">Respect risk</h3>
+          <p class="mt-2 text-base leading-relaxed text-muted">
+            Size positions small. Accept losses. This is not financial advice — protect your capital first.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. Forest trust / NFA band -->
+  <section class="trust-forest" aria-labelledby="trust-heading">
+    <div class="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
+      <p class="text-sm font-semibold text-hero/80">Trust notes</p>
+      <h2 id="trust-heading" class="mt-3 font-display text-hero" style="font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 0.95;">
+        Soft risk notes.<br />No fake profit stories.
+      </h2>
+      <ul class="mt-12 grid gap-6 sm:grid-cols-3">
+        <li class="trust-card">
+          <p class="text-base leading-relaxed text-hero">
+            “Everything here is for learning and discussion. You decide. You size. You own the risk.”
+          </p>
+          <p class="mt-4 text-sm text-hero/70">Educational tone · every page</p>
+        </li>
+        <li class="trust-card">
+          <p class="text-base leading-relaxed text-hero">
+            “No VIP pricing. No managed accounts. Free Telegram and free blog guides in plain English.”
+          </p>
+          <p class="mt-4 text-sm text-hero/70">Open access · {SITE.byline}</p>
+        </li>
+        <li class="trust-card">
+          <p class="text-base leading-relaxed text-hero">
+            “This is not financial advice. Trading can lead to loss of capital. Only use money you can afford to lose.”
+          </p>
+          <p class="mt-4 text-sm text-hero/70">NFA · always visible</p>
+        </li>
+      </ul>
+      <div class="mt-10 max-w-2xl">
+        <NfaBanner onForest />
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Latest blog (muted white) -->
+  <section class="bg-bg-muted section-pad" aria-labelledby="blog-heading">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+      <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="label-micro">From the blog</p>
+          <h2 id="blog-heading" class="headline-md mt-2" style="font-size: clamp(1.75rem, 4vw, 2.75rem);">
+            Beginner guides
+          </h2>
+        </div>
+        <a href={withBase('/blog/')} class="link-arrow">All posts →</a>
+      </div>
+      <ul class="grid gap-6 sm:grid-cols-3">
+        {
+          posts.map((post) => (
+            <li>
+              <a
+                href={withBase(`/blog/${post.id}/`)}
+                class="card-feature group block h-full no-underline"
+              >
+                <time class="label-micro" datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-GB', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </time>
+                <h3 class="mt-3 text-lg font-semibold text-fg group-hover:text-forest">{post.data.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. CTA strip -->
+  <section class="bg-bg section-pad">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+      <div class="cta-strip">
+        <p class="text-sm font-semibold text-muted-soft">Next step</p>
+        <h2 class="mt-3 font-display text-fg" style="font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 0.95;">
+          Start with the free Telegram
+        </h2>
+        <p class="mt-4 max-w-lg text-base leading-relaxed text-muted">
+          Follow EURUSD and GBPUSD ideas in plain English. Read the blog for basics. Keep risk small.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            href={SITE.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-forest"
+            style="height: 3rem; padding: 0.75rem 1.5rem;"
+          >
+            Open Telegram
+          </a>
+          <a
+            href={SITE.x}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-glass"
+          >
+            Follow on X {SITE.xHandle}
+          </a>
+        </div>
+        <div class="mt-8 max-w-2xl">
+          <NfaBanner compact />
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .hero-lime {
+    background: #9fe870;
+  }
+
+  .trust-forest {
+    background: #163300;
+  }
+
+  .trust-card {
+    background: transparent;
+    box-shadow: rgba(14, 15, 12, 0.12) 0 0 0 1px;
+    border-radius: 0;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .cta-strip {
+    background: #ecf9f9;
+    border-radius: 0;
+    padding: 2.5rem 1.5rem;
+    box-shadow: rgba(14, 15, 12, 0.08) 0 0 0 1px;
+  }
+
+  @media (min-width: 640px) {
+    .cta-strip {
+      padding: 3rem 2.5rem;
+    }
+  }
+</style>

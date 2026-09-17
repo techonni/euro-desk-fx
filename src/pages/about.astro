@@ -11,7 +11,7 @@ import { SITE, withBase } from '../lib/site';
 >
   <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
     <p class="label-micro">About</p>
-    <h1 class="mt-3 text-3xl font-bold tracking-tight text-fg sm:text-5xl">Euro Desk FX</h1>
+    <h1 class="headline-md mt-3" style="font-size: clamp(2rem, 5vw, 3.25rem);">Euro Desk FX</h1>
     <p class="mt-3 text-sm text-muted-soft">{SITE.byline}</p>
     <div class="mt-8 space-y-4 text-base leading-relaxed text-muted">
       <p>
@@ -28,11 +28,11 @@ import { SITE, withBase } from '../lib/site';
       <p>
         You get simple English, session context, and soft risk reminders. There is no VIP pricing and no
         promise of profit. The main channel is free Telegram —
-        <a class="text-fg underline decoration-border underline-offset-4 hover:decoration-cyan" href={SITE.telegram} target="_blank" rel="noopener noreferrer"
+        <a class="text-link underline underline-offset-4 hover:text-forest" href={SITE.telegram} target="_blank" rel="noopener noreferrer"
           >t.me/EuroDeskFX</a
         >
         — with short updates on
-        <a class="text-fg underline decoration-border underline-offset-4 hover:decoration-cyan" href={SITE.x} target="_blank" rel="noopener noreferrer"
+        <a class="text-link underline underline-offset-4 hover:text-forest" href={SITE.x} target="_blank" rel="noopener noreferrer"
           >X {SITE.xHandle}</a
         >.
       </p>
@@ -49,3 +49,10 @@ import { SITE, withBase } from '../lib/site';
     </p>
   </article>
 </BaseLayout>
+
+<style>
+  .text-link {
+    color: #0097c7;
+    transition: color 0.35s cubic-bezier(0.8, 0.05, 0.2, 0.95);
+  }
+</style>

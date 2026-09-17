@@ -10,7 +10,7 @@ import { SITE, withBase } from '../lib/site';
 >
   <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
     <p class="label-micro">Legal</p>
-    <h1 class="mt-3 text-3xl font-bold tracking-tight text-fg sm:text-5xl">Disclaimer / NFA</h1>
+    <h1 class="headline-md mt-3" style="font-size: clamp(2rem, 5vw, 3.25rem);">Disclaimer / NFA</h1>
     <p class="mt-3 text-sm text-muted">Not financial advice · Risk note</p>
 
     <div class="prose-blog mt-10">
@@ -57,7 +57,11 @@ import { SITE, withBase } from '../lib/site';
       </blockquote>
     </div>
 
-    <p class="mt-12">
+    <p class="mt-12 font-legal text-[13px] leading-relaxed text-muted-soft">
+      Educational content only. This is not financial advice. Trading involves risk of loss.
+    </p>
+
+    <p class="mt-8">
       <a href={withBase('/')} class="link-arrow">← Back home</a>
     </p>
   </article>

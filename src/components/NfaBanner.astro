@@ -1,21 +1,23 @@
 ---
 interface Props {
   compact?: boolean;
+  onForest?: boolean;
 }
-const { compact = false } = Astro.props;
+const { compact = false, onForest = false } = Astro.props;
 ---
 
 <aside
   class:list={[
-    'border border-border bg-bg-elevated text-muted',
-    compact ? 'px-3 py-2 text-xs' : 'px-4 py-3 text-sm',
+    'nfa-banner',
+    compact ? 'nfa-compact' : 'nfa-full',
+    onForest ? 'nfa-on-forest' : '',
   ]}
   role="note"
   aria-label="Risk note"
 >
   <p>
-    <span class="label-micro text-cream">NFA</span>
-    <span class="mx-2 text-border">·</span>
+    <span class:list={['nfa-label', onForest ? 'text-hero' : 'text-forest']}>NFA</span>
+    <span class="nfa-dot">·</span>
     {
       compact
         ? 'Educational content only. This is not financial advice. Trading involves risk of loss.'
@@ -23,3 +25,40 @@ const { compact = false } = Astro.props;
     }
   </p>
 </aside>
+
+<style>
+  .nfa-banner {
+    box-shadow: rgba(14, 15, 12, 0.12) 0 0 0 1px;
+    background: #ecf9f9;
+    color: #454745;
+    border-radius: 0;
+  }
+
+  .nfa-compact {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .nfa-full {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .nfa-on-forest {
+    background: rgba(159, 232, 112, 0.08);
+    box-shadow: rgba(159, 232, 112, 0.2) 0 0 0 1px;
+    color: #9fe870;
+  }
+
+  .nfa-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nfa-dot {
+    margin: 0 0.5rem;
+    opacity: 0.4;
+  }
+</style>
