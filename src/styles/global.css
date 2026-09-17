@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #ffffff;
-  --color-bg-muted: #ecf9f9;
+  --color-bg: #9fe870;
+  --color-bg-muted: #9fe870;
   --color-bg-elevated: #ffffff;
   --color-hero: #9fe870;
   --color-hero-hover: #80e142;
@@ -19,7 +19,7 @@
   --color-glass-hover: rgb(62 59 7 / 0.12);
   --font-sans: "Inter", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-display: "Archivo Black", "Inter Tight", "Arial Black", Impact, sans-serif;
-  --font-legal: Georgia, "Times New Roman", Times, serif;
+  --font-legal: "Roboto", "Inter", "Segoe UI", system-ui, sans-serif;
   --ease-meadow: cubic-bezier(0.8, 0.05, 0.2, 0.95);
   --radius-pill: 9999px;
   --radius-card: 30px;
