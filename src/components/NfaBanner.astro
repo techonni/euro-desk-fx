@@ -1,22 +1,22 @@
 ---
 interface Props {
   compact?: boolean;
-  onForest?: boolean;
+  onDark?: boolean;
 }
-const { compact = false, onForest = false } = Astro.props;
+const { compact = false, onDark = false } = Astro.props;
 ---
 
 <aside
   class:list={[
     'nfa-banner',
     compact ? 'nfa-compact' : 'nfa-full',
-    onForest ? 'nfa-on-forest' : '',
+    onDark ? 'nfa-on-dark' : '',
   ]}
   role="note"
   aria-label="Risk note"
 >
   <p>
-    <span class:list={['nfa-label', onForest ? 'text-hero' : 'text-forest']}>NFA</span>
+    <span class="nfa-label">NFA</span>
     <span class="nfa-dot">·</span>
     {
       compact
@@ -28,10 +28,11 @@ const { compact = false, onForest = false } = Astro.props;
 
 <style>
   .nfa-banner {
-    box-shadow: rgba(14, 15, 12, 0.12) 0 0 0 1px;
-    background: #9fe870;
-    color: #454745;
-    border-radius: 0;
+    border: 2px solid #000;
+    background: #ffe17c;
+    color: #171e19;
+    border-radius: 0.75rem;
+    box-shadow: 4px 4px 0 #000;
   }
 
   .nfa-compact {
@@ -44,21 +45,21 @@ const { compact = false, onForest = false } = Astro.props;
     font-size: 0.875rem;
   }
 
-  .nfa-on-forest {
-    background: rgba(159, 232, 112, 0.08);
-    box-shadow: rgba(159, 232, 112, 0.2) 0 0 0 1px;
-    color: #9fe870;
+  .nfa-on-dark {
+    background: #b7c6c2;
+    color: #000;
   }
 
   .nfa-label {
     font-size: 0.6875rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    color: #000;
   }
 
   .nfa-dot {
     margin: 0 0.5rem;
-    opacity: 0.4;
+    opacity: 0.5;
   }
 </style>

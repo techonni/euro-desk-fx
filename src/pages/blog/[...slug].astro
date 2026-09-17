@@ -32,7 +32,7 @@ const shareTitle = post.data.title;
 >
   <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
     <p class="label-micro">
-      <a href={withBase('/blog/')} class="text-link hover:text-forest">Blog</a>
+      <a href={withBase('/blog/')} class="font-bold text-black underline underline-offset-2">Blog</a>
       <span class="mx-2 text-muted-soft">/</span>
       <span>Guide</span>
     </p>
@@ -47,7 +47,7 @@ const shareTitle = post.data.title;
       </time>
       {
         post.data.tags.map((tag) => (
-          <span class="rounded-full bg-glass px-2.5 py-0.5 text-xs font-semibold text-muted-soft">{tag}</span>
+          <span class="rounded-md border-2 border-black bg-sage px-2.5 py-0.5 text-xs font-bold text-black">{tag}</span>
         ))
       }
     </div>
@@ -60,17 +60,17 @@ const shareTitle = post.data.title;
     <div class="prose-blog mt-10">
       <Content />
     </div>
-    <div class="mt-12 rounded-[30px] bg-bg-muted p-6 shadow-[rgba(14,15,12,0.12)_0_0_0_1px] sm:p-8">
+    <div class="mt-12 border-2 border-black bg-white p-6 shadow-[8px_8px_0_#000] sm:p-8" style="border-radius: 0.75rem;">
       <p class="label-micro">Telegram</p>
-      <h2 class="mt-2 text-xl font-semibold text-fg">Keep learning on the free channel</h2>
-      <p class="mt-2 text-sm leading-relaxed text-muted">
+      <h2 class="mt-2 text-xl font-extrabold text-black">Keep learning on the free channel</h2>
+      <p class="mt-2 text-sm leading-relaxed text-charcoal">
         Join Euro Desk FX on Telegram for EURUSD and GBPUSD ideas in plain English. Soft risk notes included.
       </p>
       <a
         href={SITE.telegram}
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-forest mt-5"
+        class="btn-primary mt-5"
       >
         Open Telegram
       </a>
@@ -78,7 +78,7 @@ const shareTitle = post.data.title;
     <div class="mt-8">
       <ShareButtons url={shareUrl} title={shareTitle} />
     </div>
-    <div class="mt-8 border-t border-border pt-6">
+    <div class="mt-8 border-t-2 border-black pt-6">
       <NfaBanner compact />
       <p class="mt-4">
         <a href={withBase('/blog/')} class="link-arrow">← All posts</a>
@@ -86,11 +86,3 @@ const shareTitle = post.data.title;
     </div>
   </article>
 </BaseLayout>
-
-<style>
-  .text-link {
-    color: #0097c7;
-    text-decoration: none;
-    transition: color 0.35s cubic-bezier(0.8, 0.05, 0.2, 0.95);
-  }
-</style>

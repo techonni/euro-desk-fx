@@ -9,7 +9,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const cards = [
+const features = [
   {
     badge: 'Free',
     title: 'Telegram',
@@ -39,86 +39,164 @@ const cards = [
   },
 ];
 
-const limeStats = [
+const steps = [
   {
-    label: 'EURUSD',
-    body: 'The most liquid major. Clear London and New York sessions for beginners.',
+    n: '01',
+    title: 'Join Telegram',
+    body: 'Open the free channel. Ideas and context for study — not orders to copy blindly.',
   },
   {
-    label: 'GBPUSD',
-    body: 'Cable moves with UK news and London hours. One pair, less noise.',
+    n: '02',
+    title: 'Read guides',
+    body: 'Use the blog for pairs, sessions, and risk basics in plain English.',
   },
   {
-    label: 'Free Telegram',
-    body: 'Ideas and context in plain English. Soft risk notes — not orders to copy.',
+    n: '03',
+    title: 'Practice with risk notes',
+    body: 'Size small. Accept losses. Soft risk notes on every idea — protect capital first.',
   },
+];
+
+const marqueeItems = [
+  'EURUSD',
+  'GBPUSD',
+  'London',
+  'New York',
+  'Asian session',
+  'Risk notes',
+  'Free Telegram',
 ];
 ---
 
 <BaseLayout title={SITE.name} description={SITE.description} canonicalPath="/">
-  <!-- 1. Lime hero -->
-  <section class="hero-lime">
-    <div class="mx-auto grid max-w-[1440px] gap-10 px-4 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-14 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10 lg:pb-20 lg:pt-16">
+  <!-- 1. Hero yellow + dots -->
+  <section class="hero-yellow dot-pattern">
+    <div class="mx-auto grid max-w-[1440px] gap-12 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10 lg:pb-24 lg:pt-16">
       <div>
-        <p class="text-sm font-semibold text-forest/80">FX education desk</p>
-        <h1 class="display-lg mt-4 text-fg">
-          Learn FX<br />with a clear desk
+        <span class="hero-badge">FX education desk · NFA</span>
+        <h1 class="display-lg mt-5 text-black">
+          Learn FX with a<br />
+          <span class="text-stroke">clear desk</span>
         </h1>
-        <p class="mt-6 max-w-lg text-lg leading-relaxed text-fg/80 sm:text-xl">
-          Free FX education and market ideas focused on <strong class="font-semibold text-fg">EURUSD</strong> and
-          <strong class="font-semibold text-fg">GBPUSD</strong>. Simple English. Clear process. This is not financial advice.
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-charcoal sm:text-xl">
+          Free FX education and market ideas focused on <strong class="font-bold text-black">EURUSD</strong> and
+          <strong class="font-bold text-black">GBPUSD</strong>. Simple English. Clear process. This is not financial advice.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-3">
           <a
             href={SITE.telegram}
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-forest"
+            class="btn-primary"
           >
-            Join free Telegram
+            Join Telegram
           </a>
-          <a href={withBase('/blog/')} class="btn-glass">
-            Read beginner guides
+          <a href={withBase('/blog/')} class="btn-secondary">
+            Read the blog
           </a>
         </div>
-        <p class="mt-4 text-sm text-fg/70">{SITE.byline}</p>
+        <p class="mt-4 text-sm font-medium text-charcoal/80">{SITE.byline}</p>
       </div>
 
-      <div class="lg:justify-self-end lg:w-full lg:max-w-md">
-        <EmailCapture variant="widget" heading="Get tips in your inbox" />
+      <!-- Browser mockup: FX desk UI -->
+      <div class="mockup-wrap lg:justify-self-end">
+        <div class="browser-mockup" aria-hidden="true">
+          <div class="browser-chrome">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="browser-url">eurodeskfx · desk</span>
+          </div>
+          <div class="desk-body">
+            <div class="desk-sidebar">
+              <p class="desk-label">Pairs</p>
+              <div class="pair-row active">
+                <span>EURUSD</span>
+                <span class="pair-tag">Major</span>
+              </div>
+              <div class="pair-row">
+                <span>GBPUSD</span>
+                <span class="pair-tag">Cable</span>
+              </div>
+              <p class="desk-label mt-4">Sessions</p>
+              <div class="session-chip">London</div>
+              <div class="session-chip muted">New York</div>
+            </div>
+            <div class="desk-main">
+              <div class="desk-panel">
+                <p class="desk-label">Focus</p>
+                <p class="desk-title">Two pairs. Clear desk.</p>
+                <p class="desk-note">Soft risk note on every idea. Educational only — NFA.</p>
+              </div>
+              <div class="desk-panel sage">
+                <p class="desk-label">Today</p>
+                <ul class="desk-list">
+                  <li>EURUSD · London open context</li>
+                  <li>GBPUSD · structure checklist</li>
+                  <li>Risk · size small, accept loss</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Lime 3-up -->
-    <div class="mx-auto max-w-[1440px] px-4 pb-14 sm:px-6 lg:px-10 lg:pb-16">
-      <ul class="grid gap-6 sm:grid-cols-3 sm:gap-10">
-        {
-          limeStats.map((item) => (
-            <li class="border-t border-fg/15 pt-5">
-              <p class="text-lg font-semibold text-fg">{item.label}</p>
-              <p class="mt-2 text-sm leading-relaxed text-fg/75">{item.body}</p>
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </section>
 
-  <!-- 2. White mid: 3 feature cards -->
-  <section class="bg-bg-muted section-pad" aria-labelledby="table-heading">
+  <!-- 2. Charcoal marquee -->
+  <div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-track">
+      {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item) => (
+        <span class="marquee-item">{item}<span class="marquee-sep">·</span></span>
+      ))}
+    </div>
+  </div>
+
+  <!-- 3. Problem vs Solution -->
+  <section class="bg-white section-pad border-b-2 border-black" aria-labelledby="problem-heading">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+      <p class="label-micro">Clarity</p>
+      <h2 id="problem-heading" class="headline-md mt-2" style="font-size: clamp(1.75rem, 4vw, 2.75rem);">
+        Noise vs a clear path
+      </h2>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-8">
+        <div class="card-brutal problem-card">
+          <p class="label-micro">Problem</p>
+          <h3 class="mt-2 font-display text-2xl font-extrabold text-black">Beginner FX noise</h3>
+          <ul class="mt-4 space-y-3 text-base leading-relaxed text-charcoal">
+            <li>Too many pairs, too many signals, too little context.</li>
+            <li>VIP walls and hype that skip risk basics.</li>
+            <li>Hard to know what to study first — or why.</li>
+          </ul>
+        </div>
+        <div class="card-brutal solution-card">
+          <p class="label-micro">Solution</p>
+          <h3 class="mt-2 font-display text-2xl font-extrabold text-black">Euro Desk FX path</h3>
+          <ul class="mt-4 space-y-3 text-base leading-relaxed text-charcoal">
+            <li>Free Telegram + blog focused on EURUSD and GBPUSD.</li>
+            <li>Session notes and soft risk reminders in plain English.</li>
+            <li>Study process first — this is not financial advice.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Feature 3-up on yellow -->
+  <section class="dot-pattern section-pad border-b-2 border-black" aria-labelledby="features-heading">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p class="label-micro">On the desk</p>
-          <h2 id="table-heading" class="headline-md mt-2" style="font-size: clamp(1.75rem, 4vw, 2.75rem);">
+          <h2 id="features-heading" class="headline-md mt-2" style="font-size: clamp(1.75rem, 4vw, 2.75rem);">
             Three ways to start
           </h2>
         </div>
-        <p class="text-sm text-muted-soft">{cards.length} paths · free to use</p>
+        <p class="text-sm font-bold text-charcoal">{features.length} paths · free to use</p>
       </div>
       <ul class="grid gap-6 sm:grid-cols-3 sm:gap-8">
         {
-          cards.map((card) => (
+          features.map((card) => (
             <li>
               <a
                 href={card.href}
@@ -126,18 +204,14 @@ const limeStats = [
                 rel={card.external ? 'noopener noreferrer' : undefined}
                 class="card-feature group flex h-full flex-col no-underline"
               >
-                <div class="mb-6 flex aspect-[4/3] items-end rounded-[20px] bg-hero/40 p-5">
-                  <div>
-                    <span class="inline-flex rounded-full bg-forest px-3 py-1 text-xs font-semibold text-hero">
-                      {card.badge}
-                    </span>
-                    <p class="mt-3 text-3xl font-display text-fg">{card.title}</p>
-                  </div>
-                </div>
-                <p class="flex-1 text-base leading-relaxed text-muted">{card.body}</p>
-                <p class="mt-4 flex items-start gap-2 text-sm text-fg">
-                  <span class="check-positive mt-0.5 shrink-0" aria-hidden="true">✓</span>
-                  <span class="underline decoration-border underline-offset-2">{card.check}</span>
+                <span class="inline-flex w-fit rounded-lg border-2 border-black bg-yellow px-3 py-1 text-xs font-extrabold text-black">
+                  {card.badge}
+                </span>
+                <p class="mt-4 font-display text-3xl font-extrabold text-black">{card.title}</p>
+                <p class="mt-3 flex-1 text-base leading-relaxed text-charcoal">{card.body}</p>
+                <p class="mt-4 flex items-start gap-2 text-sm font-bold text-black">
+                  <span class="check-positive shrink-0" aria-hidden="true">✓</span>
+                  <span>{card.check}</span>
                 </p>
                 <p class="link-arrow mt-5">{card.cta} →</p>
               </a>
@@ -148,48 +222,29 @@ const limeStats = [
     </div>
   </section>
 
-  <!-- 3. How it works (white) -->
-  <section class="bg-bg section-pad" aria-labelledby="how-heading">
+  <!-- 5. How it works dark -->
+  <section class="how-dark section-pad border-b-2 border-black" aria-labelledby="how-heading">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-      <p class="label-micro">Process</p>
-      <h2 id="how-heading" class="headline-md mt-2" style="font-size: clamp(1.75rem, 4vw, 2.75rem);">
+      <p class="text-xs font-bold uppercase tracking-wider text-sage">Process</p>
+      <h2 id="how-heading" class="mt-2 font-display text-white" style="font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 0.95;">
         How it works
       </h2>
-      <ol class="mt-10 grid gap-8 sm:grid-cols-2 lg:gap-x-12">
-        <li class="border-t border-border pt-5">
-          <p class="text-sm font-semibold text-positive">01</p>
-          <h3 class="mt-2 text-xl font-semibold text-fg">Open Telegram</h3>
-          <p class="mt-2 text-base leading-relaxed text-muted">
-            Join the free channel. No VIP pricing. Ideas and context for study — not orders to copy blindly.
-          </p>
-        </li>
-        <li class="border-t border-border pt-5">
-          <p class="text-sm font-semibold text-positive">02</p>
-          <h3 class="mt-2 text-xl font-semibold text-fg">Stay on two pairs</h3>
-          <p class="mt-2 text-base leading-relaxed text-muted">
-            EURUSD and GBPUSD. High liquidity. Clear London and New York sessions. Easier to track.
-          </p>
-        </li>
-        <li class="border-t border-border pt-5">
-          <p class="text-sm font-semibold text-positive">03</p>
-          <h3 class="mt-2 text-xl font-semibold text-fg">Read the context</h3>
-          <p class="mt-2 text-base leading-relaxed text-muted">
-            Each idea comes with structure and a risk note. Use it to learn process, not to chase wins.
-          </p>
-        </li>
-        <li class="border-t border-border pt-5">
-          <p class="text-sm font-semibold text-positive">04</p>
-          <h3 class="mt-2 text-xl font-semibold text-fg">Respect risk</h3>
-          <p class="mt-2 text-base leading-relaxed text-muted">
-            Size positions small. Accept losses. This is not financial advice — protect your capital first.
-          </p>
-        </li>
+      <ol class="mt-12 grid gap-8 sm:grid-cols-3 sm:gap-10">
+        {
+          steps.map((step) => (
+            <li class="how-step">
+              <div class="how-circle" aria-hidden="true">{step.n}</div>
+              <h3 class="mt-5 text-xl font-extrabold text-white">{step.title}</h3>
+              <p class="mt-2 text-base leading-relaxed text-sage">{step.body}</p>
+            </li>
+          ))
+        }
       </ol>
     </div>
   </section>
 
-  <!-- 4. Latest blog (muted white) -->
-  <section class="bg-bg-muted section-pad" aria-labelledby="blog-heading">
+  <!-- 6. Latest blog -->
+  <section class="bg-white section-pad border-b-2 border-black" aria-labelledby="blog-heading">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
@@ -215,8 +270,8 @@ const limeStats = [
                     day: 'numeric',
                   })}
                 </time>
-                <h3 class="mt-3 text-lg font-semibold text-fg group-hover:text-forest">{post.data.title}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
+                <h3 class="mt-3 text-lg font-extrabold text-black">{post.data.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-charcoal">{post.data.description}</p>
               </a>
             </li>
           ))
@@ -225,15 +280,33 @@ const limeStats = [
     </div>
   </section>
 
-  <!-- 6. CTA strip -->
-  <section class="bg-bg section-pad">
+  <!-- 7. Email capture band -->
+  <section class="dot-pattern border-b-2 border-black">
+    <div class="mx-auto max-w-[1440px] px-4 py-14 sm:px-6 lg:px-10">
+      <div class="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+        <div>
+          <p class="label-micro">Inbox</p>
+          <h2 class="headline-md mt-2" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">
+            Tips by email
+          </h2>
+          <p class="mt-3 max-w-md text-base leading-relaxed text-charcoal">
+            Optional beginner tips from {SITE.name}. No spam. Stop any time. Not financial advice.
+          </p>
+        </div>
+        <EmailCapture variant="widget" heading="Get tips in your inbox" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Final yellow CTA -->
+  <section class="dot-pattern section-pad">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-      <div class="cta-strip">
-        <p class="text-sm font-semibold text-muted-soft">Next step</p>
-        <h2 class="mt-3 font-display text-fg" style="font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 0.95;">
+      <div class="cta-brutal">
+        <p class="text-sm font-bold uppercase tracking-wide text-charcoal">Next step</p>
+        <h2 class="mt-3 font-display text-black" style="font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 0.95;">
           Start with the free Telegram
         </h2>
-        <p class="mt-4 max-w-lg text-base leading-relaxed text-muted">
+        <p class="mt-4 max-w-lg text-base leading-relaxed text-charcoal">
           Follow EURUSD and GBPUSD ideas in plain English. Read the blog for basics. Keep risk small.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-3">
@@ -241,8 +314,7 @@ const limeStats = [
             href={SITE.telegram}
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-forest"
-            style="height: 3rem; padding: 0.75rem 1.5rem;"
+            class="btn-primary"
           >
             Open Telegram
           </a>
@@ -250,7 +322,7 @@ const limeStats = [
             href={SITE.x}
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-glass"
+            class="btn-secondary"
           >
             Follow on X {SITE.xHandle}
           </a>
@@ -264,22 +336,262 @@ const limeStats = [
 </BaseLayout>
 
 <style>
-  .hero-lime {
-    background: #9fe870;
+  .hero-yellow {
+    border-bottom: 2px solid #000;
   }
 
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    border: 2px solid #000;
+    border-radius: 9999px;
+    background: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 #000;
+  }
 
+  .mockup-wrap {
+    width: 100%;
+    max-width: 32rem;
+  }
 
-  .cta-strip {
-    background: #9fe870;
-    border-radius: 0;
+  .browser-mockup {
+    border: 2px solid #000;
+    border-radius: 0.75rem;
+    background: #fff;
+    box-shadow: 12px 12px 0 #000;
+    overflow: hidden;
+  }
+
+  .browser-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 0.85rem;
+    background: #b7c6c2;
+    border-bottom: 2px solid #000;
+  }
+
+  .browser-chrome .dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 9999px;
+    border: 2px solid #000;
+    background: #ffe17c;
+  }
+
+  .browser-chrome .dot:nth-child(2) {
+    background: #fff;
+  }
+
+  .browser-chrome .dot:nth-child(3) {
+    background: #171e19;
+  }
+
+  .browser-url {
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #171e19;
+  }
+
+  .desk-body {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    min-height: 16rem;
+  }
+
+  .desk-sidebar {
+    background: #171e19;
+    color: #fff;
+    padding: 0.85rem 0.65rem;
+    border-right: 2px solid #000;
+  }
+
+  .desk-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 0.4rem;
+  }
+
+  .pair-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.45rem 0.4rem;
+    margin-bottom: 0.35rem;
+    border: 2px solid transparent;
+    border-radius: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .pair-row.active {
+    border-color: #ffe17c;
+    background: rgba(255, 225, 124, 0.12);
+  }
+
+  .pair-tag {
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #b7c6c2;
+  }
+
+  .session-chip {
+    display: inline-block;
+    margin-top: 0.25rem;
+    padding: 0.2rem 0.45rem;
+    border: 2px solid #ffe17c;
+    border-radius: 0.35rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ffe17c;
+  }
+
+  .session-chip.muted {
+    border-color: #b7c6c2;
+    color: #b7c6c2;
+  }
+
+  .desk-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 0.85rem;
+    background: #fff;
+  }
+
+  .desk-panel {
+    border: 2px solid #000;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    background: #fff;
+  }
+
+  .desk-panel.sage {
+    background: #b7c6c2;
+  }
+
+  .desk-panel .desk-label {
+    color: #171e19;
+    opacity: 1;
+  }
+
+  .desk-title {
+    font-family: "Cabinet Grotesk", "Space Grotesk", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #000;
+    line-height: 1.15;
+  }
+
+  .desk-note {
+    margin-top: 0.35rem;
+    font-size: 0.7rem;
+    color: #171e19;
+    line-height: 1.4;
+  }
+
+  .desk-list {
+    margin: 0;
+    padding-left: 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #000;
+    line-height: 1.55;
+  }
+
+  .marquee-bar {
+    background: #171e19;
+    border-bottom: 2px solid #000;
+    overflow: hidden;
+    padding: 0.85rem 0;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee-scroll 28s linear infinite;
+  }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.35rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(183, 198, 194, 0.55);
+  }
+
+  .marquee-sep {
+    margin-left: 1.25rem;
+    margin-right: 0.5rem;
+    opacity: 0.4;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.333%); }
+  }
+
+  .problem-card {
+    background: #b7c6c2;
+  }
+
+  .solution-card {
+    background: #ffe17c;
+  }
+
+  .how-dark {
+    background: #171e19;
+  }
+
+  .how-circle {
+    display: flex;
+    height: 3.5rem;
+    width: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffe17c;
+    border-radius: 9999px;
+    background: #000;
+    color: #ffe17c;
+    font-family: "Cabinet Grotesk", "Space Grotesk", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 4px rgba(255, 225, 124, 0.25);
+  }
+
+  .cta-brutal {
+    border: 2px solid #000;
+    border-radius: 0.75rem;
+    background: #fff;
     padding: 2.5rem 1.5rem;
-    box-shadow: rgba(14, 15, 12, 0.08) 0 0 0 1px;
+    box-shadow: 8px 8px 0 #000;
   }
 
   @media (min-width: 640px) {
-    .cta-strip {
+    .cta-brutal {
       padding: 3rem 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .desk-body {
+      grid-template-columns: 1fr;
+    }
+    .desk-sidebar {
+      border-right: none;
+      border-bottom: 2px solid #000;
     }
   }
 </style>
