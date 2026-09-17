@@ -1,7 +1,12 @@
 [
   {
+    "title": "What is a market order vs a limit order? EURUSD and GBPUSD beginner guide",
+    "description": "Learn what market orders and limit orders mean on EURUSD and GBPUSD, how they fill, when beginners study each type, and how to avoid common order mistakes. Educational only \u2014 not financial advice.",
+    "url": "https://fx.techonni.com/blog/market-limit-orders-eurusd-gbpusd-beginners/"
+  },
+  {
     "title": "What is the Asian session for EURUSD and GBPUSD? Beginner guide",
-    "description": "Learn what the Asian (Tokyo) session means for EURUSD and GBPUSD, typical hours, how liquidity and ranges often look, and how beginners study this session calmly. Educational only — not financial advice.",
+    "description": "Learn what the Asian (Tokyo) session means for EURUSD and GBPUSD, typical hours, how liquidity and ranges often look, and how beginners study this session calmly. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/asian-session-eurusd-gbpusd-beginners/"
   },
   {
@@ -16,7 +21,7 @@
   },
   {
     "title": "How to choose a chart timeframe for EURUSD and GBPUSD",
-    "description": "Learn what chart timeframes mean on EURUSD and GBPUSD, how M15 H1 H4 and daily charts differ, and how beginners pick one focus without switching every minute. Educational only — not financial advice.",
+    "description": "Learn what chart timeframes mean on EURUSD and GBPUSD, how M15 H1 H4 and daily charts differ, and how beginners pick one focus without switching every minute. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/chart-timeframes-eurusd-gbpusd-beginners/"
   },
   {
@@ -26,7 +31,7 @@
   },
   {
     "title": "Economic calendar for EURUSD and GBPUSD beginners",
-    "description": "Learn how to read a forex economic calendar, which EURUSD and GBPUSD releases matter, and how to study news days with soft risk rules. Educational only — not financial advice.",
+    "description": "Learn how to read a forex economic calendar, which EURUSD and GBPUSD releases matter, and how to study news days with soft risk rules. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/economic-calendar-eurusd-gbpusd-beginners/"
   },
   {
@@ -41,22 +46,17 @@
   },
   {
     "title": "What is risk-reward ratio on EURUSD and GBPUSD? Beginner guide",
-    "description": "Learn what risk-reward ratio means on EURUSD and GBPUSD, how to measure stop vs target in pips, why beginners track RR early, and how to study setups without guessing. Educational only — not financial advice.",
+    "description": "Learn what risk-reward ratio means on EURUSD and GBPUSD, how to measure stop vs target in pips, why beginners track RR early, and how to study setups without guessing. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/risk-reward-ratio-eurusd-gbpusd-beginners/"
   },
   {
     "title": "Support and resistance basics for EURUSD and GBPUSD beginners",
-    "description": "Learn what support and resistance mean on EURUSD and GBPUSD charts, how to mark simple zones, and how to study price with soft risk rules. Educational only — not financial advice.",
+    "description": "Learn what support and resistance mean on EURUSD and GBPUSD charts, how to mark simple zones, and how to study price with soft risk rules. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/support-resistance-eurusd-gbpusd-beginners/"
   },
   {
     "title": "How to keep a simple trading journal for EURUSD and GBPUSD",
     "description": "Learn how to build a beginner trading journal for EURUSD and GBPUSD: what to write after each study trade, how to spot habits, and how to review without chasing wins.",
     "url": "https://fx.techonni.com/blog/trading-journal-eurusd-gbpusd-beginners/"
-  },
-  {
-    "title": "What is a pip in EURUSD and GBPUSD? Beginner guide",
-    "description": "Learn what a pip means on EURUSD and GBPUSD, how to count pips on a chart, why pip size matters for risk, and how to study moves without guessing.",
-    "url": "https://fx.techonni.com/blog/what-is-a-pip-eurusd-gbpusd-beginners/"
   }
 ]
