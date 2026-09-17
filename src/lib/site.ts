@@ -13,11 +13,11 @@ export const SITE = {
   pairs: ['EURUSD', 'GBPUSD'] as const,
   locale: 'en',
   // Google Form formResponse URL (filled after form is created)
-  newsletterFormAction: '',
-  newsletterNameEntry: '',
-  newsletterEmailEntry: '',
-  newsletterConsentEntry: '',
-  newsletterSourceEntry: '',
+  newsletterFormAction: 'https://docs.google.com/forms/d/e/1FAIpQLSfs9xCOoFKH5zT9z2cmgvOtsRjE59axfKI_EtYDpx55DtoiHQ/formResponse',
+  newsletterNameEntry: 'entry.1110274731',
+  newsletterEmailEntry: 'entry.1946205931',
+  newsletterConsentEntry: 'entry.259827322',
+  newsletterSourceEntry: 'entry.452092755',
 } as const;
 
 export function withBase(path = ''): string {
