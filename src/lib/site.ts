@@ -3,7 +3,7 @@ export const SITE = {
   tagline: 'Free FX ideas focused on EURUSD and GBPUSD',
   description:
     'Euro Desk FX shares free FX education and market ideas focused on EURUSD and GBPUSD. Join the free Telegram channel. This is not financial advice.',
-  site: 'https://techonni.github.io',
+  site: 'https://www.techonni.com',
   base: '/',
   telegram: 'https://t.me/EuroDeskFX',
   x: 'https://x.com/eurodeskfx',
