@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.techonni.com',
+  site: 'https://fx.techonni.com',
   base: '/',
   output: 'static',
   trailingSlash: 'always',
