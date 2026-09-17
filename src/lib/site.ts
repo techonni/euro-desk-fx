@@ -12,6 +12,12 @@ export const SITE = {
   xHandle: '@eurodeskfx',
   pairs: ['EURUSD', 'GBPUSD'] as const,
   locale: 'en',
+  // Google Form formResponse URL (filled after form is created)
+  newsletterFormAction: '',
+  newsletterNameEntry: '',
+  newsletterEmailEntry: '',
+  newsletterConsentEntry: '',
+  newsletterSourceEntry: '',
 } as const;
 
 export function withBase(path = ''): string {

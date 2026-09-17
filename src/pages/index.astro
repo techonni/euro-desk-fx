@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NfaBanner from '../components/NfaBanner.astro';
+import EmailCapture from '../components/EmailCapture.astro';
 import { SITE, withBase } from '../lib/site';
 import { getCollection } from 'astro:content';
 
@@ -86,6 +87,8 @@ const accentBar: Record<string, string> = {
 
     <hr class="mt-14 border-border" />
   </section>
+
+  <EmailCapture />
 
   <!-- Product-style 3-column cards -->
   <section class="mx-auto max-w-5xl px-4 pb-16 sm:px-6" aria-labelledby="table-heading">
