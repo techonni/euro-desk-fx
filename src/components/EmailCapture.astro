@@ -18,7 +18,7 @@ const ready = Boolean(action);
 
     {
       ready ? (
-        <form id="nl-form" class="mt-6 w-full max-w-md xl:max-w-xl" action={action} method="POST" novalidate>
+        <form id="nl-form" class="nl-form mt-6" action={action} method="POST" novalidate>
           <input type="hidden" name={SITE.newsletterSourceEntry} value="techonni.com · Euro Desk FX" />
           <input
             type="hidden"
@@ -26,22 +26,18 @@ const ready = Boolean(action);
             value="Yes — I agree to receive emails from Euro Desk FX by Techonni"
           />
           <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
-          <div class="flex w-full flex-col gap-3 xl:flex-row xl:items-stretch">
+          <div class="nl-row">
             <label class="sr-only" for="nl-email">Your email</label>
             <input
               id="nl-email"
+              class="nl-email"
               name={SITE.newsletterEmailEntry}
               type="email"
               required
               autocomplete="email"
-              class="box-border h-14 w-full min-w-0 flex-1 border border-border bg-[#141414] px-4 text-base text-fg outline-none placeholder:text-muted-soft focus:border-[#333]"
               placeholder="Enter your email address"
             />
-            <button
-              id="nl-submit"
-              type="submit"
-              class="nl-submit box-border inline-flex h-14 w-full shrink-0 items-center justify-center border border-fg bg-fg px-4 text-sm font-semibold text-bg transition-colors duration-200 hover:bg-cream xl:w-auto xl:min-w-[11rem] xl:px-6"
-            >
+            <button id="nl-submit" class="nl-submit" type="submit">
               Send me tips
             </button>
           </div>
@@ -115,9 +111,94 @@ const ready = Boolean(action);
 }
 
 <style is:global>
+  .nl-form {
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  .nl-row {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nl-email,
+  .nl-submit {
+    box-sizing: border-box;
+    height: 3.5rem;
+    min-height: 3.5rem;
+    max-height: 3.5rem;
+    width: 100%;
+    margin: 0;
+    border: 1px solid #1f1f1f;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .nl-email {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #141414;
+    color: #f5f5f5;
+    padding: 0 1rem;
+    outline: none;
+  }
+
+  .nl-email::placeholder {
+    color: #737373;
+  }
+
+  .nl-email:focus {
+    border-color: #333;
+  }
+
+  .nl-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    color: #0a0a0a;
+    border-color: #f5f5f5;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .nl-submit:hover {
+    background: #e8e4d9;
+  }
+
   .nl-submit.is-flash {
     background: #0a0a0a !important;
     color: #f5f5f5 !important;
     border-color: #2a2a2a !important;
+  }
+
+  /* Laptop / MacBook / desktop — side by side (tablets portrait stay stacked) */
+  @media (min-width: 1024px) {
+    .nl-form {
+      max-width: 36rem;
+    }
+
+    .nl-row {
+      flex-direction: row;
+      align-items: stretch;
+      flex-wrap: nowrap;
+    }
+
+    .nl-email {
+      flex: 1 1 auto;
+      min-width: 0;
+      width: auto;
+    }
+
+    .nl-submit {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: 11rem;
+      padding: 0 1.5rem;
+      white-space: nowrap;
+    }
   }
 </style>
