@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NfaBanner from '../../components/NfaBanner.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import { getCollection, render } from 'astro:content';
-import { SITE, withBase } from '../../lib/site';
+import { SITE, withBase, absoluteUrl } from '../../lib/site';
 import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -19,6 +20,8 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const shareUrl = absoluteUrl(`/blog/${post.id}/`);
+const shareTitle = post.data.title;
 ---
 
 <BaseLayout
@@ -48,6 +51,9 @@ const { Content } = await render(post);
         ))
       }
     </div>
+    <div class="mt-6">
+      <ShareButtons url={shareUrl} title={shareTitle} />
+    </div>
     <div class="mt-8">
       <NfaBanner />
     </div>
@@ -68,6 +74,9 @@ const { Content } = await render(post);
       >
         Open Telegram
       </a>
+    </div>
+    <div class="mt-8">
+      <ShareButtons url={shareUrl} title={shareTitle} />
     </div>
     <div class="mt-8 border-t border-border pt-6">
       <NfaBanner compact />

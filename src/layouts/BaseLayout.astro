@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   canonicalPath?: string;
   ogType?: 'website' | 'article';
+  ogImage?: string;
   noindex?: boolean;
 }
 
@@ -17,12 +18,15 @@ const {
   description = SITE.description,
   canonicalPath = Astro.url.pathname.replace(SITE.base, '/').replace(/\/index\.html$/, '/') || '/',
   ogType = 'website',
+  ogImage: ogImageProp,
   noindex = false,
 } = Astro.props;
 
 const pageTitle = title === SITE.name ? title : `${title} · ${SITE.name}`;
 const canonical = absoluteUrl(canonicalPath === '/' ? '' : canonicalPath);
-const ogImage = absoluteUrl('og-default.png');
+const ogImage = ogImageProp
+  ? (ogImageProp.startsWith('http') ? ogImageProp : absoluteUrl(ogImageProp))
+  : `${absoluteUrl('og-default.png')}?v=3`;
 ---
 
 <!doctype html>
@@ -49,6 +53,8 @@ const ogImage = absoluteUrl('og-default.png');
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
