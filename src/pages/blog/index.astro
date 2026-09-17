@@ -14,10 +14,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   description="Beginner FX guides in plain English — EURUSD, GBPUSD, London session, and risk. Euro Desk FX. This is not financial advice."
   canonicalPath="/blog/"
 >
-  <section class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+  <section class="content-col py-14 sm:py-20">
     <p class="label-micro">Blog</p>
-    <h1 class="headline-md mt-3" style="font-size: clamp(2rem, 5vw, 3.25rem);">Guides for beginners</h1>
-    <p class="mt-4 max-w-xl text-base text-charcoal">
+    <h1 class="headline-md mt-3">Guides for beginners</h1>
+    <p class="mt-4 max-w-xl text-base text-muted">
       Plain English articles on pairs, sessions, and risk. No hype. No VIP wall.
     </p>
     <div class="mt-8">
@@ -27,10 +27,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
     <ul class="mt-12 space-y-0">
       {
         posts.map((post) => (
-          <li class="border-t-2 border-black">
+          <li class="border-t border-border">
             <a
               href={withBase(`/blog/${post.id}/`)}
-              class="group block py-6 no-underline transition"
+              class="group block py-6 no-underline transition hover:opacity-70"
             >
               <div class="flex flex-wrap items-center gap-2">
                 <time class="label-micro" datetime={post.data.pubDate.toISOString()}>
@@ -41,11 +41,11 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
                   })}
                 </time>
                 {post.data.tags.slice(0, 3).map((tag) => (
-                  <span class="rounded-md border-2 border-black bg-sage px-2.5 py-0.5 text-xs font-bold text-black">{tag}</span>
+                  <span class="rounded-full bg-input px-2.5 py-0.5 text-xs font-medium text-muted">{tag}</span>
                 ))}
               </div>
-              <h2 class="mt-3 text-xl font-extrabold text-black group-hover:underline">{post.data.title}</h2>
-              <p class="mt-2 text-sm leading-relaxed text-charcoal">{post.data.description}</p>
+              <h2 class="mt-3 text-lg font-semibold tracking-tight text-fg">{post.data.title}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
               <p class="link-arrow mt-3">Read →</p>
             </a>
           </li>

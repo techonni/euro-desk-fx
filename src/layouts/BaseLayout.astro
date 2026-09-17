@@ -24,7 +24,7 @@ const {
 
 const pageTitle = title === SITE.name ? title : `${title} · ${SITE.name}`;
 const canonical = absoluteUrl(canonicalPath === '/' ? '' : canonicalPath);
-const ogImage = absoluteUrl('og-share.png') + '?v=2';
+const ogImage = absoluteUrl('og-share.png') + '?v=3';
 ---
 
 <!doctype html>
@@ -35,19 +35,20 @@ const ogImage = absoluteUrl('og-share.png') + '?v=2';
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#ffe17c" />
+    <meta name="theme-color" content="#ffffff" />
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (
       <meta name="robots" content="index, follow" />
     )}
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg') + '?v=2'} />
-    <link rel="alternate icon" href={withBase('favicon.ico') + '?v=2'} />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg') + '?v=3'} />
+    <link rel="alternate icon" href={withBase('favicon.ico') + '?v=3'} />
 
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400;500;700;800&f[]=satoshi@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -67,10 +68,10 @@ const ogImage = absoluteUrl('og-share.png') + '?v=2';
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
   </head>
-  <body class="flex min-h-screen flex-col bg-yellow text-black">
+  <body class="flex min-h-screen flex-col bg-bg text-fg">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border-2 focus:border-black focus:bg-black focus:px-3 focus:py-2 focus:text-white"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-fg focus:px-3 focus:py-2 focus:text-white"
     >
       Skip to content
     </a>

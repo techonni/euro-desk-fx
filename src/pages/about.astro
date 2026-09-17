@@ -9,30 +9,30 @@ import { SITE, withBase } from '../lib/site';
   description="Euro Desk FX by Techonni is a free FX education desk focused on EURUSD and GBPUSD. Plain English. Soft risk notes. This is not financial advice."
   canonicalPath="/about/"
 >
-  <article class="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+  <article class="content-col py-14 sm:py-20">
     <p class="label-micro">About</p>
-    <h1 class="headline-md mt-3" style="font-size: clamp(2rem, 5vw, 3.25rem);">Euro Desk FX</h1>
-    <p class="mt-3 text-sm font-medium text-muted-soft">{SITE.byline}</p>
-    <div class="mt-8 space-y-4 text-base leading-relaxed text-charcoal">
+    <h1 class="headline-md mt-3">Euro Desk FX</h1>
+    <p class="mt-3 text-sm text-muted-soft">{SITE.byline}</p>
+    <div class="mt-8 space-y-4 text-base leading-relaxed text-muted">
       <p>
-        <strong class="text-black">{SITE.name}</strong> is a free desk for FX education and market ideas.
-        The focus stays narrow on purpose: <strong class="text-black">EURUSD</strong> and
-        <strong class="text-black">GBPUSD</strong>.
+        <strong class="font-semibold text-fg">{SITE.name}</strong> is a free desk for FX education and market ideas.
+        The focus stays narrow on purpose: <strong class="font-semibold text-fg">EURUSD</strong> and
+        <strong class="font-semibold text-fg">GBPUSD</strong>.
       </p>
       <p>
-        <strong class="text-black">{SITE.publisher}</strong> is the studio behind this project.
+        <strong class="font-semibold text-fg">{SITE.publisher}</strong> is the studio behind this project.
         You visit the site at techonni.com — that is the home of the studio. The product you follow
-        on Telegram and X is still <strong class="text-black">Euro Desk FX</strong>
+        on Telegram and X is still <strong class="font-semibold text-fg">Euro Desk FX</strong>
         ({SITE.xHandle} / t.me/EuroDeskFX). One brand for the desk. One publisher behind it.
       </p>
       <p>
         You get simple English, session context, and soft risk reminders. There is no VIP pricing and no
         promise of profit. The main channel is free Telegram —
-        <a class="font-bold text-black underline underline-offset-4" href={SITE.telegram} target="_blank" rel="noopener noreferrer"
+        <a class="font-medium text-fg underline underline-offset-4" href={SITE.telegram} target="_blank" rel="noopener noreferrer"
           >t.me/EuroDeskFX</a
         >
         — with short updates on
-        <a class="font-bold text-black underline underline-offset-4" href={SITE.x} target="_blank" rel="noopener noreferrer"
+        <a class="font-medium text-fg underline underline-offset-4" href={SITE.x} target="_blank" rel="noopener noreferrer"
           >X {SITE.xHandle}</a
         >.
       </p>
