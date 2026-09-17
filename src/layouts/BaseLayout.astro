@@ -24,9 +24,7 @@ const {
 
 const pageTitle = title === SITE.name ? title : `${title} · ${SITE.name}`;
 const canonical = absoluteUrl(canonicalPath === '/' ? '' : canonicalPath);
-const ogImage = ogImageProp
-  ? (ogImageProp.startsWith('http') ? ogImageProp : absoluteUrl(ogImageProp))
-  : `${absoluteUrl('og-default.png')}?v=3`;
+const ogImage = absoluteUrl('og-share.png') + '?v=1';
 ---
 
 <!doctype html>
