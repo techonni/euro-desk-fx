@@ -47,42 +47,29 @@ const accentBar: Record<string, string> = {
 ---
 
 <BaseLayout title={SITE.name} description={SITE.description} canonicalPath="/">
-  <!-- Hero: square mark LEFT + title/intro RIGHT -->
+  <!-- Hero: text only -->
   <section class="mx-auto max-w-5xl px-4 pb-12 pt-14 sm:px-6 sm:pb-16 sm:pt-20">
-    <div class="flex flex-col gap-10 sm:flex-row sm:items-start sm:gap-12">
-      <div class="shrink-0">
-        <img
-          src={withBase('hero-chart.jpg')}
-          alt="FX candlestick chart"
-          width="320"
-          height="320"
-          class="block h-36 w-36 object-cover sm:h-40 sm:w-40"
-        />
-      </div>
-      <div class="min-w-0 flex-1 pt-1">
-        <p class="label-micro">FX desk</p>
-        <h1 class="mt-3 text-4xl font-bold tracking-tight text-fg sm:text-5xl md:text-6xl">
-          Euro Desk FX
-        </h1>
-        <p class="mt-3 text-sm text-muted-soft">{SITE.byline}</p>
-        <p class="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-          Free FX education and market ideas focused on <span class="text-fg">EURUSD</span> and
-          <span class="text-fg">GBPUSD</span>. Simple English. Clear process. Soft risk notes — this is not financial advice.
-        </p>
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a
-            href={SITE.telegram}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="badge-rect-solid"
-          >
-            Join free Telegram
-          </a>
-          <a href={withBase('/blog/')} class="link-arrow">
-            Read beginner guides →
-          </a>
-        </div>
-      </div>
+    <p class="label-micro">FX desk</p>
+    <h1 class="mt-3 text-4xl font-bold tracking-tight text-fg sm:text-5xl md:text-6xl">
+      Euro Desk FX
+    </h1>
+    <p class="mt-3 text-sm text-muted-soft">{SITE.byline}</p>
+    <p class="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+      Free FX education and market ideas focused on <span class="text-fg">EURUSD</span> and
+      <span class="text-fg">GBPUSD</span>. Simple English. Clear process. Soft risk notes — this is not financial advice.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center gap-4">
+      <a
+        href={SITE.telegram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="badge-rect-solid"
+      >
+        Join free Telegram
+      </a>
+      <a href={withBase('/blog/')} class="link-arrow">
+        Read beginner guides →
+      </a>
     </div>
 
     <hr class="mt-14 border-border" />
