@@ -9,32 +9,138 @@ const nav = [
 ];
 ---
 
-<header class="border-b border-border">
-  <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-5 sm:px-6">
-    <a href={withBase('/')} class="group flex items-center gap-3 no-underline">
+<header class="sticky top-0 z-40 border-b border-border bg-bg/95 backdrop-blur-sm">
+  <div class="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6">
+    <a href={withBase('/')} class="group flex min-w-0 items-center gap-2.5 no-underline sm:gap-3">
       <span
-        class="flex h-8 w-8 items-center justify-center border border-border bg-bg text-[11px] font-bold tracking-tight text-fg"
+        class="flex h-9 w-9 shrink-0 items-center justify-center border border-border bg-bg text-[11px] font-bold tracking-tight text-fg sm:h-10 sm:w-10"
         aria-hidden="true"
       >FX</span>
-      <span class="label-micro text-fg group-hover:text-cream">{SITE.name}</span>
+      <span class="label-micro truncate text-fg group-hover:text-cream">{SITE.name}</span>
     </a>
-    <nav class="flex flex-wrap items-center justify-end gap-1 text-sm sm:gap-3" aria-label="Main">
-      {nav.map((item) => (
-        <a
-          href={item.href}
-          class="label-micro px-2 py-1.5 text-muted transition hover:text-fg"
-        >
-          {item.label}
-        </a>
-      ))}
+
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
       <a
         href={SITE.telegram}
         target="_blank"
         rel="noopener noreferrer"
-        class="badge-rect ml-1"
+        class="inline-flex h-9 items-center justify-center border border-[#2a2a2a] bg-black px-3 text-[0.625rem] font-bold uppercase tracking-[0.12em] text-white no-underline transition hover:border-[#3a3a3a] hover:bg-[#141414] sm:h-10 sm:px-4 sm:text-[0.6875rem]"
       >
         Telegram
       </a>
-    </nav>
+
+      <button
+        type="button"
+        id="nav-menu-btn"
+        class="inline-flex h-9 w-9 items-center justify-center border border-border text-fg transition hover:border-[#333] sm:h-10 sm:w-10"
+        aria-label="Open menu"
+        aria-controls="nav-drawer"
+        aria-expanded="false"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
+
+<div
+  id="nav-backdrop"
+  class="nav-backdrop fixed inset-0 z-50 bg-black/55 opacity-0 pointer-events-none transition-opacity duration-300"
+  hidden
+></div>
+
+<aside
+  id="nav-drawer"
+  class="nav-drawer fixed inset-y-0 right-0 z-50 flex w-[min(50vw,20rem)] max-w-[50%] translate-x-full flex-col border-l border-border bg-bg transition-transform duration-300 ease-out"
+  aria-label="Site menu"
+  aria-hidden="true"
+>
+  <div class="flex h-14 items-center justify-between border-b border-border px-4 sm:h-16 sm:px-5">
+    <p class="label-micro text-fg">Menu</p>
+    <button
+      type="button"
+      id="nav-menu-close"
+      class="inline-flex h-9 w-9 items-center justify-center border border-border text-fg transition hover:border-[#333] sm:h-10 sm:w-10"
+      aria-label="Close menu"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" />
+      </svg>
+    </button>
+  </div>
+  <nav class="flex flex-1 flex-col gap-1 p-4 sm:p-5" aria-label="Pages">
+    {
+      nav.map((item) => (
+        <a
+          href={item.href}
+          class="nav-drawer-link label-micro border border-transparent px-3 py-3.5 text-muted transition hover:border-border hover:text-fg"
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</aside>
+
+<script>
+  function setupNav() {
+    const btn = document.getElementById('nav-menu-btn');
+    const closeBtn = document.getElementById('nav-menu-close');
+    const drawer = document.getElementById('nav-drawer');
+    const backdrop = document.getElementById('nav-backdrop');
+    if (!btn || !closeBtn || !drawer || !backdrop) return;
+
+    const open = () => {
+      backdrop.hidden = false;
+      requestAnimationFrame(() => {
+        drawer.classList.add('is-open');
+        backdrop.classList.add('is-open');
+      });
+      btn.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('overflow-hidden');
+    };
+
+    const close = () => {
+      drawer.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('overflow-hidden');
+      const onEnd = () => {
+        backdrop.hidden = true;
+        backdrop.removeEventListener('transitionend', onEnd);
+      };
+      backdrop.addEventListener('transitionend', onEnd);
+    };
+
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      if (expanded) close();
+      else open();
+    });
+    closeBtn.addEventListener('click', close);
+    backdrop.addEventListener('click', close);
+    drawer.querySelectorAll('.nav-drawer-link').forEach((link) => {
+      link.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') close();
+    });
+  }
+
+  setupNav();
+  document.addEventListener('astro:page-load', setupNav);
+</script>
+
+<style>
+  .nav-drawer.is-open {
+    transform: translateX(0);
+  }
+  .nav-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>

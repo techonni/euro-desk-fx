@@ -18,7 +18,7 @@ const ready = Boolean(action);
 
     {
       ready ? (
-        <form class="mt-6 max-w-xl" action={action} method="POST" target="_blank">
+        <form class="mt-6 w-full max-w-xl" action={action} method="POST" target="_blank">
           <input type="hidden" name={SITE.newsletterSourceEntry} value="techonni.com · Euro Desk FX" />
           <input
             type="hidden"
@@ -26,7 +26,7 @@ const ready = Boolean(action);
             value="Yes — I agree to receive emails from Euro Desk FX by Techonni"
           />
           <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-stretch">
+          <div class="grid grid-cols-[1fr_auto] items-stretch gap-2 sm:gap-3">
             <label class="sr-only" for="nl-email">Your email</label>
             <input
               id="nl-email"
@@ -34,12 +34,12 @@ const ready = Boolean(action);
               type="email"
               required
               autocomplete="email"
-              class="h-11 min-w-0 flex-1 border border-border bg-bg px-3 text-sm text-fg outline-none placeholder:text-muted-soft focus:border-[#333] sm:h-12"
+              class="box-border h-12 w-full min-w-0 border border-border bg-bg px-3 text-base text-fg outline-none placeholder:text-muted-soft focus:border-[#333] sm:h-14 sm:text-sm"
               placeholder="you@email.com"
             />
             <button
               type="submit"
-              class="inline-flex h-11 shrink-0 items-center justify-center border border-fg bg-fg px-5 text-xs font-semibold uppercase tracking-[0.14em] text-bg transition hover:bg-cream hover:text-bg sm:h-12 sm:min-w-[11rem]"
+              class="box-border inline-flex h-12 w-[7.5rem] items-center justify-center border border-fg bg-fg px-3 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-bg transition hover:bg-cream sm:h-14 sm:w-[11rem] sm:px-5 sm:text-xs"
             >
               Send me tips
             </button>
