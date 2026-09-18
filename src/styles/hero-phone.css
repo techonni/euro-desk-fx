@@ -1,8 +1,14 @@
 .hero-phone {
   width: 8.75rem;
-  height: auto;
+  height: 17.6rem;
   display: block;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: auto;
 }
 @media (min-width: 640px) {
-  .hero-phone { width: 9.5rem; }
+  .hero-phone {
+    width: 9.5rem;
+    height: 19.1rem;
+  }
 }
