@@ -1,1 +1,1 @@
-export const HERO_TG = "data:image/jpeg;base64,PLACEHOLDER";
+export const HERO_PHONE = '/hero-iphone.webp';
