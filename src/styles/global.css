@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./hero-phone.css";
 
 @theme {
   --color-bg: #ffffff;
@@ -88,9 +89,8 @@ body {
 .hero-bio { margin: 1rem 0 0; max-width: 36rem; font-size: 1.0625rem; line-height: 1.65; color: #666; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.85rem 1.25rem; margin-top: 1.5rem; }
 .hero-byline { margin: 1.25rem 0 0; font-size: 0.8125rem; color: #888; }
-.hero-device { justify-self: center; width: 8.75rem; }
-@media (min-width: 640px) { .hero-device { width: 9.5rem; justify-self: end; } }
-.hero-device img { display: block; width: 100%; height: auto; }
+.hero-phone { justify-self: center; }
+@media (min-width: 640px) { .hero-phone { justify-self: end; } }
 .paths, .how, .blog-latest, .newsletter-band { padding: 2.5rem 0 0; }
 .final-cta { padding: 3rem 0 4rem; }
 .path-list, .post-list, .step-list { list-style: none; margin: 1.15rem 0 0; padding: 0; }
