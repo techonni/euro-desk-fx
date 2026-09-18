@@ -1,0 +1,8 @@
+.hero-phone {
+  width: 8.75rem;
+  aspect-ratio: 420 / 846;
+  background: url("/hero-iphone.webp") center / contain no-repeat;
+}
+@media (min-width: 640px) {
+  .hero-phone { width: 9.5rem; }
+}
