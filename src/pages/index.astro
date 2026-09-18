@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import NfaBanner from '../components/NfaBanner.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import { SITE, withBase } from '../lib/site';
+import { HERO_PHONE } from '../lib/heroScreen';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -54,7 +55,7 @@ const steps = [
 
 <BaseLayout title={SITE.name} description={SITE.description} canonicalPath="/">
   <section class="hero">
-    <div class="hero-grid">
+    <div class="content-col hero-row">
       <div class="hero-copy">
         <p class="label-micro">FX education desk · NFA</p>
         <h1 class="display-lg mt-4">Learn FX with a clear desk</h1>
@@ -68,38 +69,8 @@ const steps = [
         </div>
         <p class="hero-byline">{SITE.byline}</p>
       </div>
-      <div class="hero-scene">
-        <div class="hero-wall">
-          <div class="hero-phone">
-            <div class="hero-phone-bezel">
-              <span class="hero-phone-island"></span>
-              <div class="hero-phone-screen tg-screen" role="img" aria-label="Free M15 Euro Desk FX on Telegram">
-                <div class="tg-status">
-                  <span>19:18</span>
-                  <span class="tg-pill">TELEGRAM</span>
-                  <span>38</span>
-                </div>
-                <div class="tg-bar">
-                  <span class="tg-chip">Edit</span>
-                  <strong>Chats</strong>
-                  <span class="tg-chip">+</span>
-                </div>
-                <div class="tg-search">Search</div>
-                <div class="tg-row">
-                  <span class="tg-avatar">FX</span>
-                  <div class="tg-copy">
-                    <div class="tg-title">
-                      <span>Free M15 Euro Desk FX</span>
-                      <span class="tg-day">Thu</span>
-                    </div>
-                    <p class="tg-msg">GBPUSD buy ↑ ENTRY:1.33970 TP1: 1.34062 SL: 1.33924</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hero-table"></div>
-        </div>
+      <div class="hero-device">
+        <img src={HERO_PHONE} alt="Free M15 Euro Desk FX on iPhone" width="1124" height="2264" />
       </div>
     </div>
   </section>
