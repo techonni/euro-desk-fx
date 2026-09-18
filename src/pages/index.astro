@@ -69,7 +69,16 @@ const steps = [
         </div>
         <p class="hero-byline">{SITE.byline}</p>
       </div>
-      <img class="hero-phone" src={HERO_PHONE_SRC} width="240" height="483" alt="Free M15 Euro Desk FX on iPhone" />
+      <img
+        class="hero-phone"
+        src={HERO_PHONE_SRC}
+        width="240"
+        height="483"
+        alt="Free M15 Euro Desk FX on iPhone"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
   </section>
 
