@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import NfaBanner from '../components/NfaBanner.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import { SITE, withBase } from '../lib/site';
-import { HERO_TG } from '../lib/heroScreen';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -74,7 +73,29 @@ const steps = [
           <div class="hero-phone">
             <div class="hero-phone-bezel">
               <span class="hero-phone-island"></span>
-              <img class="hero-phone-screen" src={HERO_TG} alt="Free M15 Euro Desk FX on Telegram" width="390" height="560" />
+              <div class="hero-phone-screen tg-screen" role="img" aria-label="Free M15 Euro Desk FX on Telegram">
+                <div class="tg-status">
+                  <span>19:18</span>
+                  <span class="tg-pill">TELEGRAM</span>
+                  <span>38</span>
+                </div>
+                <div class="tg-bar">
+                  <span class="tg-chip">Edit</span>
+                  <strong>Chats</strong>
+                  <span class="tg-chip">+</span>
+                </div>
+                <div class="tg-search">Search</div>
+                <div class="tg-row">
+                  <span class="tg-avatar">FX</span>
+                  <div class="tg-copy">
+                    <div class="tg-title">
+                      <span>Free M15 Euro Desk FX</span>
+                      <span class="tg-day">Thu</span>
+                    </div>
+                    <p class="tg-msg">GBPUSD buy ↑ ENTRY:1.33970 TP1: 1.34062 SL: 1.33924</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="hero-table"></div>
