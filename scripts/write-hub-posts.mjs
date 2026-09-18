@@ -38,7 +38,11 @@ const posts = files
     };
   })
   .filter(Boolean)
-  .sort((a, b) => String(b.pubDate).localeCompare(String(a.pubDate)))
+  .sort((a, b) => {
+    const byDate = String(b.pubDate).localeCompare(String(a.pubDate));
+    if (byDate !== 0) return byDate;
+    return String(a.title).localeCompare(String(b.title));
+  })
   .slice(0, 12)
   .map(({ title, description, url }) => ({ title, description, url }));
 
