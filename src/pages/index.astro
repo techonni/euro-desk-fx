@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import NfaBanner from '../components/NfaBanner.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import { SITE, withBase } from '../lib/site';
-import { HERO_PHONE } from '../lib/heroScreen';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -69,9 +68,7 @@ const steps = [
         </div>
         <p class="hero-byline">{SITE.byline}</p>
       </div>
-      <div class="hero-device">
-        <img src={HERO_PHONE} alt="Free M15 Euro Desk FX on iPhone" width="1124" height="2264" />
-      </div>
+      <div class="hero-phone" role="img" aria-label="Free M15 Euro Desk FX on iPhone"></div>
     </div>
   </section>
 
