@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NfaBanner from '../components/NfaBanner.astro';
 import { SITE, withBase } from '../lib/site';
+const inviteJson = JSON.stringify(SITE.telegramInvite);
 ---
 
 <BaseLayout
@@ -15,8 +16,7 @@ import { SITE, withBase } from '../lib/site';
       <h1 class="display-lg mt-4">Lifetime VIP for {SITE.vipPrice}</h1>
       <p class="hero-bio">
         One payment. Lifetime access to the private Euro Desk FX ideas channel.
-        EURUSD and GBPUSD only. The invite appears after checkout. The public
-        Telegram link is gone. This is not financial advice.
+        EURUSD and GBPUSD only. The invite appears after checkout. This is not financial advice.
       </p>
       <div class="hero-actions" id="vip-actions">
         <a class="btn-primary" href={SITE.checkoutUrl}>Get Lifetime VIP →</a>
@@ -30,8 +30,8 @@ import { SITE, withBase } from '../lib/site';
     <div class="content-col">
       <p class="label-micro">How it works</p>
       <ol class="step-list">
-        <li class="step-item"><span class="step-n">01</span><div><h2 class="step-title">Pay {SITE.vipPrice} once</h2><p class="step-body">Stripe checkout. Card only. You get a receipt.</p></div></li>
-        <li class="step-item"><span class="step-n">02</span><div><h2 class="step-title">Open the private channel</h2><p class="step-body">This page shows the Telegram join button after payment. The channel is not listed in search.</p></div></li>
+        <li class="step-item"><span class="step-n">01</span><div><h2 class="step-title">Pay {SITE.vipPrice} once</h2><p class="step-body">Stripe checkout. You get a receipt.</p></div></li>
+        <li class="step-item"><span class="step-n">02</span><div><h2 class="step-title">Open the private channel</h2><p class="step-body">This page shows the Telegram button after payment. The channel is not listed in search.</p></div></li>
         <li class="step-item"><span class="step-n">03</span><div><h2 class="step-title">Study the ideas</h2><p class="step-body">Session notes and context. Not orders to copy. Size small. Accept losses.</p></div></li>
       </ol>
       <div class="mt-8"><NfaBanner compact /></div>
@@ -39,16 +39,16 @@ import { SITE, withBase } from '../lib/site';
   </section>
 </BaseLayout>
 
-<script is:inline>
+<script is:inline define:vars={{ inviteJson }}>
   (function () {
     var paid = /[?&]paid=1\b/.test(location.search);
-    var invite = {JSON.stringify(SITE.telegramInvite)};
+    var invite = inviteJson;
     var box = document.getElementById('vip-actions');
     if (!box || !paid) return;
     if (invite) {
       box.innerHTML = '<a class="btn-primary" href="' + invite + '" target="_blank" rel="noopener noreferrer">Open private Telegram →</a>';
     } else {
-      box.innerHTML = '<p class="hero-bio">Payment received. The private invite is being attached. Email the receipt if you need it sooner.</p>';
+      box.innerHTML = '<p class="hero-bio">Payment received. The private invite is being attached.</p>';
     }
   })();
 </script>
