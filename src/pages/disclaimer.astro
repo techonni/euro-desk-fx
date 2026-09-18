@@ -15,14 +15,14 @@ import { SITE, withBase } from '../lib/site';
 
     <div class="prose-blog mt-10">
       <p>
-        All content from <strong>{SITE.name}</strong> — including this website, the Telegram channel,
+        All content from <strong>{SITE.name}</strong> — including this website, the private VIP channel,
         posts on X, and related materials — is shared
         <strong>for education and information only</strong>.
       </p>
       <h2>This is not financial advice</h2>
       <p>
         Nothing published here is financial, investment, tax, or trading advice. Euro Desk FX is not a
-        regulated advisor. Personal goals, risk limits, and account size are unknown — so no signal or
+        regulated advisor. Personal goals, risk limits, and account size are unknown — so no idea or
         article can replace your own judgment.
       </p>
       <h2>Risk of loss</h2>
@@ -32,23 +32,26 @@ import { SITE, withBase } from '../lib/site';
       </p>
       <h2>Signals and ideas</h2>
       <ul>
-        <li>Signals and charts are opinions and study material — not orders to execute.</li>
+        <li>Ideas and charts are study material — not orders to execute.</li>
         <li>There is no guarantee of profit, win rate, or outcome.</li>
-        <li>There is no VIP service, managed copy-trading, or portfolio management.</li>
+        <li>Lifetime VIP is access to a private ideas channel. It is not managed copy-trading or portfolio management.</li>
         <li>You check spreads, costs, hours, and broker rules yourself.</li>
       </ul>
       <h2>Your responsibility</h2>
       <p>
-        By using these channels, you accept that trading decisions are yours alone. {SITE.name} and its
+        By using these materials, you accept that trading decisions are yours alone. {SITE.name} and its
         operators are not liable for losses or damages from use of the shared information.
       </p>
       <h2>Official links</h2>
       <ul>
         <li>
-          Telegram: <a href={SITE.telegram} target="_blank" rel="noopener noreferrer">{SITE.telegram}</a>
+          Site: <a href={SITE.site}>{SITE.site}</a>
         </li>
         <li>
           X: <a href={SITE.x} target="_blank" rel="noopener noreferrer">{SITE.x}</a>
+        </li>
+        <li>
+          Lifetime VIP: <a href={withBase('/vip/')}>{SITE.site}/vip/</a>
         </li>
       </ul>
       <blockquote>
