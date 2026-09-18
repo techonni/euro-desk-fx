@@ -15,7 +15,7 @@ const nav = [
       <span class="truncate text-[0.9375rem] font-semibold tracking-tight text-fg sm:text-base">{SITE.name}</span>
     </a>
     <div class="flex shrink-0 items-center gap-2.5 sm:gap-3">
-      <a href={withBase('/vip/')} class="btn-nav-cta">Lifetime VIP {SITE.vipPrice}</a>
+      <a href={SITE.checkoutUrl} class="btn-nav-cta">Lifetime VIP {SITE.vipPrice}</a>
       <button type="button" id="nav-menu-btn" class="nav-toggle" aria-label="Open menu" aria-controls="nav-drawer" aria-expanded="false">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
       </button>
@@ -33,7 +33,7 @@ const nav = [
     {nav.map((item) => (<a href={item.href} class="nav-drawer-link">{item.label}</a>))}
   </nav>
   <div class="nav-drawer-foot">
-    <a href={withBase('/vip/')} class="btn-primary w-full">Get Lifetime VIP {SITE.vipPrice}</a>
+    <a href={SITE.checkoutUrl} class="btn-primary w-full">Get Lifetime VIP {SITE.vipPrice}</a>
   </div>
 </aside>
 <script is:inline>
@@ -51,7 +51,7 @@ const nav = [
       btn.addEventListener('click', function () { if (btn.getAttribute('aria-expanded') === 'true') close(); else open(); });
       closeBtn.addEventListener('click', close);
       backdrop.addEventListener('click', close);
-      drawer.querySelectorAll('.nav-drawer-link').forEach(function (link) { link.addEventListener('click', close); });
+      drawer.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', close); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') close(); });
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupNav);
@@ -64,6 +64,7 @@ const nav = [
   .site-header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #f0f0f0; }
   .header-inner { display: flex; height: 3.75rem; align-items: center; justify-content: space-between; gap: 0.75rem; }
   .fx-mark { display: inline-flex; height: 1.75rem; width: 1.75rem; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 0.375rem; background: #111; color: #fff; font-size: 0.6875rem; font-weight: 700; }
+  .btn-nav-cta { display: inline-flex; align-items: center; height: 2.25rem; padding: 0 0.85rem; border-radius: 9999px; background: #111; color: #fff; font-size: 0.75rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
   .nav-toggle, .nav-icon-btn { display: inline-flex; height: 2.25rem; width: 2.25rem; align-items: center; justify-content: center; border-radius: 9999px; border: none; background: #f3f3f3; color: #111; cursor: pointer; }
   .nav-backdrop { position: fixed; inset: 0; z-index: 60; background: rgba(17,17,17,0.35); opacity: 0; pointer-events: none; }
   .nav-backdrop.is-open { opacity: 1; pointer-events: auto; }
