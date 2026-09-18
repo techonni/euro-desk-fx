@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NfaBanner from '../components/NfaBanner.astro';
+import { SITE, withBase } from '../lib/site';
+---
+
+<BaseLayout
+  title={`Lifetime VIP · ${SITE.name}`}
+  description={`Private EURUSD and GBPUSD ideas. One payment of ${SITE.vipPrice}. Lifetime access. Not financial advice.`}
+  canonicalPath="/vip/"
+>
+  <section class="hero">
+    <div class="content-col">
+      <p class="label-micro">Private channel · NFA</p>
+      <h1 class="display-lg mt-4">Lifetime VIP for {SITE.vipPrice}</h1>
+      <p class="hero-bio">
+        One payment. Lifetime access to the private Euro Desk FX ideas channel.
+        EURUSD and GBPUSD only. The invite appears after checkout. The public
+        Telegram link is gone. This is not financial advice.
+      </p>
+      <div class="hero-actions" id="vip-actions">
+        <a class="btn-primary" href={SITE.checkoutUrl}>Get Lifetime VIP →</a>
+        <a class="link-arrow" href={withBase('/blog/')}>Read free guides →</a>
+      </div>
+      <p class="hero-byline">{SITE.byline}</p>
+    </div>
+  </section>
+
+  <section class="how">
+    <div class="content-col">
+      <p class="label-micro">How it works</p>
+      <ol class="step-list">
+        <li class="step-item"><span class="step-n">01</span><div><h2 class="step-title">Pay {SITE.vipPrice} once</h2><p class="step-body">Stripe checkout. Card only. You get a receipt.</p></div></li>
+        <li class="step-item"><span class="step-n">02</span><div><h2 class="step-title">Open the private channel</h2><p class="step-body">This page shows the Telegram join button after payment. The channel is not listed in search.</p></div></li>
+        <li class="step-item"><span class="step-n">03</span><div><h2 class="step-title">Study the ideas</h2><p class="step-body">Session notes and context. Not orders to copy. Size small. Accept losses.</p></div></li>
+      </ol>
+      <div class="mt-8"><NfaBanner compact /></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var paid = /[?&]paid=1\b/.test(location.search);
+    var invite = {JSON.stringify(SITE.telegramInvite)};
+    var box = document.getElementById('vip-actions');
+    if (!box || !paid) return;
+    if (invite) {
+      box.innerHTML = '<a class="btn-primary" href="' + invite + '" target="_blank" rel="noopener noreferrer">Open private Telegram →</a>';
+    } else {
+      box.innerHTML = '<p class="hero-bio">Payment received. The private invite is being attached. Email the receipt if you need it sooner.</p>';
+    }
+  })();
+</script>
+
+<style>
+  .hero { padding: 3rem 0 2.5rem; }
+  .hero-bio { margin-top: 1.25rem; max-width: 36rem; font-size: 1.0625rem; line-height: 1.7; color: #666; }
+  .hero-actions { margin-top: 1.75rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; }
+  .hero-byline { margin-top: 1.25rem; font-size: 0.8125rem; color: #888; }
+  .how { background: #f7f7f7; padding: 2.5rem 0 3.5rem; }
+  .step-list { margin: 1.75rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
+  .step-item { display: flex; gap: 1rem; }
+  .step-n { flex-shrink: 0; font-size: 0.8125rem; font-weight: 600; color: #888; min-width: 1.75rem; padding-top: 0.15rem; }
+  .step-title { margin: 0; font-size: 1.0625rem; font-weight: 600; color: #111; }
+  .step-body { margin: 0.35rem 0 0; font-size: 0.9375rem; line-height: 1.6; color: #666; }
+</style>
