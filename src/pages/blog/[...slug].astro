@@ -61,19 +61,12 @@ const shareTitle = post.data.title;
       <Content />
     </div>
     <div class="mt-12 rounded-xl bg-bg-muted p-6 sm:p-8">
-      <p class="label-micro">Telegram</p>
-      <h2 class="mt-2 text-xl font-semibold tracking-tight text-fg">Keep learning on the free channel</h2>
+      <p class="label-micro">Lifetime VIP</p>
+      <h2 class="mt-2 text-xl font-semibold tracking-tight text-fg">Private ideas after checkout</h2>
       <p class="mt-2 text-sm leading-relaxed text-muted">
-        Join Euro Desk FX on Telegram for EURUSD and GBPUSD ideas in plain English. Soft risk notes included.
+        Guides stay free. Session ideas on EURUSD and GBPUSD are Lifetime VIP for {SITE.vipPrice}. The invite is only shown after you pay.
       </p>
-      <a
-        href={SITE.telegram}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-primary mt-5"
-      >
-        Open Telegram →
-      </a>
+      <a href={SITE.checkoutUrl} class="btn-primary mt-5">Get Lifetime VIP {SITE.vipPrice} →</a>
     </div>
     <div class="mt-8">
       <ShareButtons url={shareUrl} title={shareTitle} />
