@@ -1,6 +1,5 @@
 ---
 import { SITE, withBase } from '../lib/site';
-
 const nav = [
   { href: withBase('/'), label: 'Home' },
   { href: withBase('/blog/'), label: 'Blog' },
@@ -9,55 +8,34 @@ const nav = [
   { href: withBase('/disclaimer/'), label: 'Disclaimer' },
 ];
 ---
-
 <header class="site-header">
   <div class="content-col header-inner">
     <a href={withBase('/')} class="group flex min-w-0 items-center gap-2.5 no-underline">
       <span class="fx-mark" aria-hidden="true">FX</span>
       <span class="truncate text-[0.9375rem] font-semibold tracking-tight text-fg sm:text-base">{SITE.name}</span>
     </a>
-
     <div class="flex shrink-0 items-center gap-2.5 sm:gap-3">
-      <a href={withBase('/vip/')} class="btn-nav-cta">
-        Lifetime VIP {SITE.vipPrice}
-      </a>
-
-      <button
-        type="button"
-        id="nav-menu-btn"
-        class="nav-toggle"
-        aria-label="Open menu"
-        aria-controls="nav-drawer"
-        aria-expanded="false"
-      >
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
+      <a href={withBase('/vip/')} class="btn-nav-cta">Lifetime VIP {SITE.vipPrice}</a>
+      <button type="button" id="nav-menu-btn" class="nav-toggle" aria-label="Open menu" aria-controls="nav-drawer" aria-expanded="false">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
       </button>
     </div>
   </div>
 </header>
-
 <div id="nav-backdrop" class="nav-backdrop" hidden></div>
-
 <aside id="nav-drawer" class="nav-drawer" aria-label="Site menu" aria-hidden="true">
   <div class="nav-drawer-top">
     <button type="button" id="nav-menu-close" class="nav-icon-btn ml-auto" aria-label="Close menu">
-      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </svg>
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
     </button>
   </div>
   <nav class="nav-drawer-links" aria-label="Pages">
-    {nav.map((item) => (
-      <a href={item.href} class="nav-drawer-link">{item.label}</a>
-    ))}
+    {nav.map((item) => (<a href={item.href} class="nav-drawer-link">{item.label}</a>))}
   </nav>
   <div class="nav-drawer-foot">
     <a href={withBase('/vip/')} class="btn-primary w-full">Get Lifetime VIP {SITE.vipPrice}</a>
   </div>
 </aside>
-
 <script is:inline>
   (function () {
     function setupNav() {
@@ -68,39 +46,31 @@ const nav = [
       if (!btn || !closeBtn || !drawer || !backdrop) return;
       if (btn.dataset.bound === '1') return;
       btn.dataset.bound = '1';
-      function open() {
-        backdrop.hidden = false;
-        drawer.classList.add('is-open');
-        backdrop.classList.add('is-open');
-        btn.setAttribute('aria-expanded', 'true');
-        drawer.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('nav-lock');
-      }
-      function close() {
-        drawer.classList.remove('is-open');
-        backdrop.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
-        drawer.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('nav-lock');
-        window.setTimeout(function () {
-          if (!backdrop.classList.contains('is-open')) backdrop.hidden = true;
-        }, 320);
-      }
-      btn.addEventListener('click', function () {
-        if (btn.getAttribute('aria-expanded') === 'true') close();
-        else open();
-      });
+      function open() { backdrop.hidden = false; drawer.classList.add('is-open'); backdrop.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); drawer.setAttribute('aria-hidden', 'false'); document.body.classList.add('nav-lock'); }
+      function close() { drawer.classList.remove('is-open'); backdrop.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); drawer.setAttribute('aria-hidden', 'true'); document.body.classList.remove('nav-lock'); window.setTimeout(function () { if (!backdrop.classList.contains('is-open')) backdrop.hidden = true; }, 320); }
+      btn.addEventListener('click', function () { if (btn.getAttribute('aria-expanded') === 'true') close(); else open(); });
       closeBtn.addEventListener('click', close);
       backdrop.addEventListener('click', close);
-      drawer.querySelectorAll('.nav-drawer-link').forEach(function (link) {
-        link.addEventListener('click', close);
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') close();
-      });
+      drawer.querySelectorAll('.nav-drawer-link').forEach(function (link) { link.addEventListener('click', close); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') close(); });
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupNav);
     else setupNav();
     document.addEventListener('astro:page-load', setupNav);
   })();
 </script>
+<style is:global>
+  body.nav-lock { overflow: hidden; }
+  .site-header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #f0f0f0; }
+  .header-inner { display: flex; height: 3.75rem; align-items: center; justify-content: space-between; gap: 0.75rem; }
+  .fx-mark { display: inline-flex; height: 1.75rem; width: 1.75rem; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 0.375rem; background: #111; color: #fff; font-size: 0.6875rem; font-weight: 700; }
+  .nav-toggle, .nav-icon-btn { display: inline-flex; height: 2.25rem; width: 2.25rem; align-items: center; justify-content: center; border-radius: 9999px; border: none; background: #f3f3f3; color: #111; cursor: pointer; }
+  .nav-backdrop { position: fixed; inset: 0; z-index: 60; background: rgba(17,17,17,0.35); opacity: 0; pointer-events: none; }
+  .nav-backdrop.is-open { opacity: 1; pointer-events: auto; }
+  .nav-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 70; display: flex; flex-direction: column; width: min(50vw, 20rem); max-width: 50%; background: #fff; border-left: 1px solid #e8e8e8; transform: translateX(100%); transition: transform 0.28s ease-out; }
+  .nav-drawer.is-open { transform: translateX(0); }
+  .nav-drawer-top { display: flex; height: 3.75rem; align-items: center; justify-content: flex-end; border-bottom: 1px solid #f0f0f0; padding: 0 1rem; }
+  .nav-drawer-links { display: flex; flex: 1; flex-direction: column; gap: 0.25rem; padding: 1rem 1.25rem; }
+  .nav-drawer-link { display: block; padding: 0.75rem 0.5rem; color: #111; font-size: 1.0625rem; font-weight: 500; text-decoration: none; }
+  .nav-drawer-foot { padding: 1rem 1.25rem 1.5rem; border-top: 1px solid #f0f0f0; }
+</style>
