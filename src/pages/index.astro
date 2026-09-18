@@ -11,15 +11,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 const paths = [
   {
-    title: 'Telegram',
-    body: 'Free channel for EURUSD and GBPUSD ideas, session notes, and soft risk reminders.',
-    href: SITE.telegram,
-    external: true,
-    cta: 'Join Telegram',
+    title: 'Lifetime VIP',
+    body: 'Private EURUSD and GBPUSD ideas. One payment of €77. The invite is only shown after checkout.',
+    href: withBase('/vip/'),
+    external: false,
+    cta: 'Get VIP',
   },
   {
     title: 'Blog',
-    body: 'Short beginner guides in plain English. Read at your pace. No hype, no paywall.',
+    body: 'Short beginner guides in plain English. Read at your pace. No hype.',
     href: withBase('/blog/'),
     external: false,
     cta: 'Read the blog',
@@ -36,101 +36,77 @@ const paths = [
 const steps = [
   {
     n: '01',
-    title: 'Join Telegram',
-    body: 'Open the free channel. Ideas and context for study — not orders to copy blindly.',
+    title: 'Pay once',
+    body: 'Lifetime VIP is €77. Stripe checkout. You get a receipt.',
   },
   {
     n: '02',
-    title: 'Read guides',
-    body: 'Use the blog for pairs, sessions, and risk basics in plain English.',
+    title: 'Open the private channel',
+    body: 'The Telegram invite appears on the VIP page after payment. It is not listed in search.',
   },
   {
     n: '03',
-    title: 'Practice with risk notes',
-    body: 'Size small. Accept losses. Soft risk notes on every idea — protect capital first.',
+    title: 'Read the guides',
+    body: 'The blog stays free. Ideas in the channel are for study — not orders to copy.',
   },
 ];
 ---
 
 <BaseLayout title={SITE.name} description={SITE.description} canonicalPath="/">
-  <!-- Hero -->
   <section class="hero">
     <div class="content-col">
       <p class="label-micro">FX education desk · NFA</p>
-      <h1 class="display-lg mt-4">
-        Learn FX with a clear desk
-      </h1>
+      <h1 class="display-lg mt-4">Learn FX with a clear desk</h1>
       <p class="hero-bio">
-        Free FX education and market ideas focused on <strong>EURUSD</strong> and
-        <strong>GBPUSD</strong>. Simple English. Clear process. This is not financial advice.
+        Lifetime VIP ideas on <strong>EURUSD</strong> and <strong>GBPUSD</strong>, plus free beginner guides.
+        Simple English. This is not financial advice.
       </p>
       <div class="hero-actions">
-        <a
-          href={SITE.telegram}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary"
-        >
-          Join Telegram →
-        </a>
-        <a href={withBase('/blog/')} class="link-arrow hero-secondary">
-          Read blog →
-        </a>
+        <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
+        <a href={withBase('/blog/')} class="link-arrow hero-secondary">Read blog →</a>
       </div>
       <p class="hero-byline">{SITE.byline}</p>
     </div>
   </section>
 
-  <!-- Creating-style path list -->
   <section class="paths" aria-labelledby="paths-heading">
     <div class="content-col">
       <p class="label-micro">On the desk</p>
       <h2 id="paths-heading" class="headline-md mt-2">Three ways to start</h2>
       <ul class="path-list">
-        {
-          paths.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                class="path-link"
-              >
-                <div class="path-text">
-                  <p class="path-title">{item.title}</p>
-                  <p class="path-body">{item.body}</p>
-                </div>
-                <span class="path-cta">{item.cta} →</span>
-              </a>
-            </li>
-          ))
-        }
+        {paths.map((item) => (
+          <li>
+            <a href={item.href} class="path-link">
+              <div class="path-text">
+                <p class="path-title">{item.title}</p>
+                <p class="path-body">{item.body}</p>
+              </div>
+              <span class="path-cta">{item.cta} →</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
-  <!-- How it works -->
   <section class="how" aria-labelledby="how-heading">
     <div class="content-col">
       <p class="label-micro">Process</p>
       <h2 id="how-heading" class="headline-md mt-2">How it works</h2>
       <ol class="step-list">
-        {
-          steps.map((step) => (
-            <li class="step-item">
-              <span class="step-n" aria-hidden="true">{step.n}</span>
-              <div>
-                <h3 class="step-title">{step.title}</h3>
-                <p class="step-body">{step.body}</p>
-              </div>
-            </li>
-          ))
-        }
+        {steps.map((step) => (
+          <li class="step-item">
+            <span class="step-n" aria-hidden="true">{step.n}</span>
+            <div>
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-body">{step.body}</p>
+            </div>
+          </li>
+        ))}
       </ol>
     </div>
   </section>
 
-  <!-- Latest blog -->
   <section class="blog-latest" aria-labelledby="blog-heading">
     <div class="content-col">
       <div class="blog-head">
@@ -141,306 +117,40 @@ const steps = [
         <a href={withBase('/blog/')} class="link-arrow">All posts →</a>
       </div>
       <ul class="post-list">
-        {
-          posts.map((post) => (
-            <li>
-              <a href={withBase(`/blog/${post.id}/`)} class="post-link">
-                <time class="label-micro" datetime={post.data.pubDate.toISOString()}>
-                  {post.data.pubDate.toLocaleDateString('en-GB', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </time>
-                <h3 class="post-title">{post.data.title}</h3>
-                <p class="post-desc">{post.data.description}</p>
-                <span class="link-arrow post-more">Read →</span>
-              </a>
-            </li>
-          ))
-        }
+        {posts.map((post) => (
+          <li>
+            <a href={withBase(`/blog/${post.id}/`)} class="post-link">
+              <time class="label-micro" datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </time>
+              <h3 class="post-title">{post.data.title}</h3>
+              <p class="post-desc">{post.data.description}</p>
+              <span class="link-arrow post-more">Read →</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
-  <!-- Newsletter -->
   <section class="newsletter-band">
     <div class="content-col">
       <EmailCapture variant="widget" heading="Tips by email" />
     </div>
   </section>
 
-  <!-- Final CTA -->
   <section class="final-cta">
     <div class="content-col">
       <p class="label-micro">Next step</p>
-      <h2 class="headline-md mt-2">Start with the free Telegram</h2>
+      <h2 class="headline-md mt-2">Get Lifetime VIP for {SITE.vipPrice}</h2>
       <p class="cta-copy">
-        Follow EURUSD and GBPUSD ideas in plain English. Read the blog for basics. Keep risk small.
+        Private ideas on EURUSD and GBPUSD. The channel is not public. Pay once. Keep risk small. Not financial advice.
       </p>
       <div class="cta-actions">
-        <a
-          href={SITE.telegram}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary"
-        >
-          Open Telegram →
-        </a>
-        <a
-          href={SITE.x}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="link-arrow"
-        >
-          Follow on X {SITE.xHandle} →
-        </a>
+        <a href={withBase('/vip/')} class="btn-primary">Open VIP →</a>
+        <a href={SITE.x} target="_blank" rel="noopener noreferrer" class="link-arrow">Follow on X {SITE.xHandle} →</a>
       </div>
-      <div class="mt-8">
-        <NfaBanner compact />
-      </div>
+      <div class="mt-8"><NfaBanner compact /></div>
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .hero {
-    padding: 3rem 0 2.5rem;
-  }
-
-  @media (min-width: 640px) {
-    .hero {
-      padding: 4rem 0 3rem;
-    }
-  }
-
-  .hero-bio {
-    margin-top: 1.25rem;
-    max-width: 36rem;
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    color: #666;
-  }
-
-  .hero-bio strong {
-    font-weight: 600;
-    color: #111;
-  }
-
-  .hero-actions {
-    margin-top: 1.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.25rem;
-  }
-
-  .hero-secondary {
-    font-size: 0.9375rem;
-  }
-
-  .hero-byline {
-    margin-top: 1.25rem;
-    font-size: 0.8125rem;
-    color: #888;
-  }
-
-  .paths,
-  .how,
-  .blog-latest,
-  .newsletter-band,
-  .final-cta {
-    padding: 2.5rem 0;
-  }
-
-  .paths {
-    border-top: 1px solid #f0f0f0;
-  }
-
-  .path-list {
-    margin: 1.75rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .path-list > li {
-    border-top: 1px solid #f0f0f0;
-  }
-
-  .path-list > li:last-child {
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .path-link {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 1.25rem 0;
-    text-decoration: none;
-    color: inherit;
-    transition: opacity 0.15s ease;
-  }
-
-  @media (min-width: 640px) {
-    .path-link {
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-  }
-
-  .path-link:hover {
-    opacity: 0.7;
-  }
-
-  .path-title {
-    margin: 0;
-    font-size: 1.0625rem;
-    font-weight: 600;
-    color: #111;
-    letter-spacing: -0.01em;
-  }
-
-  .path-body {
-    margin: 0.35rem 0 0;
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: #666;
-    max-width: 28rem;
-  }
-
-  .path-cta {
-    flex-shrink: 0;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: #111;
-    white-space: nowrap;
-  }
-
-  .how {
-    background: #f7f7f7;
-  }
-
-  .step-list {
-    margin: 1.75rem 0 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .step-item {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .step-n {
-    flex-shrink: 0;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: #888;
-    letter-spacing: 0.02em;
-    min-width: 1.75rem;
-    padding-top: 0.15rem;
-  }
-
-  .step-title {
-    margin: 0;
-    font-size: 1.0625rem;
-    font-weight: 600;
-    color: #111;
-    letter-spacing: -0.01em;
-  }
-
-  .step-body {
-    margin: 0.35rem 0 0;
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: #666;
-  }
-
-  .blog-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .post-list {
-    margin: 1.75rem 0 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .post-list > li {
-    border-top: 1px solid #f0f0f0;
-  }
-
-  .post-list > li:last-child {
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .post-link {
-    display: block;
-    padding: 1.25rem 0;
-    text-decoration: none;
-    color: inherit;
-    transition: opacity 0.15s ease;
-  }
-
-  .post-link:hover {
-    opacity: 0.7;
-  }
-
-  .post-title {
-    margin: 0.5rem 0 0;
-    font-size: 1.0625rem;
-    font-weight: 600;
-    color: #111;
-    letter-spacing: -0.01em;
-  }
-
-  .post-desc {
-    margin: 0.4rem 0 0;
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: #666;
-  }
-
-  .post-more {
-    display: inline-block;
-    margin-top: 0.65rem;
-  }
-
-  .newsletter-band {
-    border-top: 1px solid #f0f0f0;
-  }
-
-  .final-cta {
-    border-top: 1px solid #f0f0f0;
-    padding-bottom: 3.5rem;
-  }
-
-  .cta-copy {
-    margin-top: 0.85rem;
-    max-width: 32rem;
-    font-size: 0.9875rem;
-    line-height: 1.65;
-    color: #666;
-  }
-
-  .cta-actions {
-    margin-top: 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.25rem;
-  }
-</style>
