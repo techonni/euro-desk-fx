@@ -54,18 +54,31 @@ const steps = [
 
 <BaseLayout title={SITE.name} description={SITE.description} canonicalPath="/">
   <section class="hero">
-    <div class="content-col">
-      <p class="label-micro">FX education desk · NFA</p>
-      <h1 class="display-lg mt-4">Learn FX with a clear desk</h1>
-      <p class="hero-bio">
-        Lifetime VIP ideas on <strong>EURUSD</strong> and <strong>GBPUSD</strong>, plus free beginner guides.
-        Simple English. This is not financial advice.
-      </p>
-      <div class="hero-actions">
-        <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
-        <a href={withBase('/blog/')} class="link-arrow hero-secondary">Read blog →</a>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="label-micro">FX education desk · NFA</p>
+        <h1 class="display-lg mt-4">Learn FX with a clear desk</h1>
+        <p class="hero-bio">
+          Lifetime VIP ideas on <strong>EURUSD</strong> and <strong>GBPUSD</strong>, plus free beginner guides.
+          Simple English. This is not financial advice.
+        </p>
+        <div class="hero-actions">
+          <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
+          <a href={withBase('/blog/')} class="link-arrow hero-secondary">Read blog →</a>
+        </div>
+        <p class="hero-byline">{SITE.byline}</p>
       </div>
-      <p class="hero-byline">{SITE.byline}</p>
+      <div class="hero-scene" aria-hidden="true">
+        <div class="hero-wall">
+          <div class="hero-phone">
+            <div class="hero-phone-bezel">
+              <span class="hero-phone-island"></span>
+              <img class="hero-phone-screen" src={withBase('/hero-telegram.jpg')} alt="" width="390" height="844" />
+            </div>
+          </div>
+          <div class="hero-table"></div>
+        </div>
+      </div>
     </div>
   </section>
 
