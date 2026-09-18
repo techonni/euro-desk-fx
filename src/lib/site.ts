@@ -7,7 +7,7 @@ export const SITE = {
     'Euro Desk FX by Techonni. Lifetime VIP access to a private ideas channel on EURUSD and GBPUSD, plus free beginner guides. This is not financial advice.',
   site: 'https://fx.techonni.com',
   base: '/',
-  telegramInvite: '',
+  telegramInvite: 'https://t.me/+7YZHnxMQnp5hYTZk',
   vipPath: '/vip/',
   vipPrice: '€77',
   checkoutSku: 'fx-vip',
