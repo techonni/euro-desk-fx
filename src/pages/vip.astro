@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NfaBanner from '../components/NfaBanner.astro';
 import { SITE, withBase } from '../lib/site';
+import { HERO_PHONE_SRC } from '../lib/heroPhone';
 const inviteJson = JSON.stringify(SITE.telegramInvite);
 ---
 
@@ -25,7 +26,7 @@ const inviteJson = JSON.stringify(SITE.telegramInvite);
         </div>
         <p class="hero-byline">{SITE.byline}</p>
       </div>
-      <div class="hero-phone" role="img" aria-label="Free M15 Euro Desk FX on iPhone"></div>
+      <img class="hero-phone" src={HERO_PHONE_SRC} width="240" height="483" alt="Free M15 Euro Desk FX on iPhone" />
     </div>
   </section>
 
