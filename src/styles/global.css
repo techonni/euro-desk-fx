@@ -79,11 +79,22 @@ body {
 .prose-blog blockquote { margin: 1.5rem 0; border-left: 2px solid #e8e8e8; background: #f7f7f7; padding: 0.85rem 1rem; color: var(--color-muted); border-radius: 0 0.5rem 0.5rem 0; }
 .prose-blog code { border-radius: 0.25rem; background: #f3f3f3; padding: 0.125rem 0.375rem; font-size: 0.875rem; color: #111; }
 
-/* Home layout — same column + rhythm as hub */
-.hero { padding: 3.25rem 0 2.25rem; }
+/* Home layout */
+.hero { padding: 2.5rem 0 2.5rem; }
+.hero-grid { width: 100%; max-width: 68rem; margin: 0 auto; padding: 0 1.25rem; display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+@media (min-width: 640px) { .hero-grid { padding: 0 1.5rem; } }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(280px, 22rem); gap: 2.5rem; } }
+.hero-copy { min-width: 0; }
 .hero-bio { margin: 1rem 0 0; max-width: 36rem; font-size: 1.0625rem; line-height: 1.65; color: #666; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.85rem 1.25rem; margin-top: 1.5rem; }
 .hero-byline { margin: 1.25rem 0 0; font-size: 0.8125rem; color: #888; }
+.hero-scene { display: flex; justify-content: center; }
+.hero-wall { width: 100%; max-width: 22rem; background: #e8e8ea; border-radius: 1.25rem; padding: 2.25rem 2rem 0; display: flex; flex-direction: column; align-items: center; }
+.hero-phone { position: relative; z-index: 2; width: 10.75rem; }
+.hero-phone-bezel { position: relative; background: #e85c2a; border-radius: 1.65rem; padding: 0.42rem; box-shadow: 0 18px 40px rgba(0,0,0,.22), 0 2px 6px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.28); }
+.hero-phone-island { position: absolute; top: 0.72rem; left: 50%; transform: translateX(-50%); width: 3.15rem; height: 0.72rem; background: #111; border-radius: 999px; z-index: 3; }
+.hero-phone-screen { display: block; width: 100%; height: auto; aspect-ratio: 390 / 844; object-fit: cover; object-position: top center; border-radius: 1.28rem; background: #1c1c1e; }
+.hero-table { width: calc(100% + 4rem); height: 3.25rem; margin: 0 -2rem; background: linear-gradient(180deg, #3a3a3d 0%, #2a2a2d 55%, #222225 100%); box-shadow: 0 -8px 18px rgba(0,0,0,.12); }
 .paths, .how, .blog-latest, .newsletter-band { padding: 2.5rem 0 0; }
 .final-cta { padding: 3rem 0 4rem; }
 .path-list, .post-list, .step-list { list-style: none; margin: 1.15rem 0 0; padding: 0; }
