@@ -1,22 +1,27 @@
 [
   {
-    "title": "What is the London–New York overlap for EURUSD and GBPUSD?",
-    "description": "Learn what the London–New York overlap means for EURUSD and GBPUSD, when those hours usually run, how liquidity and spreads behave, and how beginners study the window calmly. Educational only — not financial advice.",
+    "title": "Trend vs range on EURUSD and GBPUSD: beginner guide",
+    "description": "Learn how to tell a trend from a range on EURUSD and GBPUSD, what higher highs and sideways swings mean, and how beginners study each mode with soft risk rules. Educational only \u2014 not financial advice.",
+    "url": "https://fx.techonni.com/blog/trend-vs-range-eurusd-gbpusd-beginners/"
+  },
+  {
+    "title": "What is the London\u2013New York overlap for EURUSD and GBPUSD?",
+    "description": "Learn what the London\u2013New York overlap means for EURUSD and GBPUSD, when those hours usually run, how liquidity and spreads behave, and how beginners study the window calmly. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/london-new-york-overlap-eurusd-gbpusd-beginners/"
   },
   {
     "title": "What is slippage on EURUSD and GBPUSD? Beginner guide",
-    "description": "Learn what slippage means on EURUSD and GBPUSD, how fill vs quote gaps happen, how news and sessions change fills, and how beginners measure slippage in a notebook. Educational only — not financial advice.",
+    "description": "Learn what slippage means on EURUSD and GBPUSD, how fill vs quote gaps happen, how news and sessions change fills, and how beginners measure slippage in a notebook. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/slippage-eurusd-gbpusd-beginners/"
   },
   {
     "title": "Economic calendar for EURUSD and GBPUSD beginners",
-    "description": "Learn how to read a forex economic calendar, which EURUSD and GBPUSD releases matter, and how to study news days with soft risk rules. Educational only — not financial advice.",
+    "description": "Learn how to read a forex economic calendar, which EURUSD and GBPUSD releases matter, and how to study news days with soft risk rules. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/economic-calendar-eurusd-gbpusd-beginners/"
   },
   {
     "title": "How to choose a chart timeframe for EURUSD and GBPUSD",
-    "description": "Learn what chart timeframes mean on EURUSD and GBPUSD, how M15 H1 H4 and daily charts differ, and how beginners pick one focus without switching every minute. Educational only — not financial advice.",
+    "description": "Learn what chart timeframes mean on EURUSD and GBPUSD, how M15 H1 H4 and daily charts differ, and how beginners pick one focus without switching every minute. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/chart-timeframes-eurusd-gbpusd-beginners/"
   },
   {
@@ -36,12 +41,12 @@
   },
   {
     "title": "Support and resistance basics for EURUSD and GBPUSD beginners",
-    "description": "Learn what support and resistance mean on EURUSD and GBPUSD charts, how to mark simple zones, and how to study price with soft risk rules. Educational only — not financial advice.",
+    "description": "Learn what support and resistance mean on EURUSD and GBPUSD charts, how to mark simple zones, and how to study price with soft risk rules. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/support-resistance-eurusd-gbpusd-beginners/"
   },
   {
     "title": "What is a market order vs a limit order? EURUSD and GBPUSD beginner guide",
-    "description": "Learn what market orders and limit orders mean on EURUSD and GBPUSD, how they fill, when beginners study each type, and how to avoid common order mistakes. Educational only — not financial advice.",
+    "description": "Learn what market orders and limit orders mean on EURUSD and GBPUSD, how they fill, when beginners study each type, and how to avoid common order mistakes. Educational only \u2014 not financial advice.",
     "url": "https://fx.techonni.com/blog/market-limit-orders-eurusd-gbpusd-beginners/"
   },
   {
@@ -53,10 +58,5 @@
     "title": "What is leverage in forex? EURUSD and GBPUSD beginner guide",
     "description": "Learn what leverage means on EURUSD and GBPUSD, how it changes pip risk, why high leverage can hurt beginners, and how to study size safely without guessing.",
     "url": "https://fx.techonni.com/blog/leverage-eurusd-gbpusd-beginners/"
-  },
-  {
-    "title": "What is lot size on EURUSD and GBPUSD? Beginner position size guide",
-    "description": "Learn what lot size means on EURUSD and GBPUSD, how mini and micro lots work, how position size links to risk, and how beginners practice sizing without guessing.",
-    "url": "https://fx.techonni.com/blog/lot-size-position-sizing-eurusd-gbpusd-beginners/"
   }
 ]
