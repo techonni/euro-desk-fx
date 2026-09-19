@@ -10,45 +10,56 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const paths = [
+const ladder = [
   {
-    title: 'Lifetime VIP',
-    body: 'Private EURUSD and GBPUSD ideas. One payment of €77. The invite is only shown after checkout.',
-    href: withBase('/vip/'),
-    external: false,
-    cta: 'Get VIP',
-  },
-  {
-    title: 'Blog',
-    body: 'Short beginner guides in plain English. Read at your pace. No hype.',
+    tag: 'Free',
+    title: 'Read the free guides',
+    body: 'Short, plain-English lessons on EURUSD and GBPUSD. No jargon. No hype. Learn at your own pace.',
     href: withBase('/blog/'),
     external: false,
     cta: 'Read the blog',
   },
   {
-    title: 'Two pairs',
-    body: 'EURUSD and GBPUSD only. Less noise. Clear sessions. Room to study structure and risk.',
-    href: withBase('/about/'),
-    external: false,
-    cta: 'How it works',
+    tag: 'Free',
+    title: 'Join the free channel',
+    body: 'Follow along on Telegram for beginner tips and how I read the two pairs. Costs nothing to start.',
+    href: SITE.telegram,
+    external: true,
+    cta: 'Join free',
   },
+  {
+    tag: SITE.vipPrice,
+    title: 'Go Lifetime VIP',
+    body: 'When you are ready, get my real EURUSD and GBPUSD trades — entry, stop and target — in a private channel. One payment, lifetime access.',
+    href: withBase('/vip/'),
+    external: false,
+    cta: 'See VIP',
+  },
+];
+
+const vipIncludes = [
+  'Every EURUSD & GBPUSD trade I take — entry, stop-loss and take-profit',
+  'Posted live in a private Telegram channel, in real time',
+  'Two pairs only — less noise, easier to follow',
+  'Lifetime access for one payment of ' + SITE.vipPrice,
+  'Founding-member launch price — be one of the first members in',
 ];
 
 const steps = [
   {
     n: '01',
-    title: 'Pay once',
-    body: 'Lifetime VIP is €77. Stripe checkout. You get a receipt.',
+    title: 'Start free',
+    body: 'Read the guides and join the free channel. See how I think about EURUSD and GBPUSD before you spend a cent.',
   },
   {
     n: '02',
-    title: 'Open the private channel',
-    body: 'The Telegram invite appears on the VIP page after payment. It is not listed in search.',
+    title: 'Pay once for VIP',
+    body: 'Lifetime VIP is ' + SITE.vipPrice + ' via Stripe. One payment, no subscription. You get a receipt.',
   },
   {
     n: '03',
-    title: 'Read the guides',
-    body: 'The blog stays free. Ideas in the channel are for study — not orders to copy.',
+    title: 'Get the private channel',
+    body: 'The Telegram invite appears right after checkout. It is not listed in search. Then you see every trade I take.',
   },
 ];
 ---
@@ -57,24 +68,25 @@ const steps = [
   <section class="hero">
     <div class="content-col hero-row">
       <div class="hero-copy">
-        <p class="label-micro">FX education desk · NFA</p>
-        <h1 class="display-lg mt-4">Learn FX with a clear desk</h1>
+        <p class="label-micro">FX education desk · EURUSD &amp; GBPUSD · NFA</p>
+        <h1 class="display-lg mt-4">EURUSD &amp; GBPUSD, without the noise</h1>
         <p class="hero-bio">
-          Lifetime VIP ideas on <strong>EURUSD</strong> and <strong>GBPUSD</strong>, plus free beginner guides.
-          Simple English. This is not financial advice.
+          Free beginner guides and a free channel to learn the two most-traded FX pairs.
+          When you are ready, get <strong>Lifetime VIP</strong> — my real trades with
+          <strong>entry, stop and target</strong> — for one payment of {SITE.vipPrice}.
         </p>
         <div class="hero-actions">
-          <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
-          <a href={withBase('/blog/')} class="link-arrow hero-secondary">Read blog →</a>
+          <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="btn-primary">Join the free channel →</a>
+          <a href={withBase('/vip/')} class="link-arrow hero-secondary">See Lifetime VIP {SITE.vipPrice} →</a>
         </div>
-        <p class="hero-byline">{SITE.byline}</p>
+        <p class="hero-byline">{SITE.byline} · This is not financial advice.</p>
       </div>
       <img
         class="hero-phone"
         src={HERO_PHONE_SRC}
         width="240"
         height="483"
-        alt="Free M15 Euro Desk FX on iPhone"
+        alt="Euro Desk FX private trades channel on iPhone"
         loading="eager"
         fetchpriority="high"
         decoding="async"
@@ -84,13 +96,18 @@ const steps = [
 
   <section class="paths" aria-labelledby="paths-heading">
     <div class="content-col">
-      <p class="label-micro">On the desk</p>
-      <h2 id="paths-heading" class="headline-md mt-2">Three ways to start</h2>
-      <ul class="path-list">
-        {paths.map((item) => (
+      <p class="label-micro">Start free, upgrade when ready</p>
+      <h2 id="paths-heading" class="headline-md mt-2">Three steps, free first</h2>
+      <ul class="path-list ladder-list">
+        {ladder.map((item) => (
           <li>
-            <a href={item.href} class="path-link">
+            <a
+              href={item.href}
+              class="path-link"
+              {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
               <div class="path-text">
+                <span class="ladder-tag">{item.tag}</span>
                 <p class="path-title">{item.title}</p>
                 <p class="path-body">{item.body}</p>
               </div>
@@ -99,6 +116,27 @@ const steps = [
           </li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  <section class="vip-highlight" aria-labelledby="vip-highlight-heading">
+    <div class="content-col">
+      <div class="vip-card">
+        <p class="label-micro">Lifetime VIP · {SITE.vipLaunchNote}</p>
+        <h2 id="vip-highlight-heading" class="headline-md mt-2">What you get for {SITE.vipPrice}</h2>
+        <ul class="feature-list mt-5">
+          {vipIncludes.map((item) => (
+            <li class="feature-item">
+              <span class="feature-check" aria-hidden="true">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="cta-actions mt-6">
+          <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
+          <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="link-arrow">Or start free →</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -148,7 +186,7 @@ const steps = [
 
   <section class="newsletter-band">
     <div class="content-col">
-      <EmailCapture variant="widget" heading="Tips by email" />
+      <EmailCapture variant="widget" heading="Free FX tips by email" />
     </div>
   </section>
 
@@ -157,13 +195,51 @@ const steps = [
       <p class="label-micro">Next step</p>
       <h2 class="headline-md mt-2">Get Lifetime VIP for {SITE.vipPrice}</h2>
       <p class="cta-copy">
-        Private ideas on EURUSD and GBPUSD. The channel is not public. Pay once. Keep risk small. Not financial advice.
+        Real EURUSD and GBPUSD trades — entry, stop and target — in a private channel.
+        One payment, lifetime access, founding-member price. Not sure yet? Start with the free channel first. Not financial advice.
       </p>
       <div class="cta-actions">
-        <a href={withBase('/vip/')} class="btn-primary">Open VIP →</a>
-        <a href={SITE.x} target="_blank" rel="noopener noreferrer" class="link-arrow">Follow on X {SITE.xHandle} →</a>
+        <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
+        <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="link-arrow">Join free channel →</a>
       </div>
       <div class="mt-8"><NfaBanner compact /></div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .ladder-tag {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+    background: #111;
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .vip-highlight { padding: 2.5rem 0 0; }
+  .vip-card {
+    background: #f7f7f7;
+    border: 1px solid #e8e8e8;
+    border-radius: 0.75rem;
+    padding: 1.75rem 1.5rem 2rem;
+  }
+  .feature-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+  .feature-item { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.9375rem; line-height: 1.55; color: #333; }
+  .feature-check {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.1rem;
+    border-radius: 9999px;
+    background: #111;
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+  }
+</style>
