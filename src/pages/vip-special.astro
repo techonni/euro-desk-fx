@@ -1,0 +1,58 @@
+---
+import FunnelLayout from '../layouts/FunnelLayout.astro';
+import { SITE, withBase } from '../lib/site';
+
+const downsell = SITE.offers.downsell;
+const upsell = SITE.offers.upsell;
+const welcomePath = withBase('/vip-welcome/');
+
+const includes = [
+  'Everything in your VIP channel — all my EURUSD & GBPUSD trades',
+  'A written market review every month',
+  'Lifetime access — one payment, no subscription',
+];
+---
+
+<FunnelLayout
+  title="A smaller upgrade"
+  description="A lighter one-time upgrade. Not financial advice."
+  canonicalPath="/vip-special/"
+  noindex={true}
+>
+  <section class="funnel-wrap">
+    <span class="funnel-eyebrow">Okay — how about this instead</span>
+    <h1 class="funnel-h1">Not {upsell.price}? Try <span class="hl">{downsell.name}</span> for {downsell.price}</h1>
+    <p class="funnel-sub">
+      I hear you. Here is a lighter one-time upgrade — {downsell.tagline}
+      Same idea as {upsell.name}, a smaller step.
+    </p>
+
+    <ul class="funnel-benefits">
+      {includes.map((b) => (
+        <li class="funnel-benefit"><span class="bchk" aria-hidden="true">✓</span><span>{b}</span></li>
+      ))}
+    </ul>
+
+    <div class="up-price">
+      <span class="up-amount">{downsell.price}</span>
+      <span class="up-once">one-time upgrade · added to your VIP</span>
+    </div>
+
+    <a href={downsell.url} class="funnel-cta up-cta">Yes — add {downsell.name} for {downsell.price} →</a>
+
+    <div class="funnel-trust"><span>✓ Secure Stripe checkout</span><span>✓ Instant access</span></div>
+
+    <a href={welcomePath} class="up-decline-link">No thanks — take me to my VIP channel →</a>
+
+    <p class="up-nfa">Not financial advice. Ideas are for study, not orders to copy. Trade small. Accept losses.</p>
+  </section>
+</FunnelLayout>
+
+<style>
+  .up-price { margin: 1.5rem 0 0.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; }
+  .up-amount { font-family: var(--font-display); font-size: 2.75rem; font-weight: 800; letter-spacing: -0.03em; color: #111; line-height: 1; }
+  .up-once { font-size: 0.8125rem; color: #888; }
+  .up-cta { margin: 1.1rem auto 0; max-width: 26rem; }
+  .up-decline-link { display: inline-block; margin-top: 1.1rem; font-size: 0.8125rem; color: #999; text-decoration: underline; text-underline-offset: 2px; }
+  .up-nfa { margin: 1.25rem auto 0; max-width: 28rem; font-size: 0.75rem; color: #aaa; line-height: 1.5; }
+</style>

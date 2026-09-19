@@ -1,67 +1,213 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import NfaBanner from '../components/NfaBanner.astro';
+import FunnelLayout from '../layouts/FunnelLayout.astro';
 import { SITE, withBase } from '../lib/site';
-import { HERO_PHONE_SRC } from '../lib/heroPhone';
-const inviteJson = JSON.stringify(SITE.telegramInvite);
+
+const offer = SITE.offers.frontend;
+
+const includes = [
+  'Every EURUSD & GBPUSD trade I take — entry, stop-loss and take-profit',
+  'Posted live in a private Telegram channel, in real time',
+  'My reasoning in plain English — you learn while you follow',
+  'Two pairs only — less noise, easier to follow',
+  'Lifetime access — one payment, no subscription ever',
+  'Founding-member launch price — locked in for good',
+];
+
+const forYou = [
+  'You are a beginner or intermediate who trades (or wants to trade) EURUSD & GBPUSD',
+  'You are tired of noise, gurus and 20 pairs at once',
+  'You want to see a real, repeatable process — not magic signals',
+];
+
+const notForYou = [
+  'You want a “get rich quick” bot that never loses',
+  'You will not use a stop-loss or manage risk',
+  'You expect financial advice or guaranteed profits',
+];
+
+const steps = [
+  { n: '01', t: 'Pay once', b: 'Secure Stripe checkout. ' + offer.price + ', one payment, no subscription.' },
+  { n: '02', t: 'Get the private invite', b: 'The Telegram invite appears instantly after payment. The channel is not listed in search.' },
+  { n: '03', t: 'Follow my trades', b: 'See every EURUSD & GBPUSD trade I take — entry, stop and target — the moment I take it.' },
+];
+
+const faqs = [
+  { q: 'Is this financial advice?', a: 'No. Everything is educational and for study only. I share what I do; you decide for yourself. Trading involves risk of loss.' },
+  { q: 'Do you guarantee profits?', a: 'No — and run from anyone who does. I promise transparency: you see every trade I take, winners and losers.' },
+  { q: 'What exactly do I get?', a: 'Lifetime access to my private Telegram channel where I post every EURUSD & GBPUSD trade with entry, stop-loss and take-profit, plus my reasoning.' },
+  { q: 'Is it really lifetime?', a: 'Yes. One payment at the founding price, lifetime access. No subscription, no renewal.' },
+  { q: 'How do I get in after paying?', a: 'The private Telegram invite is shown instantly on the confirmation page right after checkout.' },
+];
 ---
 
-<BaseLayout
-  title={`Lifetime VIP · ${SITE.name}`}
-  description={`Private EURUSD and GBPUSD ideas. One payment of ${SITE.vipPrice}. Lifetime access. Not financial advice.`}
+<FunnelLayout
+  title="VIP — My live EURUSD & GBPUSD trades"
+  description={`Lifetime access to my private EURUSD & GBPUSD trades channel — entry, stop and target, in real time. ${offer.price} founding price. Not financial advice.`}
   canonicalPath="/vip/"
 >
-  <section class="hero">
-    <div class="content-col hero-row">
-      <div class="hero-copy">
-        <p class="label-micro">Private channel · NFA</p>
-        <h1 class="display-lg mt-4">Lifetime VIP for {SITE.vipPrice}</h1>
-        <p class="hero-bio">
-          One payment. Lifetime access to the private Euro Desk FX ideas channel.
-          EURUSD and GBPUSD only. The invite appears after checkout. This is not financial advice.
-        </p>
-        <div class="hero-actions" id="vip-actions">
-          <a class="btn-primary" href={SITE.checkoutUrl}>Get Lifetime VIP →</a>
-          <a class="link-arrow" href={withBase('/blog/')}>Read free guides →</a>
-        </div>
-        <p class="hero-byline">{SITE.byline}</p>
+  <section class="funnel-wrap sales-hero">
+    <span class="funnel-eyebrow">Private VIP channel · EURUSD &amp; GBPUSD</span>
+    <h1 class="funnel-h1">Watch <span class="hl">every trade I take</span> — entry, stop &amp; target, live</h1>
+    <p class="funnel-sub">
+      Stop trading alone. Get lifetime access to my private EURUSD &amp; GBPUSD channel and follow my exact
+      process in real time. Founding-member price — for the first members only.
+    </p>
+
+    <div class="vsl" role="img" aria-label="Video placeholder">
+      <div class="vsl-inner">
+        <span class="vsl-play" aria-hidden="true">▶</span>
+        <p class="vsl-text">Your 2-min video goes here<br /><span>(add your VSL / channel walkthrough)</span></p>
       </div>
-      <img class="hero-phone" src={HERO_PHONE_SRC} width="240" height="483" alt="Free M15 Euro Desk FX on iPhone" />
+    </div>
+
+    <a href={offer.url} class="funnel-cta sales-cta1">Get Lifetime VIP for {offer.price} →</a>
+    <div class="funnel-trust"><span>✓ One payment</span><span>✓ Lifetime access</span><span>✓ Instant invite</span></div>
+  </section>
+
+  <section class="sales-band">
+    <div class="sales-col">
+      <h2 class="sales-h2">Here's what you get</h2>
+      <ul class="funnel-benefits sales-benefits">
+        {includes.map((b) => (
+          <li class="funnel-benefit"><span class="bchk" aria-hidden="true">✓</span><span>{b}</span></li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <section class="how">
-    <div class="content-col">
-      <p class="label-micro">How it works</p>
-      <ol class="step-list">
-        <li class="step-item"><span class="step-n">01</span><div><h2 class="step-title">Pay {SITE.vipPrice} once</h2><p class="step-body">Stripe checkout. You get a receipt.</p></div></li>
-        <li class="step-item"><span class="step-n">02</span><div><h2 class="step-title">Open the private channel</h2><p class="step-body">This page shows the Telegram button after payment. The channel is not listed in search.</p></div></li>
-        <li class="step-item"><span class="step-n">03</span><div><h2 class="step-title">Study the ideas</h2><p class="step-body">Session notes and context. Not orders to copy. Size small. Accept losses.</p></div></li>
-      </ol>
-      <div class="mt-8"><NfaBanner compact /></div>
+  <section class="sales-col fit">
+    <div class="fit-grid">
+      <div class="fit-box fit-yes">
+        <h3 class="fit-title">This is for you if…</h3>
+        <ul>{forYou.map((i) => (<li>{i}</li>))}</ul>
+      </div>
+      <div class="fit-box fit-no">
+        <h3 class="fit-title">It's not for you if…</h3>
+        <ul>{notForYou.map((i) => (<li>{i}</li>))}</ul>
+      </div>
     </div>
   </section>
-</BaseLayout>
 
-<script is:inline define:vars={{ inviteJson }}>
+  <section class="sales-col">
+    <h2 class="sales-h2">How it works</h2>
+    <ol class="sales-steps">
+      {steps.map((s) => (
+        <li class="sales-step"><span class="sales-step-n">{s.n}</span><div><p class="sales-step-t">{s.t}</p><p class="sales-step-b">{s.b}</p></div></li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- TODO: When you have real member results/screenshots, add a testimonials block here. Do not invent fake proof. -->
+
+  <section class="sales-col">
+    <div class="offer-box">
+      <span class="funnel-eyebrow">{SITE.vipLaunchNote}</span>
+      <h2 class="offer-h2">Lifetime VIP</h2>
+      <div class="offer-price"><span class="offer-amount">{offer.price}</span><span class="offer-once">once · lifetime · no subscription</span></div>
+      <div id="oto-timer" class="oto-timer" hidden>Founding price held for <strong id="oto-clock">15:00</strong></div>
+      <a href={offer.url} class="funnel-cta">Get Lifetime VIP for {offer.price} →</a>
+      <div class="funnel-trust"><span>✓ Secure Stripe checkout</span><span>✓ Private invite right after payment</span></div>
+      <p class="offer-honest">
+        Honest promise: no one can guarantee profits. What I guarantee is transparency — you see every trade,
+        win or lose. This is not financial advice.
+      </p>
+    </div>
+  </section>
+
+  <section class="sales-col faq">
+    <h2 class="sales-h2">Questions</h2>
+    {faqs.map((f) => (
+      <details class="faq-item">
+        <summary class="faq-q">{f.q}</summary>
+        <p class="faq-a">{f.a}</p>
+      </details>
+    ))}
+  </section>
+
+  <section class="sales-col final">
+    <h2 class="sales-h2">Ready to stop trading alone?</h2>
+    <a href={offer.url} class="funnel-cta">Get Lifetime VIP for {offer.price} →</a>
+    <p class="final-alt"><a href={SITE.telegram} target="_blank" rel="noopener noreferrer">Not yet — join the free channel first →</a></p>
+    <p class="offer-honest">Not financial advice. Ideas are for study, not orders to copy. Trade small. Accept losses.</p>
+  </section>
+</FunnelLayout>
+
+<script is:inline>
   (function () {
-    var paid = /[?&]paid=1\b/.test(location.search);
-    var invite = inviteJson;
-    var box = document.getElementById('vip-actions');
-    if (!box || !paid) return;
-    if (invite) {
-      box.innerHTML = '<a class="btn-primary" href="' + invite + '" target="_blank" rel="noopener noreferrer">Open private Telegram →</a>';
-    } else {
-      box.innerHTML = '<p class="hero-bio">Payment received. The private invite is being attached.</p>';
+    function setup() {
+      var wrap = document.getElementById('oto-timer');
+      var clock = document.getElementById('oto-clock');
+      if (!wrap || !clock) return;
+      var WINDOW = 15 * 60 * 1000, key = 'fx_oto_deadline', deadline;
+      try {
+        deadline = parseInt(localStorage.getItem(key) || '0', 10);
+        if (!deadline || deadline < Date.now()) { deadline = Date.now() + WINDOW; localStorage.setItem(key, String(deadline)); }
+      } catch (e) { deadline = Date.now() + WINDOW; }
+      wrap.hidden = false;
+      (function tick() {
+        var left = Math.max(0, deadline - Date.now());
+        var m = Math.floor(left / 60000), s = Math.floor((left % 60000) / 1000);
+        clock.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+        if (left <= 0) { wrap.innerHTML = 'Founding price still available while the first spots fill.'; return; }
+        window.setTimeout(tick, 1000);
+      })();
     }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+    else setup();
   })();
 </script>
 
 <style>
-  .how { background: #f7f7f7; padding: 2.5rem 0 3.5rem; }
-  .step-list { margin: 1.75rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
-  .step-item { display: flex; gap: 1rem; }
-  .step-n { flex-shrink: 0; font-size: 0.8125rem; font-weight: 600; color: #888; min-width: 1.75rem; padding-top: 0.15rem; }
-  .step-title { margin: 0; font-size: 1.0625rem; font-weight: 600; color: #111; }
-  .step-body { margin: 0.35rem 0 0; font-size: 0.9375rem; line-height: 1.6; color: #666; }
+  .sales-hero { padding-bottom: 1.5rem; }
+  .vsl { width: 100%; max-width: 34rem; margin: 1.75rem auto 0; aspect-ratio: 16 / 9; border-radius: 1rem; background: #111; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .vsl-inner { text-align: center; color: #fff; }
+  .vsl-play { display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: rgba(255,255,255,0.15); font-size: 1.25rem; margin-bottom: 0.6rem; }
+  .vsl-text { margin: 0; font-size: 0.9375rem; font-weight: 600; }
+  .vsl-text span { font-weight: 400; color: #aaa; font-size: 0.8125rem; }
+  .sales-cta1 { margin: 1.5rem auto 0; max-width: 26rem; }
+
+  .sales-band { background: #f7f7f7; padding: 2.5rem 0; margin-top: 2.5rem; }
+  .sales-col { width: 100%; max-width: 40rem; margin: 0 auto; padding: 0 1.25rem; }
+  .sales-col:not(.sales-band .sales-col) { margin-top: 2.75rem; }
+  .sales-h2 { font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 800; letter-spacing: -0.02em; color: #111; margin: 0 0 1.25rem; text-align: center; }
+  .sales-benefits { margin-left: auto; margin-right: auto; }
+
+  .fit-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 640px) { .fit-grid { grid-template-columns: 1fr 1fr; } }
+  .fit-box { border-radius: 0.85rem; padding: 1.25rem 1.25rem; border: 1px solid #e8e8e8; }
+  .fit-yes { background: #f6fef9; border-color: #bbf0cf; }
+  .fit-no { background: #fbfbfb; }
+  .fit-title { margin: 0 0 0.65rem; font-size: 1rem; font-weight: 700; color: #111; }
+  .fit-box ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .fit-box li { font-size: 0.9rem; line-height: 1.5; color: #444; padding-left: 1.25rem; position: relative; }
+  .fit-yes li::before { content: "✓"; position: absolute; left: 0; color: #16a34a; font-weight: 800; }
+  .fit-no li::before { content: "✕"; position: absolute; left: 0; color: #c0392b; font-weight: 800; }
+
+  .sales-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.15rem; max-width: 32rem; margin: 0 auto; }
+  .sales-step { display: flex; gap: 1rem; align-items: flex-start; }
+  .sales-step-n { flex-shrink: 0; width: 2rem; font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: #16a34a; }
+  .sales-step-t { margin: 0; font-size: 1rem; font-weight: 700; color: #111; }
+  .sales-step-b { margin: 0.25rem 0 0; font-size: 0.9375rem; line-height: 1.55; color: #666; }
+
+  .offer-box { border: 2px solid #16a34a; border-radius: 1rem; padding: 1.75rem 1.5rem 2rem; text-align: center; background: linear-gradient(180deg, #f6fef9 0%, #ffffff 60%); }
+  .offer-h2 { margin: 0.5rem 0 0; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #111; }
+  .offer-price { margin: 1rem 0 0; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; }
+  .offer-amount { font-family: var(--font-display); font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; color: #111; line-height: 1; }
+  .offer-once { font-size: 0.8125rem; color: #888; }
+  .oto-timer { margin: 0.85rem auto 0; font-size: 0.875rem; color: #b45309; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 0.5rem; padding: 0.5rem 0.75rem; display: inline-block; }
+  .offer-box .funnel-cta { margin: 1.1rem auto 0; max-width: 26rem; }
+  .offer-box .funnel-trust { margin-top: 0.85rem; }
+  .offer-honest { margin: 1rem auto 0; max-width: 30rem; font-size: 0.8125rem; color: #999; line-height: 1.55; }
+
+  .faq-item { border-bottom: 1px solid #eee; padding: 0.85rem 0; text-align: left; max-width: 34rem; margin: 0 auto; }
+  .faq-q { cursor: pointer; font-size: 0.9875rem; font-weight: 600; color: #111; list-style: none; }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after { content: "+"; float: right; color: #16a34a; font-weight: 700; }
+  details[open] .faq-q::after { content: "–"; }
+  .faq-a { margin: 0.6rem 0 0; font-size: 0.9rem; line-height: 1.6; color: #666; }
+
+  .final { text-align: center; padding-bottom: 1rem; }
+  .final .funnel-cta { margin: 0 auto; max-width: 26rem; }
+  .final-alt { margin: 1rem 0 0; font-size: 0.8125rem; }
+  .final-alt a { color: #888; text-decoration: underline; text-underline-offset: 2px; }
 </style>

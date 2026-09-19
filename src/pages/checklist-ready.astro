@@ -1,0 +1,107 @@
+---
+import FunnelLayout from '../layouts/FunnelLayout.astro';
+import { SITE, withBase } from '../lib/site';
+
+const salesPath = withBase('/vip/');
+
+const checklist = [
+  {
+    group: 'Before you trade',
+    items: [
+      'Check the economic calendar for EURUSD & GBPUSD news today — stay out around red-folder news.',
+      'Note the London and New York session times — the two pairs move most then.',
+      "Mark yesterday's high and low, plus the nearest round number (e.g. 1.1000).",
+    ],
+  },
+  {
+    group: 'Your setup',
+    items: [
+      'Trade only EURUSD and GBPUSD. Ignore everything else — less noise, fewer mistakes.',
+      'Decide the trend on the higher timeframe (H1/H4) before you look at a lower one.',
+      "Wait for price to reach a level you already marked. Don't chase.",
+    ],
+  },
+  {
+    group: 'Risk (the part that matters most)',
+    items: [
+      'Risk a fixed small % per trade (e.g. 1%). Never size by feeling.',
+      'Set your stop-loss BEFORE you enter, at a price that proves the idea wrong.',
+      'Aim for at least 1 : 1.5 reward-to-risk before you take a trade.',
+      'Never move your stop further away to avoid taking the loss.',
+    ],
+  },
+  {
+    group: 'After the trade',
+    items: [
+      'Screenshot your entry, stop and target.',
+      'Write one line: why you entered and how it went.',
+      'Review your notes weekly and fix the one mistake that keeps repeating.',
+    ],
+  },
+];
+---
+
+<FunnelLayout
+  title="Your checklist is ready"
+  description="Your free EURUSD & GBPUSD checklist. Not financial advice."
+  canonicalPath="/checklist-ready/"
+  noindex={true}
+>
+  <section class="funnel-wrap">
+    <span class="funnel-eyebrow">✓ Success — check your inbox</span>
+    <h1 class="funnel-h1">Your checklist is ready</h1>
+    <p class="funnel-sub">
+      It is below — and a copy is on the way to your email. Tip: use your browser's
+      <strong>Print → “Save as PDF”</strong> to keep it on your phone.
+    </p>
+    <a href={withBase('/')} class="ty-print" onclick="window.print();return false;">🖨 Save as PDF</a>
+  </section>
+
+  <section class="ty-checklist">
+    {checklist.map((block) => (
+      <div class="check-block">
+        <h2 class="check-group">{block.group}</h2>
+        <ul class="check-list">
+          {block.items.map((item) => (
+            <li class="check-item"><span class="check-box" aria-hidden="true"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <section class="bridge">
+    <div class="bridge-card">
+      <span class="funnel-eyebrow">Now the real thing</span>
+      <h2 class="bridge-title">A checklist is good. <em>My live trades</em> are better.</h2>
+      <p class="bridge-sub">
+        You now know what to check. Next, skip the years of trial and error and watch exactly what I do —
+        every EURUSD &amp; GBPUSD trade I take, with entry, stop and target, in real time.
+      </p>
+      <a href={salesPath} class="funnel-cta bridge-cta">Show me the VIP channel →</a>
+      <p class="bridge-note">See what's inside, no card needed yet.</p>
+    </div>
+    <div class="mt-8" style="text-align:center;">
+      <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="up-decline-link">Or just join the free channel →</a>
+    </div>
+  </section>
+</FunnelLayout>
+
+<style>
+  .ty-print { display: inline-block; margin: 0.5rem auto 0; font-size: 0.875rem; color: #16a34a; font-weight: 600; text-decoration: none; }
+  .ty-checklist { width: 100%; max-width: 40rem; margin: 0.5rem auto 0; padding: 0 1.25rem; }
+  .check-block { margin-top: 1.75rem; }
+  .check-group { margin: 0 0 0.75rem; font-size: 1rem; font-weight: 700; color: #111; letter-spacing: -0.01em; }
+  .check-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; }
+  .check-item { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.9375rem; line-height: 1.55; color: #444; }
+  .check-box { flex-shrink: 0; width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; border: 1.5px solid #111; border-radius: 0.25rem; }
+
+  .bridge { width: 100%; max-width: 40rem; margin: 2.5rem auto 0; padding: 0 1.25rem 1rem; }
+  .bridge-card { border: 2px solid #16a34a; border-radius: 1rem; padding: 1.75rem 1.5rem 2rem; text-align: center; background: linear-gradient(180deg, #f6fef9 0%, #ffffff 60%); }
+  .bridge-title { margin: 0.85rem 0 0; font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 1.85rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: #111; }
+  .bridge-title em { font-style: italic; }
+  .bridge-sub { margin: 0.85rem auto 0; max-width: 30rem; font-size: 1rem; line-height: 1.6; color: #555; }
+  .bridge-cta { margin: 1.25rem auto 0; max-width: 26rem; }
+  .bridge-note { margin: 0.75rem 0 0; font-size: 0.8125rem; color: #888; }
+  .up-decline-link { display: inline-block; font-size: 0.8125rem; color: #999; text-decoration: underline; text-underline-offset: 2px; }
+</style>

@@ -1,169 +1,95 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import NfaBanner from '../components/NfaBanner.astro';
-import EmailCapture from '../components/EmailCapture.astro';
+import FunnelLayout from '../layouts/FunnelLayout.astro';
 import { SITE, withBase } from '../lib/site';
 import { HERO_PHONE_SRC } from '../lib/heroPhone';
-import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const action = SITE.newsletterFormAction;
+const thankYou = withBase('/checklist-ready/');
 
-const paths = [
-  {
-    title: 'Lifetime VIP',
-    body: 'Private EURUSD and GBPUSD ideas. One payment of €77. The invite is only shown after checkout.',
-    href: withBase('/vip/'),
-    external: false,
-    cta: 'Get VIP',
-  },
-  {
-    title: 'Blog',
-    body: 'Short beginner guides in plain English. Read at your pace. No hype.',
-    href: withBase('/blog/'),
-    external: false,
-    cta: 'Read the blog',
-  },
-  {
-    title: 'Two pairs',
-    body: 'EURUSD and GBPUSD only. Less noise. Clear sessions. Room to study structure and risk.',
-    href: withBase('/about/'),
-    external: false,
-    cta: 'How it works',
-  },
-];
-
-const steps = [
-  {
-    n: '01',
-    title: 'Pay once',
-    body: 'Lifetime VIP is €77. Stripe checkout. You get a receipt.',
-  },
-  {
-    n: '02',
-    title: 'Open the private channel',
-    body: 'The Telegram invite appears on the VIP page after payment. It is not listed in search.',
-  },
-  {
-    n: '03',
-    title: 'Read the guides',
-    body: 'The blog stays free. Ideas in the channel are for study — not orders to copy.',
-  },
+const benefits = [
+  'The exact pre-trade checks I run before every EURUSD & GBPUSD trade',
+  'Where to place your stop-loss so one loss never hurts you',
+  'A simple risk rule that keeps small accounts alive',
+  'The two sessions when these pairs actually move',
 ];
 ---
 
-<BaseLayout title={SITE.name} description={SITE.description} canonicalPath="/">
-  <section class="hero">
-    <div class="content-col hero-row">
-      <div class="hero-copy">
-        <p class="label-micro">FX education desk · NFA</p>
-        <h1 class="display-lg mt-4">Learn FX with a clear desk</h1>
-        <p class="hero-bio">
-          Lifetime VIP ideas on <strong>EURUSD</strong> and <strong>GBPUSD</strong>, plus free beginner guides.
-          Simple English. This is not financial advice.
-        </p>
-        <div class="hero-actions">
-          <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
-          <a href={withBase('/blog/')} class="link-arrow hero-secondary">Read blog →</a>
-        </div>
-        <p class="hero-byline">{SITE.byline}</p>
-      </div>
-      <img
-        class="hero-phone"
-        src={HERO_PHONE_SRC}
-        width="240"
-        height="483"
-        alt="Free M15 Euro Desk FX on iPhone"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
-  </section>
+<FunnelLayout
+  title={SITE.name}
+  description="Free 1-page EURUSD & GBPUSD checklist: the pre-trade checks, stop-loss rule and risk rule I use before every trade. Not financial advice."
+  canonicalPath="/"
+>
+  <section class="funnel-wrap">
+    <span class="funnel-eyebrow">Free PDF · EURUSD &amp; GBPUSD</span>
+    <h1 class="funnel-h1">
+      Stop guessing your trades. <span class="hl">Follow a checklist.</span>
+    </h1>
+    <p class="funnel-sub">
+      Get the free 1-page checklist I run before every EURUSD &amp; GBPUSD trade — the exact
+      pre-trade checks, stop-loss rule and risk rule that keep beginners out of trouble.
+    </p>
 
-  <section class="paths" aria-labelledby="paths-heading">
-    <div class="content-col">
-      <p class="label-micro">On the desk</p>
-      <h2 id="paths-heading" class="headline-md mt-2">Three ways to start</h2>
-      <ul class="path-list">
-        {paths.map((item) => (
-          <li>
-            <a href={item.href} class="path-link">
-              <div class="path-text">
-                <p class="path-title">{item.title}</p>
-                <p class="path-body">{item.body}</p>
-              </div>
-              <span class="path-cta">{item.cta} →</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
+    <img class="squeeze-visual" src={HERO_PHONE_SRC} width="200" height="403" alt="Euro Desk FX checklist on a phone" loading="eager" fetchpriority="high" />
 
-  <section class="how" aria-labelledby="how-heading">
-    <div class="content-col">
-      <p class="label-micro">Process</p>
-      <h2 id="how-heading" class="headline-md mt-2">How it works</h2>
-      <ol class="step-list">
-        {steps.map((step) => (
-          <li class="step-item">
-            <span class="step-n" aria-hidden="true">{step.n}</span>
-            <div>
-              <h3 class="step-title">{step.title}</h3>
-              <p class="step-body">{step.body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
+    <ul class="funnel-benefits">
+      {benefits.map((b) => (
+        <li class="funnel-benefit"><span class="bchk" aria-hidden="true">✓</span><span>{b}</span></li>
+      ))}
+    </ul>
 
-  <section class="blog-latest" aria-labelledby="blog-heading">
-    <div class="content-col">
-      <div class="blog-head">
-        <div>
-          <p class="label-micro">From the blog</p>
-          <h2 id="blog-heading" class="headline-md mt-2">Beginner guides</h2>
-        </div>
-        <a href={withBase('/blog/')} class="link-arrow">All posts →</a>
-      </div>
-      <ul class="post-list">
-        {posts.map((post) => (
-          <li>
-            <a href={withBase(`/blog/${post.id}/`)} class="post-link">
-              <time class="label-micro" datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}
-              </time>
-              <h3 class="post-title">{post.data.title}</h3>
-              <p class="post-desc">{post.data.description}</p>
-              <span class="link-arrow post-more">Read →</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
+    <form id="lm-form" class="squeeze-form" action={action} method="POST" novalidate>
+      <input type="hidden" name={SITE.newsletterSourceEntry} value="fx.techonni.com · Squeeze" />
+      <input type="hidden" name={SITE.newsletterConsentEntry} value="Yes — I agree to receive emails from Euro Desk FX by Techonni" />
+      <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
+      <label class="sr-only" for="lm-email">Your email</label>
+      <input id="lm-email" class="squeeze-email" name={SITE.newsletterEmailEntry} type="email" required autocomplete="email" placeholder="Enter your best email" />
+      <button id="lm-submit" class="funnel-cta" type="submit">Send me the free checklist →</button>
+    </form>
 
-  <section class="newsletter-band">
-    <div class="content-col">
-      <EmailCapture variant="widget" heading="Tips by email" />
+    <div class="funnel-trust">
+      <span>✓ 100% free</span>
+      <span>✓ No spam</span>
+      <span>✓ Unsubscribe anytime</span>
     </div>
-  </section>
 
-  <section class="final-cta">
-    <div class="content-col">
-      <p class="label-micro">Next step</p>
-      <h2 class="headline-md mt-2">Get Lifetime VIP for {SITE.vipPrice}</h2>
-      <p class="cta-copy">
-        Private ideas on EURUSD and GBPUSD. The channel is not public. Pay once. Keep risk small. Not financial advice.
-      </p>
-      <div class="cta-actions">
-        <a href={withBase('/vip/')} class="btn-primary">Open VIP →</a>
-        <a href={SITE.x} target="_blank" rel="noopener noreferrer" class="link-arrow">Follow on X {SITE.xHandle} →</a>
-      </div>
-      <div class="mt-8"><NfaBanner compact /></div>
-    </div>
+    <p class="squeeze-legal">
+      Educational only. This is not financial advice. Trading involves risk of loss.
+      <a href={withBase('/blog/')}>Free guides</a> · <a href={withBase('/vip/')}>VIP</a>
+    </p>
   </section>
-</BaseLayout>
+</FunnelLayout>
+
+<script is:inline define:vars={{ thankYou }}>
+  (function () {
+    function setup() {
+      var form = document.getElementById('lm-form');
+      var email = document.getElementById('lm-email');
+      var btn = document.getElementById('lm-submit');
+      if (!form || !email || !btn || form.dataset.bound === '1') return;
+      form.dataset.bound = '1';
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!email.checkValidity()) { email.reportValidity(); return; }
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        try {
+          fetch(form.action, { method: 'POST', mode: 'no-cors', body: new FormData(form) }).catch(function () {});
+        } catch (err) {}
+        try { localStorage.setItem('fx_optin', String(Date.now())); } catch (e) {}
+        window.setTimeout(function () { window.location.href = thankYou; }, 600);
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+    else setup();
+  })();
+</script>
+
+<style>
+  .squeeze-visual { display: block; margin: 1.75rem auto 0; height: auto; }
+  .squeeze-form { margin: 1.75rem auto 0; max-width: 30rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .squeeze-email { box-sizing: border-box; height: 3.25rem; width: 100%; border-radius: 0.75rem; border: 1.5px solid #d8d8d8; background: #fff; color: #111; padding: 0 1.1rem; font-size: 1rem; outline: none; text-align: center; }
+  .squeeze-email:focus { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.15); }
+  .squeeze-email::placeholder { color: #999; }
+  .squeeze-legal { margin: 1.5rem auto 0; max-width: 28rem; font-size: 0.75rem; color: #aaa; line-height: 1.5; }
+  .squeeze-legal a { color: #999; text-decoration: underline; text-underline-offset: 2px; }
+</style>
