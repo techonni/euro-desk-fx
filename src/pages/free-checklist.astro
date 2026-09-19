@@ -1,161 +1,66 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import NfaBanner from '../components/NfaBanner.astro';
+import FunnelLayout from '../layouts/FunnelLayout.astro';
 import { SITE, withBase } from '../lib/site';
+import { HERO_PHONE_SRC } from '../lib/heroPhone';
 
 const action = SITE.newsletterFormAction;
+const thankYou = withBase('/checklist-ready/');
 
 const benefits = [
   'The exact pre-trade checks I run before every EURUSD & GBPUSD trade',
-  'Where to place your stop-loss so one loss never hurts',
+  'Where to place your stop-loss so one loss never hurts you',
   'A simple risk rule that keeps small accounts alive',
   'The two sessions when these pairs actually move',
 ];
-
-const checklist = [
-  {
-    group: 'Before you trade',
-    items: [
-      'Check the economic calendar for EURUSD & GBPUSD news today — stay out around red-folder news.',
-      'Note the London and New York session times — the two pairs move most then.',
-      "Mark yesterday's high and low, plus the nearest round number (e.g. 1.1000).",
-    ],
-  },
-  {
-    group: 'Your setup',
-    items: [
-      'Trade only EURUSD and GBPUSD. Ignore everything else — less noise, fewer mistakes.',
-      'Decide the trend on the higher timeframe (H1/H4) before you look at a lower one.',
-      "Wait for price to reach a level you already marked. Don't chase.",
-    ],
-  },
-  {
-    group: 'Risk (the part that matters most)',
-    items: [
-      'Risk a fixed small % per trade (e.g. 1%). Never size by feeling.',
-      'Set your stop-loss BEFORE you enter, at a price that proves the idea wrong.',
-      'Aim for at least 1 : 1.5 reward-to-risk before you take a trade.',
-      'Never move your stop further away to avoid taking the loss.',
-    ],
-  },
-  {
-    group: 'After the trade',
-    items: [
-      'Screenshot your entry, stop and target.',
-      'Write one line: why you entered and how it went.',
-      'Review your notes weekly and fix the one mistake that keeps repeating.',
-    ],
-  },
-];
 ---
 
-<BaseLayout
+<FunnelLayout
   title="Free EURUSD & GBPUSD Beginner Checklist"
-  description="Get the free 1-page checklist for trading EURUSD and GBPUSD as a beginner: pre-trade checks, stop-loss placement and a simple risk rule. Not financial advice."
+  description="Get the free 1-page checklist for trading EURUSD and GBPUSD: pre-trade checks, stop-loss placement and a simple risk rule. Not financial advice."
   canonicalPath="/free-checklist/"
 >
-  <section class="hero">
-    <div class="content-col">
-      <p class="label-micro">Free download · No cost · NFA</p>
-      <h1 class="display-lg mt-4">The 1-page EURUSD &amp; GBPUSD beginner checklist</h1>
-      <p class="hero-bio">
-        A simple, printable checklist you can run before every trade on the two most-traded FX pairs.
-        Enter your email and it unlocks right here — instantly, free.
-      </p>
+  <section class="funnel-wrap">
+    <span class="funnel-eyebrow">Free PDF · EURUSD &amp; GBPUSD</span>
+    <h1 class="funnel-h1">
+      Stop guessing your trades. <span class="hl">Follow a checklist.</span>
+    </h1>
+    <p class="funnel-sub">
+      Get the free 1-page checklist I run before every EURUSD &amp; GBPUSD trade — the exact
+      pre-trade checks, stop-loss rule and risk rule that keep beginners out of trouble.
+    </p>
 
-      <ul class="feature-list mt-6">
-        {benefits.map((b) => (
-          <li class="feature-item">
-            <span class="feature-check" aria-hidden="true">✓</span>
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
+    <img class="squeeze-visual" src={HERO_PHONE_SRC} width="200" height="403" alt="Euro Desk FX checklist on a phone" loading="eager" fetchpriority="high" />
 
-      <div id="lm-gate" class="lm-gate mt-8">
-        <form id="lm-form" class="lm-form" action={action} method="POST" novalidate>
-          <input type="hidden" name={SITE.newsletterSourceEntry} value="fx.techonni.com · Free Checklist" />
-          <input
-            type="hidden"
-            name={SITE.newsletterConsentEntry}
-            value="Yes — I agree to receive emails from Euro Desk FX by Techonni"
-          />
-          <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
-          <label class="sr-only" for="lm-email">Your email</label>
-          <div class="lm-row">
-            <input
-              id="lm-email"
-              class="lm-email"
-              name={SITE.newsletterEmailEntry}
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="Enter your email address"
-            />
-            <button id="lm-submit" class="lm-submit btn-primary" type="submit">Unlock the checklist →</button>
-          </div>
-          <p class="lm-note">
-            You will also get free beginner FX tips. No spam. Stop any time.
-            <a href={withBase('/privacy/')}>Privacy</a>.
-          </p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section id="checklist" class="checklist-section" hidden aria-labelledby="checklist-heading">
-    <div class="content-col">
-      <div class="lm-success">
-        <p class="label-micro">✓ Unlocked — it is yours</p>
-        <h2 id="checklist-heading" class="headline-md mt-2">Your EURUSD &amp; GBPUSD checklist</h2>
-        <p class="cta-copy">Tip: use your browser's Print → “Save as PDF” to keep it on your phone.</p>
-      </div>
-
-      {checklist.map((block) => (
-        <div class="check-block">
-          <h3 class="check-group">{block.group}</h3>
-          <ul class="check-list">
-            {block.items.map((item) => (
-              <li class="check-item"><span class="check-box" aria-hidden="true"></span><span>{item}</span></li>
-            ))}
-          </ul>
-        </div>
+    <ul class="funnel-benefits">
+      {benefits.map((b) => (
+        <li class="funnel-benefit"><span class="bchk" aria-hidden="true">✓</span><span>{b}</span></li>
       ))}
+    </ul>
 
-      <div class="lm-upsell card-soft mt-8">
-        <p class="path-title">Want my actual trades?</p>
-        <p class="path-body mt-1">
-          Lifetime VIP gives you every EURUSD &amp; GBPUSD trade I take — entry, stop and target — in a private
-          channel. One payment of {SITE.vipPrice}, founding-member price.
-        </p>
-        <div class="cta-actions mt-4">
-          <a href={withBase('/vip/')} class="btn-primary">See Lifetime VIP →</a>
-          <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="link-arrow">Join the free channel →</a>
-        </div>
-      </div>
+    <form id="lm-form" class="squeeze-form" action={action} method="POST" novalidate>
+      <input type="hidden" name={SITE.newsletterSourceEntry} value="fx.techonni.com · Free Checklist" />
+      <input type="hidden" name={SITE.newsletterConsentEntry} value="Yes — I agree to receive emails from Euro Desk FX by Techonni" />
+      <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
+      <label class="sr-only" for="lm-email">Your email</label>
+      <input id="lm-email" class="squeeze-email" name={SITE.newsletterEmailEntry} type="email" required autocomplete="email" placeholder="Enter your best email" />
+      <button id="lm-submit" class="funnel-cta" type="submit">Send me the free checklist →</button>
+    </form>
 
-      <div class="mt-8"><NfaBanner compact /></div>
+    <div class="funnel-trust">
+      <span>✓ 100% free</span>
+      <span>✓ No spam</span>
+      <span>✓ Unsubscribe anytime</span>
     </div>
+
+    <p class="squeeze-legal">
+      Educational only. This is not financial advice. Trading involves risk of loss.
+    </p>
   </section>
-</BaseLayout>
+</FunnelLayout>
 
-<script is:inline>
+<script is:inline define:vars={{ thankYou }}>
   (function () {
-    function reveal() {
-      var section = document.getElementById('checklist');
-      var gate = document.getElementById('lm-gate');
-      if (section) {
-        section.hidden = false;
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      if (gate) {
-        gate.innerHTML =
-          '<p class="lm-done">✓ Sent. Your checklist is unlocked below. Check your inbox for free tips too.</p>';
-      }
-    }
-
     function setup() {
-      if (/[?&]unlocked=1\b/.test(location.search)) reveal();
       var form = document.getElementById('lm-form');
       var email = document.getElementById('lm-email');
       var btn = document.getElementById('lm-submit');
@@ -165,45 +70,24 @@ const checklist = [
         e.preventDefault();
         if (!email.checkValidity()) { email.reportValidity(); return; }
         btn.disabled = true;
+        btn.textContent = 'Sending…';
         try {
           fetch(form.action, { method: 'POST', mode: 'no-cors', body: new FormData(form) }).catch(function () {});
         } catch (err) {}
-        reveal();
+        try { localStorage.setItem('fx_optin', String(Date.now())); } catch (e) {}
+        window.setTimeout(function () { window.location.href = thankYou; }, 600);
       });
     }
-
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
     else setup();
-    document.addEventListener('astro:page-load', setup);
   })();
 </script>
 
 <style>
-  .feature-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; max-width: 34rem; }
-  .feature-item { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.9375rem; line-height: 1.55; color: #333; }
-  .feature-check { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 1.25rem; height: 1.25rem; margin-top: 0.1rem; border-radius: 9999px; background: #111; color: #fff; font-size: 0.6875rem; font-weight: 700; }
-
-  .lm-gate { max-width: 34rem; }
-  .lm-form { width: 100%; }
-  .lm-row { display: flex; flex-direction: column; gap: 0.5rem; }
-  .lm-email { box-sizing: border-box; height: 2.75rem; width: 100%; border-radius: 0.5rem; border: 1px solid #e8e8e8; background: #fff; color: #111; padding: 0 1rem; font-size: 0.9375rem; outline: none; }
-  .lm-email:focus { box-shadow: 0 0 0 2px #111; border-color: transparent; }
-  .lm-submit { width: 100%; white-space: nowrap; }
-  .lm-note { margin: 0.75rem 0 0; font-size: 0.8125rem; color: #888; line-height: 1.5; }
-  .lm-note a { color: #111; text-decoration: underline; text-underline-offset: 2px; }
-  .lm-done, .lm-success .label-micro { color: #111; font-weight: 600; }
-  .lm-done { font-size: 0.9375rem; margin: 0; }
-
-  @media (min-width: 640px) {
-    .lm-row { flex-direction: row; align-items: stretch; }
-    .lm-email { flex: 1 1 auto; min-width: 0; }
-    .lm-submit { flex: 0 0 auto; min-width: 12rem; }
-  }
-
-  .checklist-section { padding: 2.5rem 0 3.5rem; }
-  .check-block { margin-top: 1.75rem; }
-  .check-group { margin: 0 0 0.75rem; font-size: 1rem; font-weight: 600; color: #111; letter-spacing: -0.01em; }
-  .check-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; }
-  .check-item { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.9375rem; line-height: 1.55; color: #444; }
-  .check-box { flex-shrink: 0; width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; border: 1.5px solid #111; border-radius: 0.25rem; }
+  .squeeze-visual { display: block; margin: 1.75rem auto 0; height: auto; }
+  .squeeze-form { margin: 1.75rem auto 0; max-width: 30rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .squeeze-email { box-sizing: border-box; height: 3.25rem; width: 100%; border-radius: 0.75rem; border: 1.5px solid #d8d8d8; background: #fff; color: #111; padding: 0 1.1rem; font-size: 1rem; outline: none; text-align: center; }
+  .squeeze-email:focus { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.15); }
+  .squeeze-email::placeholder { color: #999; }
+  .squeeze-legal { margin: 1.5rem auto 0; max-width: 28rem; font-size: 0.75rem; color: #aaa; line-height: 1.5; }
 </style>

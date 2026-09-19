@@ -1,0 +1,168 @@
+---
+import FunnelLayout from '../layouts/FunnelLayout.astro';
+import { SITE, withBase } from '../lib/site';
+
+const checklist = [
+  {
+    group: 'Before you trade',
+    items: [
+      'Check the economic calendar for EURUSD & GBPUSD news today — stay out around red-folder news.',
+      'Note the London and New York session times — the two pairs move most then.',
+      "Mark yesterday's high and low, plus the nearest round number (e.g. 1.1000).",
+    ],
+  },
+  {
+    group: 'Your setup',
+    items: [
+      'Trade only EURUSD and GBPUSD. Ignore everything else — less noise, fewer mistakes.',
+      'Decide the trend on the higher timeframe (H1/H4) before you look at a lower one.',
+      "Wait for price to reach a level you already marked. Don't chase.",
+    ],
+  },
+  {
+    group: 'Risk (the part that matters most)',
+    items: [
+      'Risk a fixed small % per trade (e.g. 1%). Never size by feeling.',
+      'Set your stop-loss BEFORE you enter, at a price that proves the idea wrong.',
+      'Aim for at least 1 : 1.5 reward-to-risk before you take a trade.',
+      'Never move your stop further away to avoid taking the loss.',
+    ],
+  },
+  {
+    group: 'After the trade',
+    items: [
+      'Screenshot your entry, stop and target.',
+      'Write one line: why you entered and how it went.',
+      'Review your notes weekly and fix the one mistake that keeps repeating.',
+    ],
+  },
+];
+
+const otoIncludes = [
+  'Every EURUSD & GBPUSD trade I take — entry, stop-loss and take-profit',
+  'Posted live in a private Telegram channel, in real time',
+  'Lifetime access for one payment — no subscription',
+];
+---
+
+<FunnelLayout
+  title="Your checklist is ready"
+  description="Your free EURUSD & GBPUSD checklist, plus a one-time founding-member offer for Lifetime VIP. Not financial advice."
+  canonicalPath="/checklist-ready/"
+  noindex={true}
+>
+  <section class="funnel-wrap">
+    <span class="funnel-eyebrow">✓ Success — check your inbox</span>
+    <h1 class="funnel-h1">Your checklist is ready</h1>
+    <p class="funnel-sub">
+      It is below — and a copy is on the way to your email. Tip: use your browser's
+      <strong>Print → “Save as PDF”</strong> to keep it on your phone.
+    </p>
+    <a href={withBase('/')} class="ty-print" onclick="window.print();return false;">🖨 Save as PDF</a>
+  </section>
+
+  <section class="ty-checklist">
+    {checklist.map((block) => (
+      <div class="check-block">
+        <h2 class="check-group">{block.group}</h2>
+        <ul class="check-list">
+          {block.items.map((item) => (
+            <li class="check-item"><span class="check-box" aria-hidden="true"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <section class="oto">
+    <div class="oto-card">
+      <span class="oto-flag">One-time founding-member offer</span>
+      <h2 class="oto-title">Want my <em>actual</em> trades, not just the checklist?</h2>
+      <p class="oto-sub">
+        You have the checklist. Now skip years of trial and error: get <strong>Lifetime VIP</strong> and
+        watch every trade I take on EURUSD &amp; GBPUSD — entry, stop and target — in real time.
+      </p>
+
+      <ul class="oto-list">
+        {otoIncludes.map((item) => (
+          <li class="oto-item"><span class="bchk" aria-hidden="true">✓</span><span>{item}</span></li>
+        ))}
+      </ul>
+
+      <div class="oto-price">
+        <span class="oto-amount">{SITE.vipPrice}</span>
+        <span class="oto-once">once · lifetime · {SITE.vipLaunchNote}</span>
+      </div>
+
+      <div id="oto-timer" class="oto-timer" hidden>
+        Founding price held for <strong id="oto-clock">15:00</strong>
+      </div>
+
+      <a href={SITE.checkoutUrl} class="funnel-cta oto-cta">Get Lifetime VIP for {SITE.vipPrice} →</a>
+
+      <div class="funnel-trust oto-trust">
+        <span>✓ Secure Stripe checkout</span>
+        <span>✓ Private invite right after payment</span>
+      </div>
+      <p class="oto-nfa">Not financial advice. Ideas are for study, not orders to copy. Trade small. Accept losses.</p>
+      <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="oto-skip">No thanks — just the free channel for now →</a>
+    </div>
+  </section>
+</FunnelLayout>
+
+<script is:inline>
+  (function () {
+    function setup() {
+      var wrap = document.getElementById('oto-timer');
+      var clock = document.getElementById('oto-clock');
+      if (!wrap || !clock) return;
+      var WINDOW = 15 * 60 * 1000;
+      var key = 'fx_oto_deadline';
+      var deadline;
+      try {
+        deadline = parseInt(localStorage.getItem(key) || '0', 10);
+        if (!deadline || deadline < Date.now()) { deadline = Date.now() + WINDOW; localStorage.setItem(key, String(deadline)); }
+      } catch (e) { deadline = Date.now() + WINDOW; }
+      wrap.hidden = false;
+      function tick() {
+        var left = Math.max(0, deadline - Date.now());
+        var m = Math.floor(left / 60000);
+        var s = Math.floor((left % 60000) / 1000);
+        clock.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+        if (left <= 0) { wrap.innerHTML = 'Founding price still available while the first spots fill.'; return; }
+        window.setTimeout(tick, 1000);
+      }
+      tick();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+    else setup();
+  })();
+</script>
+
+<style>
+  .ty-print { display: inline-block; margin: 0.5rem auto 0; font-size: 0.875rem; color: #16a34a; font-weight: 600; text-decoration: none; }
+  .ty-checklist { width: 100%; max-width: 40rem; margin: 0.5rem auto 0; padding: 0 1.25rem; }
+  .check-block { margin-top: 1.75rem; }
+  .check-group { margin: 0 0 0.75rem; font-size: 1rem; font-weight: 700; color: #111; letter-spacing: -0.01em; }
+  .check-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; }
+  .check-item { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.9375rem; line-height: 1.55; color: #444; }
+  .check-box { flex-shrink: 0; width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; border: 1.5px solid #111; border-radius: 0.25rem; }
+
+  .oto { width: 100%; max-width: 40rem; margin: 2.5rem auto 0; padding: 0 1.25rem 1rem; }
+  .oto-card { border: 2px solid #16a34a; border-radius: 1rem; padding: 1.75rem 1.5rem 2rem; text-align: center; background: linear-gradient(180deg, #f6fef9 0%, #ffffff 60%); }
+  .oto-flag { display: inline-block; margin-bottom: 0.85rem; padding: 0.3rem 0.85rem; border-radius: 9999px; background: #16a34a; color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+  .oto-title { margin: 0; font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 1.85rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: #111; }
+  .oto-title em { font-style: italic; }
+  .oto-sub { margin: 0.85rem auto 0; max-width: 30rem; font-size: 1rem; line-height: 1.6; color: #555; }
+  .oto-list { list-style: none; margin: 1.35rem auto 0; padding: 0; max-width: 26rem; display: flex; flex-direction: column; gap: 0.6rem; text-align: left; }
+  .oto-item { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.9375rem; line-height: 1.5; color: #222; font-weight: 500; }
+  .oto-item .bchk { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 1.3rem; height: 1.3rem; margin-top: 0.05rem; border-radius: 9999px; background: #eafaf0; color: #16a34a; font-size: 0.75rem; font-weight: 800; }
+  .oto-price { margin: 1.5rem 0 0.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; }
+  .oto-amount { font-family: var(--font-display); font-size: 2.75rem; font-weight: 800; letter-spacing: -0.03em; color: #111; line-height: 1; }
+  .oto-once { font-size: 0.8125rem; color: #888; }
+  .oto-timer { margin: 0.85rem 0 0; font-size: 0.875rem; color: #b45309; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 0.5rem; padding: 0.5rem 0.75rem; display: inline-block; }
+  .oto-cta { margin-top: 1.1rem; max-width: 26rem; }
+  .oto-trust { margin-top: 0.85rem; }
+  .oto-nfa { margin: 1rem auto 0; max-width: 28rem; font-size: 0.75rem; color: #aaa; line-height: 1.5; }
+  .oto-skip { display: inline-block; margin-top: 0.85rem; font-size: 0.8125rem; color: #888; text-decoration: underline; text-underline-offset: 2px; }
+</style>
