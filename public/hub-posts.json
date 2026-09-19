@@ -1,5 +1,10 @@
 [
   {
+    "title": "What is the London–New York overlap for EURUSD and GBPUSD?",
+    "description": "Learn what the London–New York overlap means for EURUSD and GBPUSD, when those hours usually run, how liquidity and spreads behave, and how beginners study the window calmly. Educational only — not financial advice.",
+    "url": "https://fx.techonni.com/blog/london-new-york-overlap-eurusd-gbpusd-beginners/"
+  },
+  {
     "title": "What is slippage on EURUSD and GBPUSD? Beginner guide",
     "description": "Learn what slippage means on EURUSD and GBPUSD, how fill vs quote gaps happen, how news and sessions change fills, and how beginners measure slippage in a notebook. Educational only — not financial advice.",
     "url": "https://fx.techonni.com/blog/slippage-eurusd-gbpusd-beginners/"
@@ -53,10 +58,5 @@
     "title": "What is lot size on EURUSD and GBPUSD? Beginner position size guide",
     "description": "Learn what lot size means on EURUSD and GBPUSD, how mini and micro lots work, how position size links to risk, and how beginners practice sizing without guessing.",
     "url": "https://fx.techonni.com/blog/lot-size-position-sizing-eurusd-gbpusd-beginners/"
-  },
-  {
-    "title": "What is risk-reward ratio on EURUSD and GBPUSD? Beginner guide",
-    "description": "Learn what risk-reward ratio means on EURUSD and GBPUSD, how to measure stop vs target in pips, why beginners track RR early, and how to study setups without guessing. Educational only — not financial advice.",
-    "url": "https://fx.techonni.com/blog/risk-reward-ratio-eurusd-gbpusd-beginners/"
   }
 ]
