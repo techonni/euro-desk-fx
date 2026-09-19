@@ -1,6 +1,6 @@
 ---
 import FunnelLayout from '../layouts/FunnelLayout.astro';
-import { SITE, withBase, checkoutFor } from '../lib/site';
+import { SITE, withBase } from '../lib/site';
 
 const offer = SITE.offers.frontend;
 
@@ -60,7 +60,7 @@ const faqs = [
       </div>
     </div>
 
-    <a href={checkoutFor(offer.sku)} class="funnel-cta sales-cta1">Get Lifetime VIP for {offer.price} →</a>
+    <a href={offer.url} class="funnel-cta sales-cta1">Get Lifetime VIP for {offer.price} →</a>
     <div class="funnel-trust"><span>✓ One payment</span><span>✓ Lifetime access</span><span>✓ Instant invite</span></div>
   </section>
 
@@ -105,7 +105,7 @@ const faqs = [
       <h2 class="offer-h2">Lifetime VIP</h2>
       <div class="offer-price"><span class="offer-amount">{offer.price}</span><span class="offer-once">once · lifetime · no subscription</span></div>
       <div id="oto-timer" class="oto-timer" hidden>Founding price held for <strong id="oto-clock">15:00</strong></div>
-      <a href={checkoutFor(offer.sku)} class="funnel-cta">Get Lifetime VIP for {offer.price} →</a>
+      <a href={offer.url} class="funnel-cta">Get Lifetime VIP for {offer.price} →</a>
       <div class="funnel-trust"><span>✓ Secure Stripe checkout</span><span>✓ Private invite right after payment</span></div>
       <p class="offer-honest">
         Honest promise: no one can guarantee profits. What I guarantee is transparency — you see every trade,
@@ -126,7 +126,7 @@ const faqs = [
 
   <section class="sales-col final">
     <h2 class="sales-h2">Ready to stop trading alone?</h2>
-    <a href={checkoutFor(offer.sku)} class="funnel-cta">Get Lifetime VIP for {offer.price} →</a>
+    <a href={offer.url} class="funnel-cta">Get Lifetime VIP for {offer.price} →</a>
     <p class="final-alt"><a href={SITE.telegram} target="_blank" rel="noopener noreferrer">Not yet — join the free channel first →</a></p>
     <p class="offer-honest">Not financial advice. Ideas are for study, not orders to copy. Trade small. Accept losses.</p>
   </section>

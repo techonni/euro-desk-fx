@@ -1,6 +1,6 @@
 ---
 import FunnelLayout from '../layouts/FunnelLayout.astro';
-import { SITE, withBase, checkoutFor } from '../lib/site';
+import { SITE, withBase } from '../lib/site';
 
 const upsell = SITE.offers.upsell;
 const downsellPath = withBase('/vip-special/');
@@ -38,7 +38,7 @@ const includes = [
       <span class="up-once">one-time upgrade · added to your VIP</span>
     </div>
 
-    <a href={checkoutFor(upsell.sku)} class="funnel-cta up-cta">Yes — upgrade me to {upsell.name} →</a>
+    <a href={upsell.url} class="funnel-cta up-cta">Yes — upgrade me to {upsell.name} →</a>
 
     <div class="funnel-trust"><span>✓ Secure Stripe checkout</span><span>✓ Instant access</span></div>
 
@@ -48,7 +48,7 @@ const includes = [
 
     <div id="second-chance" class="up-second" hidden>
       <p class="up-second-text">Are you sure? This is the only time {upsell.name} is offered at {upsell.price}.</p>
-      <a href={checkoutFor(upsell.sku)} class="funnel-cta up-cta">Okay, add {upsell.name} for {upsell.price} →</a>
+      <a href={upsell.url} class="funnel-cta up-cta">Okay, add {upsell.name} for {upsell.price} →</a>
       <a id="decline-final" href={downsellPath} class="up-decline-link">No — show me a smaller option →</a>
     </div>
 

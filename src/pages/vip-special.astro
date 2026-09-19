@@ -1,6 +1,6 @@
 ---
 import FunnelLayout from '../layouts/FunnelLayout.astro';
-import { SITE, withBase, checkoutFor } from '../lib/site';
+import { SITE, withBase } from '../lib/site';
 
 const downsell = SITE.offers.downsell;
 const upsell = SITE.offers.upsell;
@@ -38,7 +38,7 @@ const includes = [
       <span class="up-once">one-time upgrade · added to your VIP</span>
     </div>
 
-    <a href={checkoutFor(downsell.sku)} class="funnel-cta up-cta">Yes — add {downsell.name} for {downsell.price} →</a>
+    <a href={downsell.url} class="funnel-cta up-cta">Yes — add {downsell.name} for {downsell.price} →</a>
 
     <div class="funnel-trust"><span>✓ Secure Stripe checkout</span><span>✓ Instant access</span></div>
 
