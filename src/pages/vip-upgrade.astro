@@ -1,0 +1,88 @@
+---
+import FunnelLayout from '../layouts/FunnelLayout.astro';
+import { SITE, withBase, checkoutFor } from '../lib/site';
+
+const upsell = SITE.offers.upsell;
+const downsellPath = withBase('/vip-special/');
+
+const includes = [
+  'Everything in your VIP channel — all my EURUSD & GBPUSD trades',
+  'A weekly written market breakdown for both pairs',
+  'Priority replies when you ask about a setup',
+  'Lifetime access — one payment, no subscription',
+];
+---
+
+<FunnelLayout
+  title="One-time upgrade"
+  description="A one-time upgrade to VIP Pro. Not financial advice."
+  canonicalPath="/vip-upgrade/"
+  noindex={true}
+>
+  <section class="funnel-wrap">
+    <span class="funnel-eyebrow">Wait — your order is not finished</span>
+    <h1 class="funnel-h1">Add <span class="hl">{upsell.name}</span> — one time only</h1>
+    <p class="funnel-sub">
+      You are in. Before you go, add {upsell.name}: {upsell.tagline}
+      You will never see this one-time price again.
+    </p>
+
+    <ul class="funnel-benefits">
+      {includes.map((b) => (
+        <li class="funnel-benefit"><span class="bchk" aria-hidden="true">✓</span><span>{b}</span></li>
+      ))}
+    </ul>
+
+    <div class="up-price">
+      <span class="up-amount">{upsell.price}</span>
+      <span class="up-once">one-time upgrade · added to your VIP</span>
+    </div>
+
+    <a href={checkoutFor(upsell.sku)} class="funnel-cta up-cta">Yes — upgrade me to {upsell.name} →</a>
+
+    <div class="funnel-trust"><span>✓ Secure Stripe checkout</span><span>✓ Instant access</span></div>
+
+    <div id="decline-wrap" class="up-decline">
+      <a id="decline-link" href={downsellPath} class="up-decline-link">No thanks, I'll pass on this upgrade</a>
+    </div>
+
+    <div id="second-chance" class="up-second" hidden>
+      <p class="up-second-text">Are you sure? This is the only time {upsell.name} is offered at {upsell.price}.</p>
+      <a href={checkoutFor(upsell.sku)} class="funnel-cta up-cta">Okay, add {upsell.name} for {upsell.price} →</a>
+      <a id="decline-final" href={downsellPath} class="up-decline-link">No — show me a smaller option →</a>
+    </div>
+
+    <p class="up-nfa">Not financial advice. Ideas are for study, not orders to copy. Trade small. Accept losses.</p>
+  </section>
+</FunnelLayout>
+
+<script is:inline>
+  (function () {
+    function setup() {
+      var link = document.getElementById('decline-link');
+      var wrap = document.getElementById('decline-wrap');
+      var second = document.getElementById('second-chance');
+      if (!link || !wrap || !second) return;
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        wrap.hidden = true;
+        second.hidden = false;
+        second.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+    else setup();
+  })();
+</script>
+
+<style>
+  .up-price { margin: 1.5rem 0 0.25rem; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; }
+  .up-amount { font-family: var(--font-display); font-size: 2.75rem; font-weight: 800; letter-spacing: -0.03em; color: #111; line-height: 1; }
+  .up-once { font-size: 0.8125rem; color: #888; }
+  .up-cta { margin: 1.1rem auto 0; max-width: 26rem; }
+  .up-decline { margin-top: 1.1rem; }
+  .up-decline-link { display: inline-block; margin-top: 0.85rem; font-size: 0.8125rem; color: #999; text-decoration: underline; text-underline-offset: 2px; }
+  .up-second { margin-top: 1.5rem; padding: 1.25rem 1rem; border: 1px dashed #d8d8d8; border-radius: 0.75rem; background: #fafafa; }
+  .up-second-text { margin: 0 0 0.85rem; font-size: 0.9375rem; color: #b45309; font-weight: 600; }
+  .up-nfa { margin: 1.25rem auto 0; max-width: 28rem; font-size: 0.75rem; color: #aaa; line-height: 1.5; }
+</style>

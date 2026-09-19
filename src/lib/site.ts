@@ -13,7 +13,31 @@ export const SITE = {
   vipPrice: '€77',
   vipLaunchNote: 'Founding-member launch price',
   checkoutSku: 'fx-vip',
+  checkoutBase: 'https://shop-nu-ten-29.vercel.app/api/checkout',
   checkoutUrl: 'https://shop-nu-ten-29.vercel.app/api/checkout?sku=fx-vip',
+  // Value ladder for the checklist funnel. Prices are PROPOSED — adjust freely.
+  // Each `sku` must also exist in the shop checkout backend (shop/api/checkout.js)
+  // with a real Stripe price id before it can charge.
+  offers: {
+    frontend: {
+      sku: 'fx-vip-founding',
+      price: '€27',
+      name: 'Lifetime VIP — Founding',
+      tagline: 'The private EURUSD & GBPUSD trades channel, at the lowest price it will ever be.',
+    },
+    upsell: {
+      sku: 'fx-vip-pro',
+      price: '€97',
+      name: 'VIP Pro',
+      tagline: 'Everything in VIP, plus a weekly written market breakdown and priority replies.',
+    },
+    downsell: {
+      sku: 'fx-vip-plus',
+      price: '€47',
+      name: 'VIP Plus',
+      tagline: 'Everything in VIP, plus a monthly written review. A lighter upgrade.',
+    },
+  },
   x: 'https://x.com/techonni',
   xHandle: '@techonni',
   pairs: ['EURUSD', 'GBPUSD'] as const,
@@ -34,4 +58,8 @@ export function withBase(path = ''): string {
 export function absoluteUrl(path = ''): string {
   const p = withBase(path);
   return `${SITE.site}${p}`;
+}
+
+export function checkoutFor(sku: string): string {
+  return `${SITE.checkoutBase}?sku=${encodeURIComponent(sku)}`;
 }

@@ -1,0 +1,62 @@
+---
+import FunnelLayout from '../layouts/FunnelLayout.astro';
+import { SITE } from '../lib/site';
+const inviteJson = JSON.stringify(SITE.telegramInvite);
+---
+
+<FunnelLayout
+  title="Welcome to VIP"
+  description="Welcome to the Euro Desk FX VIP channel. Not financial advice."
+  canonicalPath="/vip-welcome/"
+  noindex={true}
+>
+  <section class="funnel-wrap">
+    <span class="funnel-eyebrow">✓ You're in</span>
+    <h1 class="funnel-h1">Welcome to the <span class="hl">VIP channel</span></h1>
+    <p class="funnel-sub">
+      Payment received. Tap below to open your private EURUSD &amp; GBPUSD channel on Telegram.
+      Bookmark it — this link is just for members.
+    </p>
+
+    <div id="invite-box" class="invite-box">
+      <a id="invite-btn" class="funnel-cta invite-cta" href={SITE.telegramInvite} target="_blank" rel="noopener noreferrer">
+        Open my private Telegram →
+      </a>
+      <p class="invite-note">Not opening? Copy this link: <span id="invite-url" class="invite-url">{SITE.telegramInvite}</span></p>
+    </div>
+
+    <div class="welcome-next">
+      <p class="welcome-h">First 3 things to do inside:</p>
+      <ol class="welcome-list">
+        <li>Turn on notifications so you never miss a trade.</li>
+        <li>Read the pinned message — how I post entry, stop and target.</li>
+        <li>Start on a demo account and follow along before risking real money.</li>
+      </ol>
+    </div>
+
+    <p class="up-nfa">Not financial advice. Ideas are for study, not orders to copy. Trade small. Accept losses.</p>
+  </section>
+</FunnelLayout>
+
+<script is:inline define:vars={{ inviteJson }}>
+  (function () {
+    var invite = inviteJson;
+    var btn = document.getElementById('invite-btn');
+    var url = document.getElementById('invite-url');
+    if (invite) {
+      if (btn) btn.setAttribute('href', invite);
+      if (url) url.textContent = invite;
+    }
+  })();
+</script>
+
+<style>
+  .invite-box { margin: 2rem auto 0; max-width: 30rem; }
+  .invite-cta { width: 100%; }
+  .invite-note { margin: 0.85rem 0 0; font-size: 0.8125rem; color: #888; }
+  .invite-url { color: #16a34a; word-break: break-all; }
+  .welcome-next { margin: 2.25rem auto 0; max-width: 30rem; text-align: left; background: #f7f7f7; border-radius: 0.85rem; padding: 1.25rem 1.35rem; }
+  .welcome-h { margin: 0 0 0.6rem; font-size: 0.9375rem; font-weight: 700; color: #111; }
+  .welcome-list { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; color: #555; font-size: 0.9rem; line-height: 1.5; }
+  .up-nfa { margin: 1.5rem auto 0; max-width: 28rem; font-size: 0.75rem; color: #aaa; line-height: 1.5; }
+</style>

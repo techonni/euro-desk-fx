@@ -1,245 +1,95 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import NfaBanner from '../components/NfaBanner.astro';
-import EmailCapture from '../components/EmailCapture.astro';
+import FunnelLayout from '../layouts/FunnelLayout.astro';
 import { SITE, withBase } from '../lib/site';
 import { HERO_PHONE_SRC } from '../lib/heroPhone';
-import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const action = SITE.newsletterFormAction;
+const thankYou = withBase('/checklist-ready/');
 
-const ladder = [
-  {
-    tag: 'Free',
-    title: 'Read the free guides',
-    body: 'Short, plain-English lessons on EURUSD and GBPUSD. No jargon. No hype. Learn at your own pace.',
-    href: withBase('/blog/'),
-    external: false,
-    cta: 'Read the blog',
-  },
-  {
-    tag: 'Free',
-    title: 'Join the free channel',
-    body: 'Follow along on Telegram for beginner tips and how I read the two pairs. Costs nothing to start.',
-    href: SITE.telegram,
-    external: true,
-    cta: 'Join free',
-  },
-  {
-    tag: SITE.vipPrice,
-    title: 'Go Lifetime VIP',
-    body: 'When you are ready, get my real EURUSD and GBPUSD trades — entry, stop and target — in a private channel. One payment, lifetime access.',
-    href: withBase('/vip/'),
-    external: false,
-    cta: 'See VIP',
-  },
-];
-
-const vipIncludes = [
-  'Every EURUSD & GBPUSD trade I take — entry, stop-loss and take-profit',
-  'Posted live in a private Telegram channel, in real time',
-  'Two pairs only — less noise, easier to follow',
-  'Lifetime access for one payment of ' + SITE.vipPrice,
-  'Founding-member launch price — be one of the first members in',
-];
-
-const steps = [
-  {
-    n: '01',
-    title: 'Start free',
-    body: 'Read the guides and join the free channel. See how I think about EURUSD and GBPUSD before you spend a cent.',
-  },
-  {
-    n: '02',
-    title: 'Pay once for VIP',
-    body: 'Lifetime VIP is ' + SITE.vipPrice + ' via Stripe. One payment, no subscription. You get a receipt.',
-  },
-  {
-    n: '03',
-    title: 'Get the private channel',
-    body: 'The Telegram invite appears right after checkout. It is not listed in search. Then you see every trade I take.',
-  },
+const benefits = [
+  'The exact pre-trade checks I run before every EURUSD & GBPUSD trade',
+  'Where to place your stop-loss so one loss never hurts you',
+  'A simple risk rule that keeps small accounts alive',
+  'The two sessions when these pairs actually move',
 ];
 ---
 
-<BaseLayout title={SITE.name} description={SITE.description} canonicalPath="/">
-  <section class="hero">
-    <div class="content-col hero-row">
-      <div class="hero-copy">
-        <p class="label-micro">FX education desk · EURUSD &amp; GBPUSD · NFA</p>
-        <h1 class="display-lg mt-4">EURUSD &amp; GBPUSD, without the noise</h1>
-        <p class="hero-bio">
-          Free beginner guides and a free channel to learn the two most-traded FX pairs.
-          When you are ready, get <strong>Lifetime VIP</strong> — my real trades with
-          <strong>entry, stop and target</strong> — for one payment of {SITE.vipPrice}.
-        </p>
-        <div class="hero-actions">
-          <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="btn-primary">Join the free channel →</a>
-          <a href={withBase('/vip/')} class="link-arrow hero-secondary">See Lifetime VIP {SITE.vipPrice} →</a>
-        </div>
-        <p class="hero-byline">{SITE.byline} · This is not financial advice.</p>
-      </div>
-      <img
-        class="hero-phone"
-        src={HERO_PHONE_SRC}
-        width="240"
-        height="483"
-        alt="Euro Desk FX private trades channel on iPhone"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
-  </section>
+<FunnelLayout
+  title={SITE.name}
+  description="Free 1-page EURUSD & GBPUSD checklist: the pre-trade checks, stop-loss rule and risk rule I use before every trade. Not financial advice."
+  canonicalPath="/"
+>
+  <section class="funnel-wrap">
+    <span class="funnel-eyebrow">Free PDF · EURUSD &amp; GBPUSD</span>
+    <h1 class="funnel-h1">
+      Stop guessing your trades. <span class="hl">Follow a checklist.</span>
+    </h1>
+    <p class="funnel-sub">
+      Get the free 1-page checklist I run before every EURUSD &amp; GBPUSD trade — the exact
+      pre-trade checks, stop-loss rule and risk rule that keep beginners out of trouble.
+    </p>
 
-  <section class="paths" aria-labelledby="paths-heading">
-    <div class="content-col">
-      <p class="label-micro">Start free, upgrade when ready</p>
-      <h2 id="paths-heading" class="headline-md mt-2">Three steps, free first</h2>
-      <ul class="path-list ladder-list">
-        {ladder.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class="path-link"
-              {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            >
-              <div class="path-text">
-                <span class="ladder-tag">{item.tag}</span>
-                <p class="path-title">{item.title}</p>
-                <p class="path-body">{item.body}</p>
-              </div>
-              <span class="path-cta">{item.cta} →</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
+    <img class="squeeze-visual" src={HERO_PHONE_SRC} width="200" height="403" alt="Euro Desk FX checklist on a phone" loading="eager" fetchpriority="high" />
 
-  <section class="vip-highlight" aria-labelledby="vip-highlight-heading">
-    <div class="content-col">
-      <div class="vip-card">
-        <p class="label-micro">Lifetime VIP · {SITE.vipLaunchNote}</p>
-        <h2 id="vip-highlight-heading" class="headline-md mt-2">What you get for {SITE.vipPrice}</h2>
-        <ul class="feature-list mt-5">
-          {vipIncludes.map((item) => (
-            <li class="feature-item">
-              <span class="feature-check" aria-hidden="true">✓</span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-        <div class="cta-actions mt-6">
-          <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
-          <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="link-arrow">Or start free →</a>
-        </div>
-      </div>
-    </div>
-  </section>
+    <ul class="funnel-benefits">
+      {benefits.map((b) => (
+        <li class="funnel-benefit"><span class="bchk" aria-hidden="true">✓</span><span>{b}</span></li>
+      ))}
+    </ul>
 
-  <section class="how" aria-labelledby="how-heading">
-    <div class="content-col">
-      <p class="label-micro">Process</p>
-      <h2 id="how-heading" class="headline-md mt-2">How it works</h2>
-      <ol class="step-list">
-        {steps.map((step) => (
-          <li class="step-item">
-            <span class="step-n" aria-hidden="true">{step.n}</span>
-            <div>
-              <h3 class="step-title">{step.title}</h3>
-              <p class="step-body">{step.body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
+    <form id="lm-form" class="squeeze-form" action={action} method="POST" novalidate>
+      <input type="hidden" name={SITE.newsletterSourceEntry} value="fx.techonni.com · Squeeze" />
+      <input type="hidden" name={SITE.newsletterConsentEntry} value="Yes — I agree to receive emails from Euro Desk FX by Techonni" />
+      <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
+      <label class="sr-only" for="lm-email">Your email</label>
+      <input id="lm-email" class="squeeze-email" name={SITE.newsletterEmailEntry} type="email" required autocomplete="email" placeholder="Enter your best email" />
+      <button id="lm-submit" class="funnel-cta" type="submit">Send me the free checklist →</button>
+    </form>
 
-  <section class="blog-latest" aria-labelledby="blog-heading">
-    <div class="content-col">
-      <div class="blog-head">
-        <div>
-          <p class="label-micro">From the blog</p>
-          <h2 id="blog-heading" class="headline-md mt-2">Beginner guides</h2>
-        </div>
-        <a href={withBase('/blog/')} class="link-arrow">All posts →</a>
-      </div>
-      <ul class="post-list">
-        {posts.map((post) => (
-          <li>
-            <a href={withBase(`/blog/${post.id}/`)} class="post-link">
-              <time class="label-micro" datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}
-              </time>
-              <h3 class="post-title">{post.data.title}</h3>
-              <p class="post-desc">{post.data.description}</p>
-              <span class="link-arrow post-more">Read →</span>
-            </a>
-          </li>
-        ))}
-      </ul>
+    <div class="funnel-trust">
+      <span>✓ 100% free</span>
+      <span>✓ No spam</span>
+      <span>✓ Unsubscribe anytime</span>
     </div>
-  </section>
 
-  <section class="newsletter-band">
-    <div class="content-col">
-      <EmailCapture variant="widget" heading="Free FX tips by email" />
-    </div>
+    <p class="squeeze-legal">
+      Educational only. This is not financial advice. Trading involves risk of loss.
+      <a href={withBase('/blog/')}>Free guides</a> · <a href={withBase('/vip/')}>VIP</a>
+    </p>
   </section>
+</FunnelLayout>
 
-  <section class="final-cta">
-    <div class="content-col">
-      <p class="label-micro">Next step</p>
-      <h2 class="headline-md mt-2">Get Lifetime VIP for {SITE.vipPrice}</h2>
-      <p class="cta-copy">
-        Real EURUSD and GBPUSD trades — entry, stop and target — in a private channel.
-        One payment, lifetime access, founding-member price. Not sure yet? Start with the free channel first. Not financial advice.
-      </p>
-      <div class="cta-actions">
-        <a href={withBase('/vip/')} class="btn-primary">Get Lifetime VIP →</a>
-        <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" class="link-arrow">Join free channel →</a>
-      </div>
-      <div class="mt-8"><NfaBanner compact /></div>
-    </div>
-  </section>
-</BaseLayout>
+<script is:inline define:vars={{ thankYou }}>
+  (function () {
+    function setup() {
+      var form = document.getElementById('lm-form');
+      var email = document.getElementById('lm-email');
+      var btn = document.getElementById('lm-submit');
+      if (!form || !email || !btn || form.dataset.bound === '1') return;
+      form.dataset.bound = '1';
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!email.checkValidity()) { email.reportValidity(); return; }
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        try {
+          fetch(form.action, { method: 'POST', mode: 'no-cors', body: new FormData(form) }).catch(function () {});
+        } catch (err) {}
+        try { localStorage.setItem('fx_optin', String(Date.now())); } catch (e) {}
+        window.setTimeout(function () { window.location.href = thankYou; }, 600);
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+    else setup();
+  })();
+</script>
 
 <style>
-  .ladder-tag {
-    display: inline-block;
-    margin-bottom: 0.35rem;
-    padding: 0.15rem 0.55rem;
-    border-radius: 9999px;
-    background: #111;
-    color: #fff;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-  }
-  .vip-highlight { padding: 2.5rem 0 0; }
-  .vip-card {
-    background: #f7f7f7;
-    border: 1px solid #e8e8e8;
-    border-radius: 0.75rem;
-    padding: 1.75rem 1.5rem 2rem;
-  }
-  .feature-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
-  .feature-item { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.9375rem; line-height: 1.55; color: #333; }
-  .feature-check {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-top: 0.1rem;
-    border-radius: 9999px;
-    background: #111;
-    color: #fff;
-    font-size: 0.6875rem;
-    font-weight: 700;
-  }
+  .squeeze-visual { display: block; margin: 1.75rem auto 0; height: auto; }
+  .squeeze-form { margin: 1.75rem auto 0; max-width: 30rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .squeeze-email { box-sizing: border-box; height: 3.25rem; width: 100%; border-radius: 0.75rem; border: 1.5px solid #d8d8d8; background: #fff; color: #111; padding: 0 1.1rem; font-size: 1rem; outline: none; text-align: center; }
+  .squeeze-email:focus { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.15); }
+  .squeeze-email::placeholder { color: #999; }
+  .squeeze-legal { margin: 1.5rem auto 0; max-width: 28rem; font-size: 0.75rem; color: #aaa; line-height: 1.5; }
+  .squeeze-legal a { color: #999; text-decoration: underline; text-underline-offset: 2px; }
 </style>
