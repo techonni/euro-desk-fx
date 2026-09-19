@@ -50,6 +50,10 @@ export const SITE = {
   newsletterEmailEntry: 'entry.1946205931',
   newsletterConsentEntry: 'entry.259827322',
   newsletterSourceEntry: 'entry.452092755',
+  // MailerLite embedded-form public action URL, e.g.
+  // https://assets.mailerlite.com/jsonp/<account>/forms/<form>/subscribe
+  // When set, the opt-in form posts here instead of the Google Form.
+  mailerliteAction: '',
 } as const;
 
 export function withBase(path = ''): string {

@@ -3,7 +3,9 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
 import { SITE, withBase } from '../lib/site';
 import { HERO_PHONE_SRC } from '../lib/heroPhone';
 
-const action = SITE.newsletterFormAction;
+const useMailerLite = Boolean(SITE.mailerliteAction);
+const action = useMailerLite ? SITE.mailerliteAction : SITE.newsletterFormAction;
+const emailFieldName = useMailerLite ? 'fields[email]' : SITE.newsletterEmailEntry;
 const thankYou = withBase('/checklist-ready/');
 
 const benefits = [
@@ -38,11 +40,15 @@ const benefits = [
     </ul>
 
     <form id="lm-form" class="squeeze-form" action={action} method="POST" novalidate>
-      <input type="hidden" name={SITE.newsletterSourceEntry} value="fx.techonni.com · Squeeze" />
-      <input type="hidden" name={SITE.newsletterConsentEntry} value="Yes — I agree to receive emails from Euro Desk FX by Techonni" />
-      <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
+      {!useMailerLite && (
+        <Fragment>
+          <input type="hidden" name={SITE.newsletterSourceEntry} value="fx.techonni.com · Squeeze" />
+          <input type="hidden" name={SITE.newsletterConsentEntry} value="Yes — I agree to receive emails from Euro Desk FX by Techonni" />
+          <input type="hidden" name={SITE.newsletterNameEntry} value="—" />
+        </Fragment>
+      )}
       <label class="sr-only" for="lm-email">Your email</label>
-      <input id="lm-email" class="squeeze-email" name={SITE.newsletterEmailEntry} type="email" required autocomplete="email" placeholder="Enter your best email" />
+      <input id="lm-email" class="squeeze-email" name={emailFieldName} type="email" required autocomplete="email" placeholder="Enter your best email" />
       <button id="lm-submit" class="funnel-cta" type="submit">Send me the free checklist →</button>
     </form>
 
